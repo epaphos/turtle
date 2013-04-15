@@ -27,5 +27,4 @@ public class QuestionDataSource {
 		cursor.moveToFirst();
 		return new Question(cursor.getString(cursor.getColumnIndex("title")));
 	}
-
 }
