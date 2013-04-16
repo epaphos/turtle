@@ -1,14 +1,9 @@
 package com.example.turtlestack;
 
-public class Question {
-	
-	private String title;
-	
+public class Question extends Post{
+
 	public Question(String title) {
-		this.title = title; 
+		super(title);
 	}
-	
-	public String getTitle() {
-		return this.title;
-	}	
+
 }

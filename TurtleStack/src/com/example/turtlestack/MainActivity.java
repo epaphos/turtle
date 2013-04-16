@@ -16,9 +16,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		QuestionDataSource ds = new QuestionDataSource(this);
+		PostDataSource ds = new PostDataSource(this);
 		ds.open();
-		Log.v("question", ds.getQuestion(8414075).getTitle());
+		Log.v("question", ds.getPost(8414075).getTitle());
 		
 	}
 	
