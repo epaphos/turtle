@@ -6,3 +6,5 @@ TurtleStack/bin/
 
 #Ignore class files
 *.class
+
+.DS_Store
