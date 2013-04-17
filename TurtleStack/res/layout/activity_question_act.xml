@@ -8,27 +8,49 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".QuestionActivity" >
 
-    <EditText
-        android:id="@+id/editText1"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="22dp"
-        android:ems="10" >
+        android:text="@string/title_activity_question" />
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/title"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:inputType="textMultiLine" >
 
         <requestFocus />
     </EditText>
+
+    <EditText
+        android:id="@+id/tags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/text"
+        android:layout_below="@+id/text"
+        android:ems="10" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText1"
-        android:layout_marginBottom="28dp"
-        android:text="Post" />
+        android:layout_alignRight="@+id/tags"
+        android:layout_below="@+id/tags"
+        android:text="@string/button_post" />
 
 </RelativeLayout>
