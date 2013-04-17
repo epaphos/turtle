@@ -81,6 +81,22 @@ public class Post {
 		this.commentCount = commentCount;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", postTypeId=" + postTypeId
+				+ ", creationDate=" + creationDate + ", score=" + score
+				+ ", body=" + body + ", ownerUserId=" + ownerUserId
+				+ ", lastEditorUserId=" + lastEditorUserId
+				+ ", lastEditorUserName=" + lastEditorUserName
+				+ ", lastEditDate=" + lastEditDate + ", lastActivityDate="
+				+ lastActivityDate + ", communityOwnedDate="
+				+ communityOwnedDate + ", closedDate=" + closedDate
+				+ ", commentCount=" + commentCount;
+	}
+
 	/**
 	 * @return the id
 	 */

@@ -25,7 +25,7 @@ public class Question extends Post{
 		this.tags = tags;
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * @param id
 	 * @param postTypeId
@@ -58,6 +58,17 @@ public class Question extends Post{
 		this.answerCount = answerCount;
 		this.favoriteCount = favoriteCount;
 		// TODO Auto-generated constructor stub
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + ", acceptedAnswer=" + acceptedAnswer + ", viewCount="
+				+ viewCount + ", title=" + title + ", tags=" + tags
+				+ ", answerCount=" + answerCount + ", favoriteCount="
+				+ favoriteCount + "]";
 	}
 	
 	/**

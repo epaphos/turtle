@@ -43,6 +43,14 @@ public class Answer extends Post {
 		// TODO Auto-generated constructor stub
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + ", parentId=" + parentId + "]";
+	}
+
 	/**
 	 * @return the parentId
 	 */

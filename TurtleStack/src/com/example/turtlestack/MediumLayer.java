@@ -131,7 +131,7 @@ public class MediumLayer {
 			values.put("view_count",0);
 			values.put("body",answer.getBody());
 			values.put("owner_user_id",answer.getOwnerUserId());
-			values.put("last_editor_user_id", answer.getLastEditorUserId());
+			//values.put("last_editor_user_id", answer.getLastEditorUserId());
 			values.put("last_editor_display_name", answer.getLastEditorUserName());
 			values.put("last_edit_date", answer.getLastEditDate());
 			values.put("last_activity_date", answer.getLastActivityDate());
@@ -139,7 +139,7 @@ public class MediumLayer {
 			values.put("closed_date",answer.getClosedDate());
 			values.put("title","NULL");
 			values.put("tags", "NULL");
-			values.put("comment_count",answer.getCommentCount());
+			//values.put("comment_count",answer.getCommentCount());
 			//The following attributes are empty and only belong to question
 			//accepted_answer_id
 			//answer_count
