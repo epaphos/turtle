@@ -17,12 +17,13 @@ public class Question extends Post{
 	}
 
 	//New Question Constructor
-	public Question(String title, int id, String body, String tags) {
-		super(id, body);
+	public Question(PostDataSource ds,String title, String body, String tags) {
+		super(ds, body);
 		this.setPostTypeId(1);
 		this.viewCount = 0;
 		this.title = title;
 		this.tags = tags;
+		ds.writePost(this);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -42,13 +43,13 @@ public class Question extends Post{
 	 * @param commentCount
 	 */
 	//Existing Question Constructor
-	public Question(int id, int postTypeId, String creationDate, int score,
+	public Question(PostDataSource ds, int id, int postTypeId, String creationDate, int score,
 			String body, int ownerUserId, int lastEditorUserId,
 			String lastEditorUserName, String lastEditDate,
 			String lastActivityDate, String communityOwnedDate,
 			String closedDate, int commentCount,int acceptedAnswer,
 			int viewCount, String title, String tags, int answerCount, int favoriteCount ) {
-		super(id, postTypeId, creationDate, score, body, ownerUserId, lastEditorUserId,
+		super(ds, id,postTypeId, creationDate, score, body, ownerUserId, lastEditorUserId,
 				lastEditorUserName, lastEditDate, lastActivityDate, communityOwnedDate,
 				closedDate, commentCount);
 		this.acceptedAnswer = acceptedAnswer;

@@ -17,17 +17,16 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		MediumLayer ds = new MediumLayer(this);
-		//Log.v("question", ds.getPost(8414075).getBody());
-		Question question = new Question("question", 1, "lalala", "<HTML>");
-		Answer answer = new Answer(2, 1, "ohohoh");
-		//Log.v("question",question.toString());
-		//Log.v("answer",answer.toString());
-		ds.writePost(answer);
-		//ds.writePost(question);
-		//Log.v("question",ds.readPost(1).toString());
-		//Log.v("answer",ds.readPost(2).toString());
-		//Log.v("max post",Integer.toString(ds.newId()));
+//		PostDataSource ds = new PostDataSource(this);
+//		ds.open();
+//		Log.v("question", ds.getPost(8414075).getBody());
+//		Question question = new Question(ds,"question", "lalala", "<HTML>");
+//		Answer answer = new Answer(ds, 1, "ohohoh");
+//		Log.v("IDA", Integer.toString(answer.getId()));
+//		Log.v("IDQ", Integer.toString(question.getId()));
+//		Log.v("question",ds.readPost(question.getId()).toString());
+//		Log.v("answer",ds.readPost(answer.getId()).toString());
+//		ds.close();
 		}
 	
 	public void onClick(View v) {

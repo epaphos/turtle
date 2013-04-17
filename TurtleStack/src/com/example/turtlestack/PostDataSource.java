@@ -7,11 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 
-public class MediumLayer {
+public class PostDataSource {
 	TurtleSQLiteHelper helper;
 	SQLiteDatabase database;
 	
-	public MediumLayer(Context context) {
+	public PostDataSource(Context context) {
 		helper = new TurtleSQLiteHelper(context);
 		helper.createDatabase();
 	}
@@ -24,7 +24,7 @@ public class MediumLayer {
 		helper.close();
 	}
 	
-	public int maxId() {
+	public int newId() {
 		Cursor cursor = database.rawQuery("select max(id) from posts", null);
 		cursor.moveToFirst();
 		int maxId = cursor.getInt(cursor.getColumnIndex("max(id)"));
@@ -76,6 +76,7 @@ public class MediumLayer {
 		
 		if (postTypeId == 1) {
 			return new Question(
+					this,
 					id,
 					postTypeId,
 					creationDate,
@@ -99,6 +100,7 @@ public class MediumLayer {
 		}
 		else if (postTypeId == 2) {
 			return new Answer(
+					this,
 					id,
 					postTypeId,
 					creationDate,
@@ -120,9 +122,11 @@ public class MediumLayer {
 	}
 
 	public boolean writePost(Post post) {
-		if (post.getPostTypeId() == 2) {
+
+		if (post instanceof Answer) {
 			Answer answer = (Answer) post;
 			ContentValues values = new ContentValues();
+			
 			values.put("id",answer.getId());
 			values.put("post_type_id", answer.getPostTypeId());
 			values.put("parent_id", answer.getParentId());
@@ -139,19 +143,19 @@ public class MediumLayer {
 			values.put("closed_date",answer.getClosedDate());
 			values.put("title","NULL");
 			values.put("tags", "NULL");
-			//values.put("comment_count",answer.getCommentCount());
+			values.put("comment_count",answer.getCommentCount());
+			//Log.v("LOG",answer.toString());
 			//The following attributes are empty and only belong to question
 			//accepted_answer_id
 			//answer_count
 			//favorite_count
-			
 	        database.insert("posts", "answer_count", values);
 			return true;
 		}
-		else if (post.getPostTypeId() == 1) {
-			Question question = (Question) post;
-			
+		else if (post instanceof Question) {
+			Question question = (Question) post;	
 			ContentValues values = new ContentValues();
+			
 			values.put("id",question.getId());
 			values.put("post_type_id", question.getPostTypeId());
 			values.put("accepted_answer_id", question.getAcceptedAnswer());

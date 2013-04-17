@@ -2,6 +2,7 @@ package com.example.turtlestack;
 
 import java.sql.Date;
 
+
 public class Post {
 	
 	private int id;
@@ -9,14 +10,15 @@ public class Post {
 	private String creationDate;
 	private int score;
 	private String body;
-	private int ownerUserId;
-	private int lastEditorUserId; //shall be null in creation
+	private int ownerUserId=0; //we have to implement it
+	private int lastEditorUserId = 0; //shall be null in creation
 	private String lastEditorUserName;
 	private String lastEditDate;
 	private String lastActivityDate;
 	private String communityOwnedDate;
 	private String closedDate;
-	private int commentCount; //shall me null in creation
+	private int commentCount = 0; //shall me null in creation
+	PostDataSource ds;
 	
 	/**
 	 * Empty Constructor 
@@ -24,14 +26,12 @@ public class Post {
 	protected Post() {}
 
 	//New Post Constructor
-	protected Post(int id, String body) {
-		this.id = id; //we have to change it to query it directly from the database
-		
+	protected Post(PostDataSource ds, String body) {
 		//Creation date in sql format
 		java.util.Date currentDate = new java.util.Date();
 		Date date = new Date(currentDate.getTime());
 		this.creationDate = date.toString();
-		
+		this.id = ds.newId();
 		this.score = 0;
 		this.body = body;
 		this.ownerUserId = ownerUserId; //we have to change it to query it from database
@@ -60,7 +60,7 @@ public class Post {
 	 */
 	
 	//Existing Post Constructor
-	public Post(int id, int postTypeId, String creationDate, int score,
+	public Post(PostDataSource ds,int id, int postTypeId, String creationDate, int score,
 			String body, int ownerUserId, int lastEditorUserId,
 			String lastEditorUserName, String lastEditDate,
 			String lastActivityDate, String communityOwnedDate,

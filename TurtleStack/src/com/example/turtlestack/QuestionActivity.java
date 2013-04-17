@@ -15,22 +15,25 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class QuestionActivity extends Activity {
-
+	PostDataSource ds;
+	
 	@SuppressLint("NewApi")   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_act);
+        ds = new PostDataSource(this);
+		ds.open();
 		Button postButton = (Button) findViewById(R.id.button1);
 		postButton.setOnClickListener(postButtonListener);
+        ds.close();
      // Make sure we're running on Honeycomb or higher to use ActionBar APIs
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // Show the Up button in the action bar.
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        
-        
     }
+	
 	View.OnClickListener postButtonListener = new View.OnClickListener() {
 		
 		@Override
@@ -42,7 +45,8 @@ public class QuestionActivity extends Activity {
 	    	String body  = mEdit.getText().toString();
 	    	mEdit = (EditText) findViewById(R.id.tags);
 	    	String tags  = mEdit.getText().toString();
-	    	//Question question = new Question(title, body,tags);
+			Question question = new Question(ds,title, body,tags);
+			startActivity(new Intent(QuestionActivity.this, MainActivity.class));
 		}
 	};
 	
