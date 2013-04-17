@@ -42,7 +42,7 @@ public class QuestionActivity extends Activity {
 	    	String body  = mEdit.getText().toString();
 	    	mEdit = (EditText) findViewById(R.id.tags);
 	    	String tags  = mEdit.getText().toString();
-	    	Question question = new Question(title, body,tags);
+	    	//Question question = new Question(title, body,tags);
 		}
 	};
 	

@@ -1,20 +1,47 @@
 package com.example.turtlestack;
 
+import java.sql.Date;
+
 public class Post {
 	
 	private int id;
 	private int postTypeId;
 	private String creationDate;
-	private int score = 0;
+	private int score;
 	private String body;
 	private int ownerUserId;
-	private int lastEditorUserId;
+	private int lastEditorUserId; //shall be null in creation
 	private String lastEditorUserName;
 	private String lastEditDate;
 	private String lastActivityDate;
 	private String communityOwnedDate;
 	private String closedDate;
-	private int commentCount;
+	private int commentCount; //shall me null in creation
+	
+	/**
+	 * Empty Constructor 
+	 */
+	protected Post() {}
+
+	//New Post Constructor
+	protected Post(int id, String body) {
+		this.id = id; //we have to change it to query it directly from the database
+		
+		//Creation date in sql format
+		java.util.Date currentDate = new java.util.Date();
+		Date date = new Date(currentDate.getTime());
+		this.creationDate = date.toString();
+		
+		this.score = 0;
+		this.body = body;
+		this.ownerUserId = ownerUserId; //we have to change it to query it from database
+		this.lastEditorUserName = "NULL";
+		this.lastEditDate = "NULL";
+		this.lastActivityDate = date.toString();
+		this.communityOwnedDate = "NULL";
+		this.closedDate = "NULL";
+	}
+	
 	
 	/**
 	 * @param id
@@ -23,21 +50,36 @@ public class Post {
 	 * @param score
 	 * @param body
 	 * @param ownerUserId
+	 * @param lastEditorUserId
+	 * @param lastEditorUserName
+	 * @param lastEditDate
+	 * @param lastActivityDate
+	 * @param communityOwnedDate
+	 * @param closedDate
+	 * @param commentCount
 	 */
-	protected Post(int id, int postTypeId, String creationDate, String body, int ownerUserId) {
+	
+	//Existing Post Constructor
+	public Post(int id, int postTypeId, String creationDate, int score,
+			String body, int ownerUserId, int lastEditorUserId,
+			String lastEditorUserName, String lastEditDate,
+			String lastActivityDate, String communityOwnedDate,
+			String closedDate, int commentCount) {
 		super();
 		this.id = id;
 		this.postTypeId = postTypeId;
 		this.creationDate = creationDate;
-		this.lastActivityDate = creationDate;
+		this.score = score;
 		this.body = body;
 		this.ownerUserId = ownerUserId;
+		this.lastEditorUserId = lastEditorUserId;
+		this.lastEditorUserName = lastEditorUserName;
+		this.lastEditDate = lastEditDate;
+		this.lastActivityDate = lastActivityDate;
+		this.communityOwnedDate = communityOwnedDate;
+		this.closedDate = closedDate;
+		this.commentCount = commentCount;
 	}
-	
-	/**
-	 * Empty Constructor 
-	 */
-	protected Post() {}
 
 	/**
 	 * @return the id

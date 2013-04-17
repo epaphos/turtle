@@ -1,8 +1,20 @@
 package com.example.turtlestack;
 
 public class Answer extends Post {
-	private int parentId;
+	private int parentId; //set on creation
 
+	//Empty Constructor
+	public Answer() {
+		
+	}
+	
+	//New Answer Constructor
+	public Answer(int id, int parentId,String body) {
+		super(id, body);
+		this.setPostTypeId(2);
+		this.parentId = parentId;
+	}
+	
 	/**
 	 * @param id
 	 * @param postTypeId
@@ -10,15 +22,25 @@ public class Answer extends Post {
 	 * @param score
 	 * @param body
 	 * @param ownerUserId
+	 * @param lastEditorUserId
+	 * @param lastEditorUserName
+	 * @param lastEditDate
+	 * @param lastActivityDate
+	 * @param communityOwnedDate
+	 * @param closedDate
+	 * @param commentCount
 	 */
-	public Answer(int id, int postTypeId, String creationDate,
-			String body, int ownerUserId,int parentID) {
-		super(id, postTypeId, creationDate, body, ownerUserId);
+	//Existing Answer Constructor
+	public Answer(int id, int postTypeId, String creationDate, int score,
+			String body, int ownerUserId, int lastEditorUserId,
+			String lastEditorUserName, String lastEditDate,
+			String lastActivityDate, String communityOwnedDate,
+			String closedDate, int commentCount, int parentId) {
+		super(id, postTypeId, creationDate, score, body, ownerUserId, lastEditorUserId,
+				lastEditorUserName, lastEditDate, lastActivityDate, communityOwnedDate,
+				closedDate, commentCount);
 		this.parentId = parentId;
-	}
-	
-	public Answer() {
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
