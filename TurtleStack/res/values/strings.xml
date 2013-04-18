@@ -10,5 +10,7 @@
     <string name="button_post">Post Question</string>
     <string name="title_activity_question">Post Question</string>
     <string name="title_activity_browse">BrowseActivity</string>
+    <string name="post_question_activity">New Question</string>
+    <string name="post_button">Post</string>
 
 </resources>

@@ -21,7 +21,7 @@ public class BrowseActivity extends ListActivity {
 		PostDataSource ds = new PostDataSource(this);
 		ds.open();
 		
-		ArrayList<Post> list= ds.getRecentPosts(10);
+		/*ArrayList<Post> list= ds.getRecentPost(10);
 		ArrayList<String> list2 = new ArrayList<String>();
 		for (Post post : list) {
 			list2.add(post.getTitle());
@@ -30,7 +30,7 @@ public class BrowseActivity extends ListActivity {
 		lv = (ListView) findViewById(android.R.id.list);
         ArrayAdapter<String> arrayAdapter = 
         		new ArrayAdapter<String>(this, R.layout.list_row, list2);
-        lv.setAdapter(arrayAdapter); 
+        lv.setAdapter(arrayAdapter); */
 	}
 
 	@Override

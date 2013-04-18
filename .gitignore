@@ -10,3 +10,6 @@ TurtleStack/bin/
 
 #Ignore assets
 */assets/
+
+#Ignore generated files
+*/gen/
