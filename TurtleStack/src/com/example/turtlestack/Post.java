@@ -31,7 +31,6 @@ public class Post {
 		Date date = new Date(currentDate.getTime());
 		this.creationDate = date.toString();
 		//Just temporary
-		this.id = (int)Math.random()*100000;
 		this.score = 0;
 		this.body = body;
 		this.ownerUserId = ownerUserId; //we have to change it to query it from database
@@ -80,6 +79,8 @@ public class Post {
 		this.closedDate = closedDate;
 		this.commentCount = commentCount;
 	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
