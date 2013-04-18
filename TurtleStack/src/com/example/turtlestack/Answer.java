@@ -31,12 +31,12 @@ public class Answer extends Post {
 	 * @param commentCount
 	 */
 	//Existing Answer Constructor
-	public Answer(PostDataSource ds,int id, int postTypeId, String creationDate, int score,
+	public Answer(int id, int postTypeId, String creationDate, int score,
 			String body, int ownerUserId, int lastEditorUserId,
 			String lastEditorUserName, String lastEditDate,
 			String lastActivityDate, String communityOwnedDate,
 			String closedDate, int commentCount, int parentId) {
-		super(postTypeId, creationDate, score, body, ownerUserId, lastEditorUserId,
+		super(id,postTypeId, creationDate, score, body, ownerUserId, lastEditorUserId,
 				lastEditorUserName, lastEditDate, lastActivityDate, communityOwnedDate,
 				closedDate, commentCount);
 		this.parentId = parentId;//we have to implement it

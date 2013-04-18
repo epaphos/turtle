@@ -1,6 +1,4 @@
 package com.example.turtlestack;
-
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -22,18 +20,19 @@ public class QuestionActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_act);
-        ds = new PostDataSource(this);
+        
+        ds = PostDataSource.getInstance(this);
 		ds.open();
 		Button postButton = (Button) findViewById(R.id.button1);
 		postButton.setOnClickListener(postButtonListener);
         ds.close();
+        
      // Make sure we're running on Honeycomb or higher to use ActionBar APIs
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // Show the Up button in the action bar.
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
-	
 	View.OnClickListener postButtonListener = new View.OnClickListener() {
 		
 		@Override

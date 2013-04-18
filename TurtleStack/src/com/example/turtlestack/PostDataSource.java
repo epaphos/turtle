@@ -1,19 +1,23 @@
 package com.example.turtlestack;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.*;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 
 public class PostDataSource {
 	TurtleSQLiteHelper helper;
 	SQLiteDatabase database;
+	private static PostDataSource instance = null;
 	
 	public PostDataSource(Context context) {
 		helper = new TurtleSQLiteHelper(context);
 		helper.createDatabase();
+	}
+	
+	public static PostDataSource getInstance(Context context){
+		if(instance == null) instance = new PostDataSource(context);
+		return instance;
 	}
 	
 	public void open() throws SQLException {
@@ -28,7 +32,6 @@ public class PostDataSource {
 		
 		Cursor cursor = database.rawQuery("select * from posts where id = ?", new String[] { String.valueOf(id) });
 		cursor.moveToFirst();
-		
 		/*Extracting values
 		 * 
 		 */
@@ -69,6 +72,7 @@ public class PostDataSource {
 		
 		if (postTypeId == 1) {
 			return new Question(
+					id,
 					postTypeId,
 					creationDate,
 					score,
@@ -91,7 +95,6 @@ public class PostDataSource {
 		}
 		else if (postTypeId == 2) {
 			return new Answer(
-					this,
 					id,
 					postTypeId,
 					creationDate,

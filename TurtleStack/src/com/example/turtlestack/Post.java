@@ -3,7 +3,7 @@ package com.example.turtlestack;
 import java.sql.Date;
 
 
-public class Post {
+public abstract class Post {
 	
 	private int id;
 	private int postTypeId;
@@ -58,13 +58,13 @@ public class Post {
 	 */
 	
 	//Existing Post Constructor
-	public Post(int postTypeId, String creationDate, int score,
+	public Post(int id, int postTypeId, String creationDate, int score,
 			String body, int ownerUserId, int lastEditorUserId,
 			String lastEditorUserName, String lastEditDate,
 			String lastActivityDate, String communityOwnedDate,
 			String closedDate, int commentCount) {
 		super();
-		this.id = (int)Math.random()*100000;
+		this.id = id;
 		this.postTypeId = postTypeId;
 		this.creationDate = creationDate;
 		this.score = score;

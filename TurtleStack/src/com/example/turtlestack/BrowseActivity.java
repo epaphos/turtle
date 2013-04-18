@@ -1,7 +1,6 @@
 package com.example.turtlestack;
 
 import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
@@ -10,7 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class BrowseActivity extends ListActivity {
-	
+	QuestionDataSource ds;
+
 	private ListView lv;
 
 	@Override
@@ -18,7 +18,7 @@ public class BrowseActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_browse);
 		
-		QuestionDataSource ds = new QuestionDataSource(this);
+		ds = QuestionDataSource.getInstance(this);
 		ds.open();
 		
 		ArrayList<Question> list = ds.getRecentQuestions(10);
@@ -31,6 +31,7 @@ public class BrowseActivity extends ListActivity {
         ArrayAdapter<String> arrayAdapter = 
         		new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
         lv.setAdapter(arrayAdapter);
+        ds.close();
 	}
 
 	@Override

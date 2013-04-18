@@ -41,13 +41,13 @@ public class Question extends Post{
 	 * @param commentCount
 	 */
 	//Existing Question Constructor
-	public Question(int postTypeId, String creationDate, int score,
+	public Question(int id, int postTypeId, String creationDate, int score,
 			String body, int ownerUserId, int lastEditorUserId,
 			String lastEditorUserName, String lastEditDate,
 			String lastActivityDate, String communityOwnedDate,
 			String closedDate, int commentCount,int acceptedAnswer,
 			int viewCount, String title, String tags, int answerCount, int favoriteCount ) {
-		super(postTypeId, creationDate, score, body, ownerUserId, lastEditorUserId,
+		super(id,postTypeId, creationDate, score, body, ownerUserId, lastEditorUserId,
 				lastEditorUserName, lastEditDate, lastActivityDate, communityOwnedDate,
 				closedDate, commentCount);
 		this.acceptedAnswer = acceptedAnswer;

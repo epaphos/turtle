@@ -1,6 +1,5 @@
 package com.example.turtlestack;
 
-import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +8,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 public class MainActivity extends Activity {
 
@@ -25,7 +23,6 @@ public class MainActivity extends Activity {
 		postButton.setOnClickListener(listener);
 		recentQuestionsButton.setOnClickListener(listener);
 		}
-	
 
 		View.OnClickListener listener = new View.OnClickListener() {
 			
@@ -34,11 +31,9 @@ public class MainActivity extends Activity {
 				Button clickedButton = (Button) v;
 				switch(clickedButton.getId()) {
 				case R.id.button1 :
-					Log.v("teststrings", "in first case");
 					launch(v, QuestionActivity.class);
 					break;
 				case R.id.recentquestions : 
-					Log.v("teststrings", "in second case");
 					launch(v, BrowseActivity.class);
 					break;
 				}
@@ -50,7 +45,6 @@ public class MainActivity extends Activity {
 		Intent i = new Intent(this, c);
 		startActivity(i);
 	}
-	
 		
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
