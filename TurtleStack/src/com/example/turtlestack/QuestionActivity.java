@@ -45,11 +45,17 @@ public class QuestionActivity extends Activity {
 	    	String body  = mEdit.getText().toString();
 	    	mEdit = (EditText) findViewById(R.id.tags);
 	    	String tags  = mEdit.getText().toString();
+
 			Question question = new Question(title, body,tags);
 			startActivity(new Intent(QuestionActivity.this, MainActivity.class));
+
 		}
 	};
 	
+	public void back(View v) {
+		Intent i = new Intent(this,MainActivity.class);
+		startActivity(i);
+	}
 	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
-        android:ems="10" />
+        android:ems="10"
+        android:inputType="textMultiLine" />
 
     <EditText
         android:id="@+id/text"
@@ -43,7 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/text"
         android:layout_below="@+id/text"
-        android:ems="10" />
+        android:ems="10"
+        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/button1"

@@ -20,27 +20,18 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-//		PostDataSource ds = new PostDataSource(this);
-//		ds.open();
-//		Log.v("question", ds.getPost(8414075).getBody());
-//		Question question = new Question(ds,"question", "lalala", "<HTML>");
-//		Answer answer = new Answer(ds, 1, "ohohoh");
-//		Log.v("IDA", Integer.toString(answer.getId()));
-//		Log.v("IDQ", Integer.toString(question.getId()));
-//		Log.v("question",ds.readPost(question.getId()).toString());
-//		Log.v("answer",ds.readPost(answer.getId()).toString());
-//		ds.close();
+		Button postButton = (Button) findViewById(R.id.button1);
+		postButton.setOnClickListener(postButtonListener);
 		}
 	
-	public void onClick(View v) {
-		Button clickedButton = (Button) v;
-	    setContentView(0);
-	    switch(clickedButton.getId()) {
-	    	case R.id.button1:
-    		//	launch(v);
-            break;
-        }
-    }
+
+		View.OnClickListener postButtonListener = new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				launch(v);
+			}
+		};
 	
 	public void launch(View v) {
 		Intent i = new Intent(this,QuestionActivity.class);
@@ -54,11 +45,12 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-	public void sendMessage(View view) {
+	/*public void sendMessage(View view) {
 		Intent intent = new Intent(this, QuestionActivity.class);
 		EditText editText = (EditText) findViewById(R.id.text);
 		String message = editText.getText().toString();
 		intent.putExtra(EXTRA_MESSAGE, message);
 		startActivity(intent);
-	}
+	}*/
 }
+	
