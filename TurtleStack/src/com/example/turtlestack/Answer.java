@@ -9,11 +9,10 @@ public class Answer extends Post {
 	}
 	
 	//New Answer Constructor
-	public Answer(PostDataSource ds, int parentId,String body) {
-		super(ds, body);
+	public Answer(int parentId,String body) {
+		super(body);
 		this.setPostTypeId(2);
 		this.parentId = parentId; //we have to implement it
-		ds.writePost(this);
 	}
 	
 	/**

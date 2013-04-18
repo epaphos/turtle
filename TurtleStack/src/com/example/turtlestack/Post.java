@@ -26,12 +26,11 @@ public class Post {
 	protected Post() {}
 
 	//New Post Constructor
-	protected Post(PostDataSource ds, String body) {
+	protected Post(String body) {
 		//Creation date in sql format
 		java.util.Date currentDate = new java.util.Date();
 		Date date = new Date(currentDate.getTime());
 		this.creationDate = date.toString();
-		this.id = ds.newId();
 		this.score = 0;
 		this.body = body;
 		this.ownerUserId = ownerUserId; //we have to change it to query it from database

@@ -24,13 +24,6 @@ public class PostDataSource {
 		helper.close();
 	}
 	
-	public int newId() {
-		Cursor cursor = database.rawQuery("select max(id) from posts", null);
-		cursor.moveToFirst();
-		int maxId = cursor.getInt(cursor.getColumnIndex("max(id)"));
-		return maxId +1;
-	}
-	
 	public Post readPost(int id) {
 		
 		Cursor cursor = database.rawQuery("select * from posts where id = ?", new String[] { String.valueOf(id) });
@@ -127,7 +120,6 @@ public class PostDataSource {
 			Answer answer = (Answer) post;
 			ContentValues values = new ContentValues();
 			
-			values.put("id",answer.getId());
 			values.put("post_type_id", answer.getPostTypeId());
 			values.put("parent_id", answer.getParentId());
 			values.put("creation_date",answer.getCreationDate());
@@ -156,7 +148,6 @@ public class PostDataSource {
 			Question question = (Question) post;	
 			ContentValues values = new ContentValues();
 			
-			values.put("id",question.getId());
 			values.put("post_type_id", question.getPostTypeId());
 			values.put("accepted_answer_id", question.getAcceptedAnswer());
 			values.put("creation_date",question.getCreationDate());

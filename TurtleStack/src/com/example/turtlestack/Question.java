@@ -17,13 +17,12 @@ public class Question extends Post{
 	}
 
 	//New Question Constructor
-	public Question(PostDataSource ds,String title, String body, String tags) {
-		super(ds, body);
+	public Question(String title, String body, String tags) {
+		super(body);
 		this.setPostTypeId(1);
 		this.viewCount = 0;
 		this.title = title;
 		this.tags = tags;
-		ds.writePost(this);
 		// TODO Auto-generated constructor stub
 	}
 
