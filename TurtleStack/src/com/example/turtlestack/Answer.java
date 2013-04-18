@@ -37,7 +37,7 @@ public class Answer extends Post {
 			String lastEditorUserName, String lastEditDate,
 			String lastActivityDate, String communityOwnedDate,
 			String closedDate, int commentCount, int parentId) {
-		super(id, postTypeId, creationDate, score, body, ownerUserId, lastEditorUserId,
+		super(postTypeId, creationDate, score, body, ownerUserId, lastEditorUserId,
 				lastEditorUserName, lastEditDate, lastActivityDate, communityOwnedDate,
 				closedDate, commentCount);
 		this.parentId = parentId;//we have to implement it

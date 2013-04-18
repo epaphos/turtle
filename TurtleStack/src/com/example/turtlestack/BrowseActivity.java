@@ -18,19 +18,19 @@ public class BrowseActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_browse);
 		
-		PostDataSource ds = new PostDataSource(this);
+		QuestionDataSource ds = new QuestionDataSource(this);
 		ds.open();
 		
-		/*ArrayList<Post> list= ds.getRecentPost(10);
-		ArrayList<String> list2 = new ArrayList<String>();
-		for (Post post : list) {
-			list2.add(post.getTitle());
+		ArrayList<Question> list = ds.getRecentQuestions(10);
+		ArrayList<String> listOfTitles = new ArrayList<String>();
+		for (Question question : list) {
+			listOfTitles.add(question.getTitle());
 		}
         
 		lv = (ListView) findViewById(android.R.id.list);
         ArrayAdapter<String> arrayAdapter = 
-        		new ArrayAdapter<String>(this, R.layout.list_row, list2);
-        lv.setAdapter(arrayAdapter); */
+        		new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
+        lv.setAdapter(arrayAdapter);
 	}
 
 	@Override

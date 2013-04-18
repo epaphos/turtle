@@ -16,13 +16,11 @@ public class QuestionDataSource extends PostDataSource {
 		ArrayList<Question> list = new ArrayList<Question>();
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
-			list.add(new Question(cursor.getString(cursor.getColumnIndex("title"))));
+			list.add(new Question(cursor.getString(cursor.getColumnIndex("title")), 
+					cursor.getString(cursor.getColumnIndex("body")),
+					cursor.getString(cursor.getColumnIndex("tags"))));
 			cursor.moveToNext();			
 		}
 		return list;
-	}
-	
-	public Question getQuestion(int id) {
-		return (Question) super.getPost(id);
 	}
 }

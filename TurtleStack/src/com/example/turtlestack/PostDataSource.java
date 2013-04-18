@@ -1,6 +1,5 @@
 package com.example.turtlestack;
 
-import java.util.ArrayList;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.*;
@@ -77,8 +76,6 @@ public class PostDataSource {
 		
 		if (postTypeId == 1) {
 			return new Question(
-					this,
-					id,
 					postTypeId,
 					creationDate,
 					score,
