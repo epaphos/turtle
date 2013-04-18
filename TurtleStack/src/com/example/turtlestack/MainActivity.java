@@ -1,5 +1,7 @@
 package com.example.turtlestack;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,14 +14,11 @@ public class MainActivity extends Activity {
 
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 	
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		PostDataSource ds = new PostDataSource(this);
-		ds.open();
-		Log.v("question", ds.getPost(8414075).getTitle());
-		
+		setContentView(R.layout.activity_main);	
 	}
 	
 	
