@@ -69,8 +69,6 @@ public class PostDataSource {
 		
 		if (postTypeId == 1) {
 			return new Question(
-					this,
-					id,
 					postTypeId,
 					creationDate,
 					score,
@@ -147,7 +145,6 @@ public class PostDataSource {
 		else if (post instanceof Question) {
 			Question question = (Question) post;	
 			ContentValues values = new ContentValues();
-			
 			values.put("post_type_id", question.getPostTypeId());
 			values.put("accepted_answer_id", question.getAcceptedAnswer());
 			values.put("creation_date",question.getCreationDate());

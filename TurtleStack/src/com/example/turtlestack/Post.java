@@ -18,7 +18,6 @@ public class Post {
 	private String communityOwnedDate;
 	private String closedDate;
 	private int commentCount = 0; //shall me null in creation
-	PostDataSource ds;
 	
 	/**
 	 * Empty Constructor 
@@ -59,13 +58,13 @@ public class Post {
 	 */
 	
 	//Existing Post Constructor
-	public Post(PostDataSource ds,int id, int postTypeId, String creationDate, int score,
+	public Post(int postTypeId, String creationDate, int score,
 			String body, int ownerUserId, int lastEditorUserId,
 			String lastEditorUserName, String lastEditDate,
 			String lastActivityDate, String communityOwnedDate,
 			String closedDate, int commentCount) {
 		super();
-		this.id = id;
+		this.id = (int)Math.random()*100000;
 		this.postTypeId = postTypeId;
 		this.creationDate = creationDate;
 		this.score = score;
@@ -79,6 +78,8 @@ public class Post {
 		this.closedDate = closedDate;
 		this.commentCount = commentCount;
 	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

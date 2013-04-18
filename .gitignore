@@ -6,5 +6,10 @@ TurtleStack/bin/
 
 #Ignore class files
 *.class
+*.classpath
 
-.DS_Store
+#Ignore assets
+*/assets/
+
+#Ignore generated files
+*/gen/

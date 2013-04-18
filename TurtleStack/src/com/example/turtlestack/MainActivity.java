@@ -1,5 +1,7 @@
 package com.example.turtlestack;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,27 +15,42 @@ public class MainActivity extends Activity {
 
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 	
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Button postButton = (Button) findViewById(R.id.button1);
-		postButton.setOnClickListener(postButtonListener);
+		Button postButton = (Button) findViewById(R.id.button1);		
+		Button recentQuestionsButton = (Button) findViewById(R.id.recentquestions);
+		postButton.setOnClickListener(listener);
+		recentQuestionsButton.setOnClickListener(listener);
 		}
 	
 
-		View.OnClickListener postButtonListener = new View.OnClickListener() {
+		View.OnClickListener listener = new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				launch(v);
+				Button clickedButton = (Button) v;
+				switch(clickedButton.getId()) {
+				case R.id.button1 :
+					Log.v("teststrings", "in first case");
+					launch(v, QuestionActivity.class);
+					break;
+				case R.id.recentquestions : 
+					Log.v("teststrings", "in second case");
+					launch(v, BrowseActivity.class);
+					break;
+				}
+				
 			}
 		};
 	
-	public void launch(View v) {
-		Intent i = new Intent(this,QuestionActivity.class);
+	public void launch(View v, Class<?> c) {
+		Intent i = new Intent(this, c);
 		startActivity(i);
 	}
+	
 		
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
