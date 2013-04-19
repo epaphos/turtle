@@ -20,7 +20,6 @@ public class QuestionActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_act);
-        
         ds = PostDataSource.getInstance(this);
 		ds.open();
 		Button postButton = (Button) findViewById(R.id.button1);
