@@ -13,3 +13,6 @@ TurtleStack/bin/
 
 #Ignore generated files
 */gen/
+
+#Ignore bin
+*/bin/
