@@ -30,6 +30,10 @@
             android:name="com.example.turtlestack.BrowseActivity"
             android:label="@string/title_activity_browse" >
         </activity>
+        <activity
+            android:name="com.example.turtlestack.QuestionDisplay"
+            android:label="@string/title_activity_question_display" >
+        </activity>
     </application>
 
 </manifest>

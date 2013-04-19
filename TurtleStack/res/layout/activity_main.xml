@@ -31,4 +31,23 @@
         android:layout_marginBottom="14dp"
         android:text="@string/recent_button" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:onClick="gotoPostQuestion"
+        android:text="@string/btnPostQuestion" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/recentquestions"
+        android:layout_alignBottom="@+id/recentquestions"
+        android:layout_alignLeft="@+id/button2"
+        android:text="Button" 
+        android:onClick="gotoDetailedQuestion"/>
+
 </RelativeLayout>

@@ -60,5 +60,13 @@ public class MainActivity extends Activity {
 		intent.putExtra(EXTRA_MESSAGE, message);
 		startActivity(intent);
 	}*/
+	public void gotoPostMessage(View view){
+		Intent intent = new Intent(this, QuestionActivity.class);
+		startActivity(intent);
+	}
+	public void gotoDetailedQuestion(View view){
+		Intent intent = new Intent(this, QuestionDisplay.class);
+		startActivity(intent);
+	}
 }
 	
