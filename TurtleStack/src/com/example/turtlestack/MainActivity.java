@@ -60,10 +60,16 @@ public class MainActivity extends Activity {
 		intent.putExtra(EXTRA_MESSAGE, message);
 		startActivity(intent);
 	}*/
+	
+<<<<<<< HEAD
+=======
+	//Function that gets called by button2
+>>>>>>> 1b68e4f7c61fdab8749e0f55f580058c93ce7eeb
 	public void gotoPostMessage(View view){
 		Intent intent = new Intent(this, QuestionActivity.class);
 		startActivity(intent);
 	}
+	//Function that gets called by button4
 	public void gotoDetailedQuestion(View view){
 		Intent intent = new Intent(this, QuestionDisplay.class);
 		startActivity(intent);

@@ -8,8 +8,5 @@ TurtleStack/bin/
 *.class
 *.classpath
 
-#Ignore assets
-*/assets/
-
 #Ignore generated files
 */gen/
