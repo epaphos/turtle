@@ -29,7 +29,7 @@ public class QuestionDataSource extends PostDataSource {
 		return list;
 	
 	}
-	public static Question getQuestionDummy(int ID){
+	public Question getQuestionDummy(int ID){
 		String body = "<p>I have a ticks value of 28000000000 which should be 480 minutes but how can I be sure? How do I convert a ticks value to minutes?</p>\n\n<p>Thanks</p>\n";
 		String title = "I have a question";
 		String tags = "question";

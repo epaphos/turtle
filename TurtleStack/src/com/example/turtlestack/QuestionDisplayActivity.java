@@ -12,7 +12,9 @@ import android.widget.TextView;
 
 public class QuestionDisplayActivity extends Activity {
 	PostDataSource ds;
+	QuestionDataSource qs;
 	int questionId;
+	Question q; //The element that should be displayed
 	
 	@SuppressLint("NewApi")  
 	@Override
@@ -20,32 +22,41 @@ public class QuestionDisplayActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_question_display);
-        Bundle bundle = getIntent().getExtras();
+        //Bundle bundle = getIntent().getExtras();
         //int questionId =  bundle.getInt("Id");
+		
         //ds = PostDataSource.getInstance(this);
-		//ds = QuestionDataSource.getInstance(this);
-        //ds.open();
-		
+		//ds.open();
+		qs = QuestionDataSource.getInstance(this);
+		qs.open();
+		q = qs.getQuestionDummy(123);
         //Question q = QuestionDataSource.getQuestionDummy(5);
-        //Question q;
+        //q = new Question("Title bla","Body bla ","Tag bla");
+        //q.setId(123);
 		
-		Button postButton = (Button) findViewById(R.id.button1);		
+		Button postButton = (Button) findViewById(R.id.quBtnAnswer);		
 		postButton.setOnClickListener(listener);
 		//ds.close();
-		
+		qs.close();
 		 // Make sure we're running on Honeycomb or higher to use ActionBar APIs
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // Show the Up button in the action bar.
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        displayQ();
+        displayQ(q);
 	}
+	
 	
 	View.OnClickListener listener = new View.OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
-			answerAction(v);
+			//answerAction(v);
+			TextView lblTitle = (TextView) findViewById(R.id.quLblTitle);
+			TextView lblBody = (TextView) findViewById(R.id.quLblBody);
+			lblTitle.setText(q.getTitle());
+			lblBody.setText("some stupid");
+			
 		}
 		};
 	
@@ -64,14 +75,18 @@ public class QuestionDisplayActivity extends Activity {
 		return true;
 	}
 	
-	public void displayQ(){
+	
+	/**
+	 * Extracts members of a Question and displays them
+	 * @param q
+	 */	
+	public void displayQ(Question q){
 		TextView lblTitle = (TextView) findViewById(R.id.quLblTitle);
 		TextView lblBody = (TextView) findViewById(R.id.quLblBody);
 		TextView lblId = (TextView) findViewById(R.id.quLblId);
-		/*lblTitle.setText(q.getTitle());
+		lblTitle.setText(q.getTitle());
 		lblBody.setText(q.getBody());
-		lblId.setText(q.getId());*/
-		//lblTitle.setText("heya");
+		lblId.setText(Integer.toString(q.getId()));//setText must receive a string!
 		
 	}
 }

@@ -15,7 +15,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/quBtnAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -23,16 +23,6 @@
         android:layout_marginBottom="20dp"
         android:layout_marginRight="17dp"
         android:text="@string/button_answer" />
-
-    <TextView
-        android:id="@+id/quLblId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/quLblTitle"
-        android:layout_alignBottom="@+id/quLblTitle"
-        android:layout_alignRight="@+id/button2"
-        android:layout_marginRight="32dp"
-        android:text="Id Question" />
 
     <TextView
         android:id="@+id/quLblBody"
@@ -43,5 +33,15 @@
         android:layout_below="@+id/quLblTitle"
         android:layout_marginTop="16dp"
         android:text="@string/questionDisplayTitle" />
+
+    <TextView
+        android:id="@+id/quLblId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/quLblTitle"
+        android:layout_alignBottom="@+id/quLblTitle"
+        android:layout_marginLeft="31dp"
+        android:layout_toRightOf="@+id/quLblTitle"
+        android:text="Id Question" />
 
 </RelativeLayout>
