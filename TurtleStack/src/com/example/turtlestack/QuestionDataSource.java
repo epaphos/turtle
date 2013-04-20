@@ -29,14 +29,19 @@ public class QuestionDataSource extends PostDataSource {
 		return list;
 	
 	}
+	public Question getQuestion(int Id){
+		//Cursor cursor = database.rawQuery("SELECT title, body FROM posts where id=?", new String [] {String.valueOf(Id)});
+		//cursor.moveToFirst();
+		Question question = (Question) super.readPost(Id);
+		return question;
+	}
 	public Question getQuestionDummy(int ID){
 		String body = "<p>I have a ticks value of 28000000000 which should be 480 minutes but how can I be sure? How do I convert a ticks value to minutes?</p>\n\n<p>Thanks</p>\n";
 		String title = "I have a question";
 		String tags = "question";
 		Question q = new Question(title,body,tags);
 		q.setId(ID);
-		return q;
-		
+		return q;		
 	}
 	
 }

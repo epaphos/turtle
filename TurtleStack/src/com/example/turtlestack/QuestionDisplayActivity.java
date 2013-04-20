@@ -30,8 +30,9 @@ public class QuestionDisplayActivity extends Activity {
 		//ds.open();
 		qs = QuestionDataSource.getInstance(this);
 		qs.open();
-		q = qs.getQuestionDummy(questionId);
-        //Question q = QuestionDataSource.getQuestionDummy(5);
+		//q = qs.getQuestionDummy(questionId);
+        q = qs.getQuestion(questionId);
+		//Question q = QuestionDataSource.getQuestionDummy(5);
         //q = new Question("Title bla","Body bla ","Tag bla");
         //q.setId(123);
 		
