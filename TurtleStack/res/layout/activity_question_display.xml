@@ -4,22 +4,15 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView33"
+        android:id="@+id/quLblTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-      	android:text="@string/questionDisplayTitle" />
-    
-    
-      <EditText
-        android:id="@+id/text_main_body2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_below="@+id/textView"
-        android:layout_marginRight="24dp"
-        android:ems="10"
-        android:inputType="textMultiLine" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Question Title"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
         android:id="@+id/button2"
@@ -27,16 +20,28 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="124dp"
-        android:layout_marginRight="44dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="17dp"
         android:text="@string/button_answer" />
 
-    <EditText
-        android:id="@+id/ID"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/quLblId"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:ems="10"/>
+        android:layout_alignBaseline="@+id/quLblTitle"
+        android:layout_alignBottom="@+id/quLblTitle"
+        android:layout_alignRight="@+id/button2"
+        android:layout_marginRight="32dp"
+        android:text="Id Question" />
+
+    <TextView
+        android:id="@+id/quLblBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/quLblTitle"
+        android:layout_alignRight="@+id/quLblId"
+        android:layout_below="@+id/quLblTitle"
+        android:layout_marginTop="16dp"
+        android:text="@string/questionDisplayTitle" />
 
 </RelativeLayout>

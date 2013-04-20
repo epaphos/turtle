@@ -31,7 +31,7 @@
             android:label="@string/title_activity_browse" >
         </activity>
         <activity
-            android:name="com.example.turtlestack.QuestionDisplay"
+            android:name="com.example.turtlestack.QuestionDisplayActivity"
             android:label="@string/title_activity_question_display" >
         </activity>
     </application>
