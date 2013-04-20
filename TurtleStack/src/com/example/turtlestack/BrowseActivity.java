@@ -37,16 +37,24 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener{
         		new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
         lv.setAdapter(arrayAdapter);
         ds.close();
+        //Add listener to ListView to make items clickable
         lv.setOnItemClickListener(this);
 	}
 
+	//Start new activity with question
 	public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-        Log.i("TAG", "You clicked item " + id + " at position " + position);
-        //Use position from ListView lv to access questionList !!not very nice!!
-        Question q = questionList.get(position);
-        Log.i("TAG", "Question id " + q.getId());
-        int questionId = q.getId();
+		Question q = questionList.get(position);
+		int questionId = q.getId();
+		/*//Debug Log
+		Log.i("TAG", "You clicked item " + id + " at position " + position);
+        */
+        Log.i("Question", "Question with id " + q.getId() + " will be displayed");
         
+        //Use position from ListView lv to access questionList !!not very nice!!
+        
+        
+        
+        //Create Intent with Question Id
         Intent intent = new Intent(this, QuestionDisplayActivity.class);
         intent.putExtra("questionId", questionId);
         startActivity(intent);

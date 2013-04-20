@@ -36,6 +36,7 @@ public class MainActivity extends Activity {
 					launch(v, QuestionActivity.class);
 					break;
 				case R.id.recentquestions : 
+					testUser();
 					launch(v, BrowseActivity.class);
 					break;
 				//case R.id.button3 :
@@ -44,6 +45,8 @@ public class MainActivity extends Activity {
 				}
 				
 			}
+			
+			
 		};
 	
 	public void launch(View v, Class<?> c) {
@@ -58,6 +61,12 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
+	public void testUser(){
+		UserDataSource ds = new UserDataSource(this);
+		ds.open();
+		User u = ds.readUser(40310);
+		Log.i("User",u.toString());
+	}
 	/*public void sendMessage(View view) {
 		Intent intent = new Intent(this, QuestionActivity.class);
 		EditText editText = (EditText) findViewById(R.id.text);

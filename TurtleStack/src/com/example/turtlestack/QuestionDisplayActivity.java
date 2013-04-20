@@ -86,9 +86,11 @@ public class QuestionDisplayActivity extends Activity {
 		TextView lblTitle = (TextView) findViewById(R.id.quLblTitle);
 		TextView lblBody = (TextView) findViewById(R.id.quLblBody);
 		TextView lblId = (TextView) findViewById(R.id.quLblId);
+		TextView lblViews = (TextView) findViewById(R.id.quLblViewCount);
 		lblTitle.setText(q.getTitle());
 		lblBody.setText(q.getBody());
-		lblId.setText(Integer.toString(q.getId()));//setText must receive a string!
+		lblId.setText("ID: " + Integer.toString(q.getId()));//setText must receive a string!
+		lblViews.setText("Views: " + Integer.toString(q.getViewCount()));
 		
 	}
 }

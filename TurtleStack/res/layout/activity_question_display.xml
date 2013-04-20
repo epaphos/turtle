@@ -25,23 +25,44 @@
         android:text="@string/button_answer" />
 
     <TextView
-        android:id="@+id/quLblBody"
+        android:id="@+id/quLblViewCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/quLblId"
+        android:layout_below="@+id/quLblId"
+        android:text="Views: " />
+
+    <TextView
+        android:id="@+id/quLblFavorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/quLblTitle"
-        android:layout_alignRight="@+id/quLblId"
-        android:layout_below="@+id/quLblTitle"
-        android:layout_marginTop="16dp"
-        android:text="@string/questionDisplayTitle" />
+        android:layout_below="@+id/quLblViewCount"
+        android:text="Favorites" />
 
     <TextView
         android:id="@+id/quLblId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/quLblTitle"
-        android:layout_alignBottom="@+id/quLblTitle"
-        android:layout_marginLeft="31dp"
-        android:layout_toRightOf="@+id/quLblTitle"
+        android:layout_alignLeft="@+id/quLblFavorites"
+        android:layout_below="@+id/quLblTitle"
         android:text="Id Question" />
+
+    <TextView
+        android:id="@+id/quLblCreationDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/quLblFavorites"
+        android:layout_below="@+id/quLblFavorites"
+        android:text="Created: " />
+
+    <TextView
+        android:id="@+id/quLblBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/quLblCreationDate"
+        android:layout_marginTop="16dp"
+        android:text="@string/questionDisplayTitle" />
 
 </RelativeLayout>

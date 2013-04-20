@@ -58,6 +58,7 @@
         android:layout_alignLeft="@+id/button4"
         android:layout_marginBottom="22dp"
         android:text="ShowQuestionDetails" 
-        android:onClick="showQuestionDetails"/>
+        android:onClick="showQuestionDetails(static)"
+        android:visibility="invisible"/>
 
 </RelativeLayout>
