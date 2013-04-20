@@ -19,5 +19,6 @@
     <string name="title_activity_question_display">QuestionDisplay</string>
     <string name="questionDisplayTitle">Detailed Question</string>
     <string name="button_answer">Answer</string>
+    <string name="title_activity_user_view">UserViewActivity</string>
 
 </resources>

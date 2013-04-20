@@ -25,7 +25,7 @@ public class QuestionDisplayActivity extends Activity {
         //Bundle bundle = getIntent().getExtras();
         //int questionId =  bundle.getInt("Id");
 		Intent intent = getIntent();
-		int questionId = intent.getIntExtra("questionId", 0);
+		questionId = intent.getIntExtra("questionId", 0);
         //ds = PostDataSource.getInstance(this);
 		//ds.open();
 		qs = QuestionDataSource.getInstance(this);

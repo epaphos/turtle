@@ -34,6 +34,10 @@
             android:name="com.example.turtlestack.QuestionDisplayActivity"
             android:label="@string/title_activity_question_display" >
         </activity>
+        <activity
+            android:name="com.example.turtlestack.UserViewActivity"
+            android:label="@string/title_activity_user_view" >
+        </activity>
     </application>
 
 </manifest>

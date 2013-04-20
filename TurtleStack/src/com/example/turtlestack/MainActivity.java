@@ -92,5 +92,11 @@ public class MainActivity extends Activity {
 		intent.putExtra("questionId", 8414099); //Sample Id which exists in database
 		startActivity(intent);
 	}
+	
+	public void showUserDetails(View view){
+		Intent intent = new Intent(this, UserViewActivity.class);
+		intent.putExtra("userId", 40310); //Sample Id which exists in database
+		startActivity(intent);
+	}
 }
 	

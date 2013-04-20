@@ -9,7 +9,7 @@
     tools:context=".MainActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/userLblDisplayName_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
@@ -57,8 +57,18 @@
         android:layout_above="@+id/button4"
         android:layout_alignLeft="@+id/button4"
         android:layout_marginBottom="22dp"
-        android:text="ShowQuestionDetails" 
-        android:onClick="showQuestionDetails(static)"
+        android:text="ShowQuestionDetails(static)" 
+        android:onClick="showQuestionDetails"
         android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button3"
+        android:layout_alignRight="@+id/button2"
+        android:layout_marginBottom="62dp"
+        android:text="ShowUserDetail(Static)" 
+        android:onClick="showUserDetails"/>
 
 </RelativeLayout>
