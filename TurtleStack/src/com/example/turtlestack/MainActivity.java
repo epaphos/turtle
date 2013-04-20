@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
 		Button viewQuestionDetails = (Button) findViewById(R.id.button3);
 		postButton.setOnClickListener(listener);
 		recentQuestionsButton.setOnClickListener(listener);
-		viewQuestionDetails.setOnClickListener(listener);
+		//viewQuestionDetails.setOnClickListener(listener);
 		}
 
 		View.OnClickListener listener = new View.OnClickListener() {
@@ -38,9 +38,9 @@ public class MainActivity extends Activity {
 				case R.id.recentquestions : 
 					launch(v, BrowseActivity.class);
 					break;
-				case R.id.button3 :
-					launch(v, QuestionDisplayActivity.class);
-					break;
+				//case R.id.button3 :
+				//	launch(v, QuestionDisplayActivity.class);
+				//	break;
 				}
 				
 			}
@@ -77,11 +77,11 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, QuestionDisplay.class);
 		startActivity(intent);
 	}*/
-	/*
+	
 	public void showQuestionDetails(View view){
-		Intent intent = new Intent(this, QuestionDisplay.class);
-		//intent.EXTRA_
+		Intent intent = new Intent(this, QuestionDisplayActivity.class);
+		intent.putExtra("questionId", 8414099); //Sample Id which exists in database
 		startActivity(intent);
-	}*/
+	}
 }
 	

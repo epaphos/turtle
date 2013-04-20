@@ -24,12 +24,13 @@ public class QuestionDisplayActivity extends Activity {
 		setContentView(R.layout.activity_question_display);
         //Bundle bundle = getIntent().getExtras();
         //int questionId =  bundle.getInt("Id");
-		
+		Intent intent = getIntent();
+		int questionId = intent.getIntExtra("questionId", 0);
         //ds = PostDataSource.getInstance(this);
 		//ds.open();
 		qs = QuestionDataSource.getInstance(this);
 		qs.open();
-		q = qs.getQuestionDummy(123);
+		q = qs.getQuestionDummy(questionId);
         //Question q = QuestionDataSource.getQuestionDummy(5);
         //q = new Question("Title bla","Body bla ","Tag bla");
         //q.setId(123);
