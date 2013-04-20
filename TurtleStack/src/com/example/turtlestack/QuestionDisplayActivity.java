@@ -92,5 +92,17 @@ public class QuestionDisplayActivity extends Activity {
 		lblId.setText("ID: " + Integer.toString(q.getId()));//setText must receive a string!
 		lblViews.setText("Views: " + Integer.toString(q.getViewCount()));
 		
+		TextView lblAuthor = (TextView) findViewById(R.id.quLblAuthor);
+		lblAuthor.setText("Author: " + Integer.toString(q.getOwnerUserId()));
 	}
+	
+	public void gotoUserView(View view){
+		Intent intent = new Intent(this, UserViewActivity.class);
+		intent.putExtra("userId", q.getOwnerUserId()); //Sample Id which exists in database
+		startActivity(intent);
+	}
+	
+	
+	
+	
 }
