@@ -45,6 +45,7 @@ public class QuestionDisplayActivity extends Activity {
             // Show the Up button in the action bar.
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        
         displayQ(q);
 	}
 	
@@ -59,7 +60,7 @@ public class QuestionDisplayActivity extends Activity {
 			lblTitle.setText(q.getTitle());
 			lblBody.setText("some stupid");
 			
-		}
+			}
 		};
 	
 	public void answerAction(View v) {
@@ -96,6 +97,10 @@ public class QuestionDisplayActivity extends Activity {
 		lblAuthor.setText("Author: " + Integer.toString(q.getOwnerUserId()));
 	}
 	
+	/**
+	 * Views the details of the post author
+	 * @param view
+	 */
 	public void gotoUserView(View view){
 		Intent intent = new Intent(this, UserViewActivity.class);
 		intent.putExtra("userId", q.getOwnerUserId()); //Sample Id which exists in database

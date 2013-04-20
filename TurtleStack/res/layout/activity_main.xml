@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
-	
+
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
@@ -32,43 +32,22 @@
         android:text="@string/recent_button" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:onClick="gotoPostQuestion"
-        android:text="@string/btnPostQuestion" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/recentquestions"
-        android:layout_alignBottom="@+id/recentquestions"
-        android:layout_alignLeft="@+id/button2"
-        android:text="Button" 
-        android:onClick="gotoDetailedQuestion"/>
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button4"
-        android:layout_alignLeft="@+id/button4"
-        android:layout_marginBottom="22dp"
-        android:text="ShowQuestionDetails(static)" 
-        android:onClick="showQuestionDetails"
-        android:visibility="invisible"/>
-
-    <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button3"
-        android:layout_alignRight="@+id/button2"
-        android:layout_marginBottom="62dp"
-        android:text="ShowUserDetail(Static)" 
-        android:onClick="showUserDetails"/>
+        android:layout_alignLeft="@+id/userLblDisplayName_"
+        android:layout_below="@+id/userLblDisplayName_"
+        android:onClick="showUserDetails"
+        android:text="ShowUserDetail(Static)" />
+
+    <Button
+        android:id="@+id/btnShowQuestionDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/userLblDisplayName_"
+        android:layout_below="@+id/button5"
+        android:onClick="showQuestionDetails"
+        android:text="ShowQuestionDetails(static)"
+        android:visibility="visible" />
 
 </RelativeLayout>

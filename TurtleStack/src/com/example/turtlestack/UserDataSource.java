@@ -4,7 +4,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-
+/**
+ * 
+ * @author cyrill
+ * @since 2013-04-20
+ */
 public class UserDataSource {
 	TurtleSQLiteHelper helper;
 	SQLiteDatabase database;

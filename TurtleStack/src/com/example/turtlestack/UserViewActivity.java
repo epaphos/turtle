@@ -8,6 +8,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
 
+/**
+ * 
+ * @author cyrill
+ * @since 2013-04-20
+ */
 public class UserViewActivity extends Activity {
 
 	private UserDataSource ds;
@@ -18,6 +23,7 @@ public class UserViewActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_view);
+		//Get userId from intent
 		Intent intent = getIntent();
 		userId = intent.getIntExtra("userId", 0);
 		
@@ -30,9 +36,14 @@ public class UserViewActivity extends Activity {
             // Show the Up button in the action bar.
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        
         displayUser(user);
 	}
 	
+	/**
+	 * Displays the data of a user
+	 * @param user
+	 */
 	public void displayUser(User user){
 		TextView displayName = (TextView) findViewById(R.id.userLblDisplayName_);
 		displayName.setText("Name: " + user.getDisplayName());
