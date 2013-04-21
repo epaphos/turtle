@@ -175,4 +175,91 @@ public class PostDataSource {
 		
 		return false;
 	}
+	
+	public Post getLastPost() {
+		
+		Cursor cursor = database.rawQuery("select * from posts where id = (select max(id) from posts)",  new String[] { });
+		cursor.moveToFirst();
+		/*Extracting values
+		 * 
+		 */
+		/**
+		 * @param id
+		 * @param postTypeId
+		 * @param creationDate
+		 * @param score
+		 * @param body
+		 * @param ownerUserId
+		 * @param lastEditorUserId
+		 * @param lastEditorUserName
+		 * @param lastEditDate
+		 * @param lastActivityDate
+		 * @param communityOwnedDate
+		 * @param closedDate
+		 * @param commentCount
+		 */
+		int id = cursor.getInt(cursor.getColumnIndex("id"));
+		int postTypeId = cursor.getInt(cursor.getColumnIndex("post_type_id"));
+		int parentId = cursor.getInt(cursor.getColumnIndex("parent_id"));
+		int acceptedAnswer = cursor.getInt(cursor.getColumnIndex("accepted_answer_id"));
+		String creationDate = cursor.getString(cursor.getColumnIndex("creation_date"));
+		int score = cursor.getInt(cursor.getColumnIndex("score"));
+		int viewCount = cursor.getInt(cursor.getColumnIndex("view_count"));
+		String body = cursor.getString(cursor.getColumnIndex("body"));
+		int ownerUserId = cursor.getInt(cursor.getColumnIndex("owner_user_id"));
+		int lastEditorUserId = cursor.getInt(cursor.getColumnIndex("last_editor_user_id"));
+		String lastEditorUserName = cursor.getString(cursor.getColumnIndex("last_editor_display_name"));
+		String lastEditDate = cursor.getString(cursor.getColumnIndex("last_edit_date"));
+		String lastActivityDate = cursor.getString(cursor.getColumnIndex("last_activity_date"));
+		String communityOwnedDate = cursor.getString(cursor.getColumnIndex("community_owned_date"));
+		String closedDate = cursor.getString(cursor.getColumnIndex("closed_date"));
+		String title = cursor.getString(cursor.getColumnIndex("title")); 
+		String tags = cursor.getString(cursor.getColumnIndex("tags"));
+		int answerCount = cursor.getInt(cursor.getColumnIndex("answer_count"));
+		int commentCount = cursor.getInt(cursor.getColumnIndex("comment_count"));
+		int favoriteCount = cursor.getInt(cursor.getColumnIndex("favorite_count"));
+		
+		if (postTypeId == 1) {
+			return new Question(
+					id,
+					postTypeId,
+					creationDate,
+					score,
+					body,
+					ownerUserId,
+					lastEditorUserId,
+					lastEditorUserName,
+					lastEditDate,
+					lastActivityDate,
+					communityOwnedDate,
+					closedDate,
+					commentCount,
+					acceptedAnswer,
+					viewCount,
+					title,
+					tags,
+					answerCount,
+					favoriteCount
+			);
+		}
+		else if (postTypeId == 2) {
+			return new Answer(
+					id,
+					postTypeId,
+					creationDate,
+					score,
+					body,
+					ownerUserId,
+					lastEditorUserId,
+					lastEditorUserName,
+					lastEditDate,
+					lastActivityDate,
+					communityOwnedDate,
+					closedDate,
+					commentCount,
+					parentId
+			);
+		}
+		return null;
+	}
 }
