@@ -16,7 +16,7 @@ public class TestPostDataSource extends AndroidTestCase {
 		datasource.open();		
     }
 	
-	public void testCompareLastAddedPostWithDatabase() {
+	public void testWritePostIsAddedToDatabase() {
 		Question question = new Question("title", "Lorem ipsum dolor sit amet", "tag");
 		datasource.writePost(question);
 		Assert.assertEquals(question.getBody(), datasource.getLastPost().getBody());
