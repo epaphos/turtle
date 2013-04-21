@@ -26,6 +26,7 @@ public class TestQuestionDataSource extends AndroidTestCase {
 	}
 
 	protected void tearDown() throws Exception {
+		datasource.close();		
 		super.tearDown();
 	}
 
