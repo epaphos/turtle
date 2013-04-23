@@ -100,7 +100,7 @@ public abstract class Post {
 	/**
 	 * @return the id
 	 */
-	protected int getId() {
+	public int getId() {
 		return id;
 	}
 

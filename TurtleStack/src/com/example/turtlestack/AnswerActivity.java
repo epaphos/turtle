@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class AnswerActivity extends Activity {
-	PostDataSource ds;
+	AnswerDataSource ds;
 	int parentId;
      
 	@SuppressLint("NewApi")   
@@ -23,7 +23,7 @@ public class AnswerActivity extends Activity {
         setContentView(R.layout.activity_question_act);
         Bundle bundle = getIntent().getExtras();
         int parentId =  bundle.getInt("parentId");
-        ds = PostDataSource.getInstance(this);
+        ds = AnswerDataSource.getInstance(this);
 		ds.open();
 		Button postButton = (Button) findViewById(R.id.button1);
 		postButton.setOnClickListener(postButtonListener);
@@ -42,7 +42,7 @@ public class AnswerActivity extends Activity {
 	    	EditText mEdit = (EditText) findViewById(R.id.text);
 	    	String body  = mEdit.getText().toString();
 			Answer answer = new Answer(parentId,body);
-			ds.writePost(answer);
+			ds.setAnswer(answer);
 			back(v);
 		}
 	};

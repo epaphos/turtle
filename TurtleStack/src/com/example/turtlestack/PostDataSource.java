@@ -5,19 +5,13 @@ import android.database.*;
 import android.database.sqlite.SQLiteDatabase;
 
 
-public class PostDataSource {
+public abstract class PostDataSource {
 	TurtleSQLiteHelper helper;
 	SQLiteDatabase database;
-	private static PostDataSource instance = null;
 	
 	public PostDataSource(Context context) {
 		helper = new TurtleSQLiteHelper(context);
 		helper.createDatabase();
-	}
-	
-	public static PostDataSource getInstance(Context context){
-		if(instance == null) instance = new PostDataSource(context);
-		return instance;
 	}
 	
 	public void open() throws SQLException {
@@ -176,6 +170,7 @@ public class PostDataSource {
 		return false;
 	}
 	
+	//That should not exists.
 	public Post getLastPost() {
 		
 		Cursor cursor = database.rawQuery("select * from posts where id = (select max(id) from posts)",  new String[] { });

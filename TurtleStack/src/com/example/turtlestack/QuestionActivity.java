@@ -13,14 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class QuestionActivity extends Activity {
-	PostDataSource ds;
+	QuestionDataSource ds;
 	
 	@SuppressLint("NewApi")   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_act);
-        ds = PostDataSource.getInstance(this);
+        ds = QuestionDataSource.getInstance(this);
 		ds.open();
 		Button postButton = (Button) findViewById(R.id.button1);
 		postButton.setOnClickListener(postButtonListener);
@@ -44,7 +44,7 @@ public class QuestionActivity extends Activity {
 	    	mEdit = (EditText) findViewById(R.id.tags);
 	    	String tags  = mEdit.getText().toString();
 			Question question = new Question(title, body,tags);
-			ds.writePost(question);
+			ds.setQuestion(question);
 			back(v);
 		}
 	};

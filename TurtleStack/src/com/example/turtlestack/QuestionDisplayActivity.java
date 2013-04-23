@@ -5,14 +5,14 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class QuestionDisplayActivity extends Activity {
-	PostDataSource ds;
-	QuestionDataSource qs;
+	QuestionDataSource ds;
 	int questionId;
 	Question q; //The element that should be displayed
 	
@@ -28,10 +28,13 @@ public class QuestionDisplayActivity extends Activity {
 		questionId = intent.getIntExtra("questionId", 0);
         //ds = PostDataSource.getInstance(this);
 		//ds.open();
-		qs = QuestionDataSource.getInstance(this);
-		qs.open();
+		ds = QuestionDataSource.getInstance(this);
+		ds.open();
 		//q = qs.getQuestionDummy(questionId);
-        q = qs.getQuestion(questionId);
+		try {
+	        q = ds.getQuestion(questionId);
+		} catch (Exception e) {
+		}
 		//Question q = QuestionDataSource.getQuestionDummy(5);
         //q = new Question("Title bla","Body bla ","Tag bla");
         //q.setId(123);
@@ -39,7 +42,7 @@ public class QuestionDisplayActivity extends Activity {
 		Button postButton = (Button) findViewById(R.id.quBtnAnswer);		
 		postButton.setOnClickListener(listener);
 		//ds.close();
-		qs.close();
+		ds.close();
 		 // Make sure we're running on Honeycomb or higher to use ActionBar APIs
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // Show the Up button in the action bar.
@@ -65,8 +68,12 @@ public class QuestionDisplayActivity extends Activity {
 	
 	public void answerAction(View v) {
 		Intent i = new Intent(this,AnswerActivity.class);
-		Question question = (Question) ds.readPost(questionId);
-		i.putExtra("parentId",question.getId());		
+		try {
+			Question question = (Question) ds.getQuestion(questionId);
+			i.putExtra("parentId",question.getId());		
+		} catch (Exception e) {
+			Log.v("EXCEPTION", "Post type is not as expected");
+		}
 		startActivity(i);
 	}
 	
