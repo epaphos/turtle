@@ -38,7 +38,14 @@ public class TurtleSQLiteHelper extends SQLiteOpenHelper {
 			catch(IOException exception){
 				throw new Error("ErrorCopyingDatabase");
 			}
+			createAndPopulateQuestionHasAnswer(); 
+			
+				
 		}	
+	}
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+		
 	}
 	
 	private boolean databaseExists() {
@@ -68,10 +75,7 @@ public class TurtleSQLiteHelper extends SQLiteOpenHelper {
 		super(context, name, factory, version);
 	}
 
-	@Override
-	public void onCreate(SQLiteDatabase arg0) {
-		
-	}
+	
 
 	@Override
 	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
@@ -87,4 +91,18 @@ public class TurtleSQLiteHelper extends SQLiteOpenHelper {
         String myPath = DB_PATH + DB_NAME;
     	return SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
     }
+	/**
+	 * Creates and populate the questionHasAnswer relation table with existing data from the database
+	 */
+	public void createAndPopulateQuestionHasAnswer() {
+		SQLiteDatabase db = this.getWritableDatabase();
+		// create questionHasAnswer relation table between questions and answers
+		//db.rawQuery("CREATE TABLE QuestionHasAnswer(question_id INTEGER, answer_id INTEGER, FOREIGN KEY (question_id) REFERENCES posts(id) FOREIGN KEY (answer_id) REFERENCES posts(id));", new String [] {});
+		// populate the questionHasAnswer relation table with the data existing in the database
+		db.execSQL("CREATE TABLE QuestionHasAnswer(question_id INTEGER, answer_id INTEGER, FOREIGN KEY (question_id) REFERENCES posts(id) FOREIGN KEY (answer_id) REFERENCES posts(id));", new String [] {});
+		//db.rawQuery("INSERT INTO QuestionHasAnswer(question_id, answer_id) SELECT a.id, b.id FROM posts a, posts b WHERE a.id =  b.parent_id;", new String [] {}); 
+		db.execSQL("INSERT INTO QuestionHasAnswer(question_id, answer_id) SELECT a.id, b.id FROM posts a, posts b WHERE a.id =  b.parent_id;", new String [] {}); 
+
+		db.close();
+	}
 }
