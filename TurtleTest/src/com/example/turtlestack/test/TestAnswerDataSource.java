@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import junit.framework.Assert;
 import android.database.Cursor;
 import android.test.AndroidTestCase;
+import android.util.Log;
 
 import com.example.turtlestack.Answer;
 import com.example.turtlestack.AnswerDataSource;
@@ -47,6 +48,7 @@ public class TestAnswerDataSource extends AndroidTestCase {
 		int id = 8414075;
 		ArrayList<Answer> answer = answerSource.getAnswers(id);
 		int numberOfAnswers = questionDataSource.getNumberOfAnswers(id);
+		Log.v("numberOfAnswers", Integer.toString(numberOfAnswers)); 
 		Assert.assertEquals(answer.size(), numberOfAnswers); 
 		questionDataSource.close();
 	}

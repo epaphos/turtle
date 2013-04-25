@@ -1,4 +1,4 @@
-package com.example.turtlestack.test;
+/*package com.example.turtlestack.test;
 import junit.framework.Assert;
 import android.test.AndroidTestCase;
 
@@ -26,4 +26,4 @@ public class TestPostDataSource extends AndroidTestCase {
 		datasource.close();		
 		super.tearDown();
 	}
-}
+}*/

@@ -30,14 +30,19 @@ public class AnswerDataSource extends PostDataSource {
 		}
 	}
 	
-	public ArrayList<Answer> getAnswers(int id) throws wrongTypeException {
+	public ArrayList<Answer> getAnswers(int id) {
 		
 		Cursor cursor = database.rawQuery("SELECT answer_id FROM QuestionHasAnswer WHERE question_id = ?", 
 				new String[] {String.valueOf(id)});
 		cursor.moveToFirst();
 		ArrayList<Answer> answers = new ArrayList<Answer>();
-		while(!cursor.isAfterLast()) {
-			answers.add((Answer) getAnswer(cursor.getInt(cursor.getColumnIndex("answer_id"))));
+		while(!cursor.isAfterLast()) {			
+			try {
+				answers.add((Answer)getAnswer(cursor.getInt(cursor.getColumnIndex("answer_id"))));
+			} catch (wrongTypeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			cursor.moveToNext();
 		}
 		return answers;
