@@ -5,7 +5,7 @@ import android.database.*;
 import android.database.sqlite.SQLiteDatabase;
 
 
-public abstract class PostDataSource {
+public abstract class PostDataSource implements DataSourceUtils {
 	TurtleSQLiteHelper helper;
 	SQLiteDatabase database;
 	
