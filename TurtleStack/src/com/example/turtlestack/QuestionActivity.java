@@ -44,7 +44,7 @@ public class QuestionActivity extends Activity {
 	    	mEdit = (EditText) findViewById(R.id.tags);
 	    	String tags  = mEdit.getText().toString();
 			Question question = new Question(title, body,tags);
-			ds.setQuestion(question);
+			ds.write(question);
 			back(v);
 		}
 	};

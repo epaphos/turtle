@@ -23,8 +23,8 @@ public class TestAnswerDataSource extends AndroidTestCase {
 	
 	public void testWritePostIsAddedToDatabase() {
 		Answer answer = new Answer(386341, "Write something");
-		answerSource.setAnswer(answer);
-		Assert.assertEquals(answer.getBody(), answerSource.getLastPost().getBody());
+		answerSource.write(answer);
+		Assert.assertEquals(answer.getBody(), answerSource.getLast().getBody());
 	}
 	
 	public void testReadAnswer () {

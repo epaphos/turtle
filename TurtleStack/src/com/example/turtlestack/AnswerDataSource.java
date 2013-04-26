@@ -2,7 +2,7 @@ package com.example.turtlestack;
 
 import android.content.Context;
 
-public class AnswerDataSource extends PostDataSource {
+public class AnswerDataSource extends PostDataSource{
 	protected static AnswerDataSource instance = null;
 
 	public AnswerDataSource(Context context) {
@@ -17,7 +17,7 @@ public class AnswerDataSource extends PostDataSource {
 	public Answer getAnswer(int Id) throws wrongTypeException {
 		//Cursor cursor = database.rawQuery("SELECT title, body FROM posts where id=?", new String [] {String.valueOf(Id)});
 		//cursor.moveToFirst();
-		Answer answer = (Answer) super.readPost(Id);
+		Answer answer = (Answer) super.read(Id);
 		if (answer.getPostTypeId() == 2) {
 			return answer;
 
@@ -27,8 +27,8 @@ public class AnswerDataSource extends PostDataSource {
 		}
 	}
 	
-	public boolean setAnswer(Answer answer) {
-		return super.writePost(answer);
+	public boolean write(Answer answer) {
+		return super.write(answer);
 	}
 	
 }

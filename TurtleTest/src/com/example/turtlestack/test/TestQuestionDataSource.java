@@ -22,7 +22,7 @@ public class TestQuestionDataSource extends AndroidTestCase {
 	
 	public void testPostQuestion(){
 		Question question = new Question("some title", "Write something","some tag");
-		questionSource.setQuestion(question);
+		questionSource.write(question);
 		Assert.assertEquals(question.getBody(), questionSource.getLastPost().getBody());
 	} 
 	public void testReadQuestion () {
@@ -45,7 +45,7 @@ public class TestQuestionDataSource extends AndroidTestCase {
 	
 	public void testGetLastPost () {
 		Question question = new Question("title", "Lorem ipsum dolor sit amet", "tag");
-		questionSource.setQuestion(question);
+		questionSource.write(question);
 		Assert.assertEquals(question.getBody(), questionSource.getLastPost().getBody());
 	}
 	

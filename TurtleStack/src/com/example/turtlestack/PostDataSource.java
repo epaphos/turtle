@@ -5,7 +5,7 @@ import android.database.*;
 import android.database.sqlite.SQLiteDatabase;
 
 
-public abstract class PostDataSource {
+public abstract class PostDataSource implements DataSource {
 	TurtleSQLiteHelper helper;
 	SQLiteDatabase database;
 	
@@ -22,7 +22,7 @@ public abstract class PostDataSource {
 		helper.close();
 	}
 	
-	public Post readPost(int id) {
+	public Post read(int id) {
 		
 		Cursor cursor = database.rawQuery("select * from posts where id = ?", new String[] { String.valueOf(id) });
 		cursor.moveToFirst();
@@ -109,7 +109,7 @@ public abstract class PostDataSource {
 		//return new Post getTitle(cursor.getString(cursor.getColumnIndex("title")));
 	}
 
-	public boolean writePost(Post post) {
+	public boolean write(Post post) {
 
 		if (post instanceof Answer) {
 			Answer answer = (Answer) post;
@@ -171,7 +171,7 @@ public abstract class PostDataSource {
 	}
 	
 	//That should not exists.
-	public Post getLastPost() {
+	public Post getLast() {
 		
 		Cursor cursor = database.rawQuery("select * from posts where id = (select max(id) from posts)",  new String[] { });
 		cursor.moveToFirst();

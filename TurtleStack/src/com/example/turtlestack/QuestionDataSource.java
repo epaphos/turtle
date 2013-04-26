@@ -37,7 +37,7 @@ public class QuestionDataSource extends PostDataSource {
 	public Question getQuestion(int Id) throws wrongTypeException {
 		//Cursor cursor = database.rawQuery("SELECT title, body FROM posts where id=?", new String [] {String.valueOf(Id)});
 		//cursor.moveToFirst();
-		Question question = (Question) super.readPost(Id);
+		Question question = (Question) super.read(Id);
 		if (question.getPostTypeId() == 1) {
 			return question;
 
@@ -57,10 +57,10 @@ public class QuestionDataSource extends PostDataSource {
 	}
 	
 	public Question getLastPost() {
-		return (Question) super.getLastPost();
+		return (Question) super.getLast();
 	}
 	
-	public boolean setQuestion (Question question) {
-		return super.writePost(question);
+	public boolean write(Question question) {
+		return super.write(question);
 	}
 }
