@@ -50,7 +50,7 @@ public class Answer extends Post {
 	public String toString() {
 		return super.toString() + ", parentId=" + parentId + "]";
 	}
-
+	
 	/**
 	 * @return the parentId
 	 */

@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
+    android:orientation="vertical" > 
+  
     <TextView
         android:id="@+id/quLblTitle"
         android:layout_width="wrap_content"
@@ -13,17 +13,18 @@
         android:layout_marginTop="16dp"
         android:text="Question Title"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+    
     <Button
         android:id="@+id/quBtnAnswer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="17dp"
-        android:text="@string/button_answer" />
-
+        android:text="@string/button_answer"
+        android:layout_below="@+id/quLblAuthor" />
+     
     <TextView
         android:id="@+id/quLblViewCount"
         android:layout_width="wrap_content"
@@ -75,5 +76,22 @@
         android:textAppearance="?android:attr/textAppearanceMedium" 
         android:clickable="true"
         android:onClick="gotoUserView"/>
+   
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1" >
+    </ListView>
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/quLblBody"
+        android:text="Answers"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
 </RelativeLayout>

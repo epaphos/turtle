@@ -8,12 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 public abstract class PostDataSource implements DataSourceUtils {
 	TurtleSQLiteHelper helper;
 	SQLiteDatabase database;
+	protected static PostDataSource instance = null;
 	
 	public PostDataSource(Context context) {
 		helper = new TurtleSQLiteHelper(context);
 		helper.createDatabase();
 	}
-	
+		
 	public void open() throws SQLException {
 		database = helper.openDataBase();
 	}
