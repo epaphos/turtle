@@ -1,6 +1,4 @@
 package com.example.turtlestack;
-import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.*;
@@ -171,7 +169,6 @@ public abstract class PostDataSource implements DataSourceUtils {
 		
 		return false;
 	}
-	
 	
 	//That should not exists.
 	public Post getLastPost() {

@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		//Add listener to Buttons
-		Button postButton = (Button) findViewById(R.id.searchBtnStart);		
+		Button postButton = (Button) findViewById(R.id.button1);		
 		Button recentQuestionsButton = (Button) findViewById(R.id.recentquestions);
 		postButton.setOnClickListener(listener);
 		recentQuestionsButton.setOnClickListener(listener);
@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Button clickedButton = (Button) v;
 				switch(clickedButton.getId()) {
-				case R.id.searchBtnStart :
+				case R.id.button1 :
 					launch(v, QuestionActivity.class);
 					break;
 				case R.id.recentquestions : 
@@ -79,11 +79,6 @@ public class MainActivity extends Activity {
 	public void showUserDetails(View view){
 		Intent intent = new Intent(this, UserViewActivity.class);
 		intent.putExtra("userId", 40310); //Sample Id which exists in database
-		startActivity(intent);
-	}
-	
-	public void startSearch(View view){
-		Intent intent = new Intent(this, SearchPosts.class);
 		startActivity(intent);
 	}
 }

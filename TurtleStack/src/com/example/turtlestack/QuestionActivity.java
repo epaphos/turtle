@@ -22,7 +22,7 @@ public class QuestionActivity extends Activity {
         setContentView(R.layout.activity_question_act);
         ds = QuestionDataSource.getInstance(this);
 		ds.open();
-		Button postButton = (Button) findViewById(R.id.searchBtnStart);
+		Button postButton = (Button) findViewById(R.id.button1);
 		postButton.setOnClickListener(postButtonListener);
         ds.close();
         
