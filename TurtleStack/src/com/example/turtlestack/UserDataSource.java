@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
  * @author cyrill
  * @since 2013-04-20
  */
-public class UserDataSource {
+public class UserDataSource implements DataSourceUtils {
 	TurtleSQLiteHelper helper;
 	SQLiteDatabase database;
 	private static UserDataSource instance = null;

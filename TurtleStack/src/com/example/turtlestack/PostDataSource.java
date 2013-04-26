@@ -5,15 +5,20 @@ import android.database.*;
 import android.database.sqlite.SQLiteDatabase;
 
 
+<<<<<<< HEAD
 public abstract class PostDataSource implements DataSource {
+=======
+public abstract class PostDataSource implements DataSourceUtils {
+>>>>>>> d3999f3f024e686a4df68fa1075910fd49479e2a
 	TurtleSQLiteHelper helper;
 	SQLiteDatabase database;
+	protected static PostDataSource instance = null;
 	
 	public PostDataSource(Context context) {
 		helper = new TurtleSQLiteHelper(context);
 		helper.createDatabase();
 	}
-	
+		
 	public void open() throws SQLException {
 		database = helper.openDataBase();
 	}
