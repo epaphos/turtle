@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 public class BrowseActivity extends ListActivity implements OnItemClickListener{
 	QuestionDataSource ds;
-
+	
 	private ListView lv;
 	private ArrayList<Question> questionList;
 	@Override

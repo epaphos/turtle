@@ -1,5 +1,7 @@
 package com.example.turtlestack;
 
+import java.util.ArrayList;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
@@ -8,15 +10,29 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 public class QuestionDisplayActivity extends Activity {
 	QuestionDataSource questionSource;
 	int questionId;
 	Question question; //The element that should be displayed
 	UserDataSource userSource;
 	String author;
+=======
+public class QuestionDisplayActivity extends Activity implements OnItemClickListener {
+	QuestionDataSource ds;
+	AnswerDataSource as;
+	int questionId;
+	Question q; //The element that should be displayed
+	private ListView lv;
+	private ArrayList<Answer> answerList;
+>>>>>>> 0f2ec57a60efc288371f9d9d18586b3e374eb85c
 	
 	@SuppressLint("NewApi")  
 	@Override
@@ -30,6 +46,7 @@ public class QuestionDisplayActivity extends Activity {
 		questionId = intent.getIntExtra("questionId", 0);
         //ds = PostDataSource.getInstance(this);
 		//ds.open();
+<<<<<<< HEAD
 		questionSource = QuestionDataSource.getInstance(this);
 		questionSource.open();
 		
@@ -38,15 +55,47 @@ public class QuestionDisplayActivity extends Activity {
 	        question = questionSource.getQuestion(questionId);
 		} catch (Exception e) {
 			//TODO we should do something here
+=======
+		as = AnswerDataSource.getInstance(this);			
+		as.open();
+		ds = QuestionDataSource.getInstance(this);
+		ds.open();
+		//q = qs.getQuestionDummy(questionId);
+		try {
+	        q = ds.getQuestion(questionId);
+		} 
+		catch (Exception e) {
+		}
+		Log.v("numberOfAnswers", String.valueOf(ds.getNumberOfAnswers(questionId)));
+		if(ds.getNumberOfAnswers(questionId) > 0) {
+			Log.v("numberOfAnswers", "in if-statement");
+			answerList = as.getAnswer(questionId);
+			Log.v("numberOfAnswers", Integer.toString(answerList.size()));
+			ArrayList<String> listOfTitles = new ArrayList<String>();
+			for (Answer answer : answerList) {
+				listOfTitles.add(answer.getBody());
+			}
+	        
+			lv = (ListView) findViewById(android.R.id.list);
+	        ArrayAdapter<String> arrayAdapter = 
+	        		new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
+	        lv.setAdapter(arrayAdapter);
+	        lv.setOnItemClickListener(this);
+>>>>>>> 0f2ec57a60efc288371f9d9d18586b3e374eb85c
 		}
 		//Question q = QuestionDataSource.getQuestionDummy(5);
         //q = new Question("Title bla","Body bla ","Tag bla");
         //q.setId(123);
 		
-		Button postButton = (Button) findViewById(R.id.quBtnAnswer);		
-		postButton.setOnClickListener(listener);
+		/*Button postButton = (Button) findViewById(R.id.quBtnAnswer);		
+		postButton.setOnClickListener(listener);*/
 		//ds.close();
+<<<<<<< HEAD
 		questionSource.close();
+=======
+		ds.close();
+		as.close();
+>>>>>>> 0f2ec57a60efc288371f9d9d18586b3e374eb85c
 		 // Make sure we're running on Honeycomb or higher to use ActionBar APIs
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // Show the Up button in the action bar.
@@ -130,6 +179,13 @@ public class QuestionDisplayActivity extends Activity {
 		Intent intent = new Intent(this, UserViewActivity.class);
 		intent.putExtra("userId", question.getOwnerUserId()); //Sample Id which exists in database
 		startActivity(intent);
+	}
+
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

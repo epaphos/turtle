@@ -42,7 +42,7 @@ public class AnswerActivity extends Activity {
 	    	EditText mEdit = (EditText) findViewById(R.id.text);
 	    	String body  = mEdit.getText().toString();
 			Answer answer = new Answer(parentId,body);
-			ds.setAnswer(answer);
+			ds.write(answer);
 			back(v);
 		}
 	};

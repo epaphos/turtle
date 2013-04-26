@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 public class QuestionDataSource extends PostDataSource {
 	protected static QuestionDataSource instance = null;
@@ -23,7 +24,7 @@ public class QuestionDataSource extends PostDataSource {
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
 			try {
-				list.add((Question) getQuestion(cursor.getInt(cursor.getColumnIndex("id"))));
+				list.add((Question) read(cursor.getInt(cursor.getColumnIndex("id"))));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -37,7 +38,7 @@ public class QuestionDataSource extends PostDataSource {
 	public Question getQuestion(int Id) throws wrongTypeException {
 		//Cursor cursor = database.rawQuery("SELECT title, body FROM posts where id=?", new String [] {String.valueOf(Id)});
 		//cursor.moveToFirst();
-		Question question = (Question) super.readPost(Id);
+		Question question = (Question) super.read(Id);
 		if (question.getPostTypeId() == 1) {
 			return question;
 
@@ -45,6 +46,12 @@ public class QuestionDataSource extends PostDataSource {
 		else {
 			throw new wrongTypeException();
 		}
+	}
+	
+	public int getNumberOfAnswers(int id) {
+		Cursor cursor = database.rawQuery("SELECT * FROM posts WHERE id = ?", new String[] {String.valueOf(id)});
+		cursor.moveToFirst();
+		return cursor.getInt(cursor.getColumnIndex("answer_count"));
 	}
 	
 	public Question getQuestionDummy(int ID){
@@ -57,10 +64,10 @@ public class QuestionDataSource extends PostDataSource {
 	}
 	
 	public Question getLastPost() {
-		return (Question) super.getLastPost();
+		return (Question) super.getLast();
 	}
 	
-	public boolean setQuestion (Question question) {
-		return super.writePost(question);
+	public boolean setQuestion(Question question) {
+		return super.write(question);
 	}
 }
