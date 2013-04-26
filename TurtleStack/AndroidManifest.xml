@@ -38,6 +38,14 @@
             android:name="com.example.turtlestack.UserViewActivity"
             android:label="@string/title_activity_user_view" >
         </activity>
+        <activity
+            android:name="com.example.turtlestack.SearchPosts"
+            android:label="@string/title_activity_search_posts"
+            android:parentActivityName="com.example.turtlestack.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.turtlestack.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

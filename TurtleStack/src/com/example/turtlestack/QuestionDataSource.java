@@ -32,7 +32,22 @@ public class QuestionDataSource extends PostDataSource {
 		return list;
 	
 	}
-
+	
+	public ArrayList<Question> getSearchResults(String searchQuery){
+		Cursor cursor = database.rawQuery("SELECT id, post_type_id, title, body, tags, creation_date FROM posts where post_type_id=1, title LIKE '%?%' BY creation_date DESC LIMIT", new String [] {searchQuery});
+		ArrayList<Question> list = new ArrayList<Question>();
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()) {
+			try {
+				list.add((Question) getQuestion(cursor.getInt(cursor.getColumnIndex("id"))));
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			cursor.moveToNext();			
+		}
+		return list;
+		
+	}
 	
 	public Question getQuestion(int Id) throws wrongTypeException {
 		//Cursor cursor = database.rawQuery("SELECT title, body FROM posts where id=?", new String [] {String.valueOf(Id)});
