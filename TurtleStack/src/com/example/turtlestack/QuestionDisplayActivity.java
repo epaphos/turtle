@@ -31,21 +31,17 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_question_display);
-        //Bundle bundle = getIntent().getExtras();
-        //int questionId =  bundle.getInt("Id");
 		Intent intent = getIntent();
 		questionId = intent.getIntExtra("questionId", 0);
-        //ds = PostDataSource.getInstance(this);
-		//ds.open();
 		as = AnswerDataSource.getInstance(this);			
 		as.open();
 		ds = QuestionDataSource.getInstance(this);
 		ds.open();
-		//q = qs.getQuestionDummy(questionId);
 		try {
 	        q = ds.getQuestion(questionId);
 		} 
 		catch (Exception e) {
+			Log.v("EXCEPTION", "Post type is not as expected");
 		}
 		Log.v("numberOfAnswers", String.valueOf(ds.getNumberOfAnswers(questionId)));
 		if(ds.getNumberOfAnswers(questionId) > 0) {
@@ -63,13 +59,7 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 	        lv.setAdapter(arrayAdapter);
 	        lv.setOnItemClickListener(this);
 		}
-		//Question q = QuestionDataSource.getQuestionDummy(5);
-        //q = new Question("Title bla","Body bla ","Tag bla");
-        //q.setId(123);
-		
-		/*Button postButton = (Button) findViewById(R.id.quBtnAnswer);		
-		postButton.setOnClickListener(listener);*/
-		//ds.close();
+
 		ds.close();
 		as.close();
 		 // Make sure we're running on Honeycomb or higher to use ActionBar APIs
@@ -81,31 +71,12 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
         displayQ(q);
 	}
 	
-	
-	View.OnClickListener listener = new View.OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			//answerAction(v);
-			TextView lblTitle = (TextView) findViewById(R.id.quLblTitle);
-			TextView lblBody = (TextView) findViewById(R.id.quLblBody);
-			lblTitle.setText(q.getTitle());
-			lblBody.setText("some stupid");
-			
-			}
-		};
-	
-	public void answerAction(View v) {
-		Intent i = new Intent(this,AnswerActivity.class);
-		try {
-			Question question = (Question) ds.getQuestion(questionId);
-			i.putExtra("parentId",question.getId());		
-		} catch (Exception e) {
-			Log.v("EXCEPTION", "Post type is not as expected");
-		}
-		startActivity(i);
-	}
-	
+	public void goAnswerView(View v) {
+		Intent intent = new Intent(this,AnswerActivity.class);
+		intent.putExtra("parentId",questionId);
+		startActivity(intent);
+		Log.v("BOTON", "WORKS");
+		}	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

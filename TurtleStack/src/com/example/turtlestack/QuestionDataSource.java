@@ -67,10 +67,7 @@ public class QuestionDataSource extends PostDataSource {
 		return (Question) super.getLast();
 	}
 	
-<<<<<<< HEAD
-	public boolean write(Question question) {
-		return super.write(question);
-=======
+
 	public ArrayList<Answer> getAnswers(int id) {
 		
 		return null;
@@ -78,7 +75,6 @@ public class QuestionDataSource extends PostDataSource {
 	
 	
 	public boolean setQuestion (Question question) {
-		return super.writePost(question);
->>>>>>> d3999f3f024e686a4df68fa1075910fd49479e2a
+		return super.write(question);
 	}
 }

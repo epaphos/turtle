@@ -30,10 +30,6 @@ public class AnswerDataSource extends PostDataSource{
 		}
 	}
 	
-<<<<<<< HEAD
-	public boolean write(Answer answer) {
-		return super.write(answer);
-=======
 	public ArrayList<Answer> getAnswers(int id) {
 		
 		Cursor cursor = database.rawQuery("SELECT answer_id FROM QuestionHasAnswer WHERE question_id = ?", 
@@ -53,8 +49,7 @@ public class AnswerDataSource extends PostDataSource{
 	}
 	
 	public boolean setAnswer(Answer answer) {
-		return super.writePost(answer);
->>>>>>> d3999f3f024e686a4df68fa1075910fd49479e2a
+		return super.write(answer);
 	}
 	
 }

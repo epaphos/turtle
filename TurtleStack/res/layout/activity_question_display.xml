@@ -82,5 +82,15 @@
         android:layout_below="@+id/quLblBody"
         android:text="Answers"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/quLblId"
+        android:layout_marginRight="36dp"
+        android:text="@string/button_answer"
+        android:onClick= "goAnswerView" />
 	
 </RelativeLayout>
