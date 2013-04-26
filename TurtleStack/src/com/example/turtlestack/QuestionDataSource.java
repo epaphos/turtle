@@ -24,7 +24,7 @@ public class QuestionDataSource extends PostDataSource {
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
 			try {
-				list.add((Question) getQuestion(cursor.getInt(cursor.getColumnIndex("id"))));
+				list.add((Question) read(cursor.getInt(cursor.getColumnIndex("id"))));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -67,18 +67,7 @@ public class QuestionDataSource extends PostDataSource {
 		return (Question) super.getLast();
 	}
 	
-<<<<<<< HEAD
-	public boolean write(Question question) {
+	public boolean setQuestion(Question question) {
 		return super.write(question);
-=======
-	public ArrayList<Answer> getAnswers(int id) {
-		
-		return null;
-	}
-	
-	
-	public boolean setQuestion (Question question) {
-		return super.writePost(question);
->>>>>>> d3999f3f024e686a4df68fa1075910fd49479e2a
 	}
 }

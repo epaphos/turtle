@@ -50,7 +50,7 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 		Log.v("numberOfAnswers", String.valueOf(ds.getNumberOfAnswers(questionId)));
 		if(ds.getNumberOfAnswers(questionId) > 0) {
 			Log.v("numberOfAnswers", "in if-statement");
-			answerList = as.getAnswers(questionId);
+			answerList = as.getAnswer(questionId);
 			Log.v("numberOfAnswers", Integer.toString(answerList.size()));
 			ArrayList<String> listOfTitles = new ArrayList<String>();
 			for (Answer answer : answerList) {
