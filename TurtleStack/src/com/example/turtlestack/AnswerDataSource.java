@@ -31,7 +31,6 @@ public class AnswerDataSource extends PostDataSource{
 	}
 	
 	public ArrayList<Answer> getAnswers(int id) {
-		
 		Cursor cursor = database.rawQuery("SELECT answer_id FROM QuestionHasAnswer WHERE question_id = ?", 
 				new String[] {String.valueOf(id)});
 		cursor.moveToFirst();
@@ -48,8 +47,21 @@ public class AnswerDataSource extends PostDataSource{
 		return answers;
 	}
 	
+
 	public boolean setAnswer(Answer answer) {
 		return super.write(answer);
+	}
+
+	@Override
+	public void open() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

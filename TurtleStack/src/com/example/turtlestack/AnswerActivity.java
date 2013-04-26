@@ -25,7 +25,7 @@ public class AnswerActivity extends Activity {
     	EditText mEdit = (EditText) findViewById(R.id.text);
     	String body  = mEdit.getText().toString();
 		Answer answer = new Answer(parentId,body);
-		ds.write(answer);
+		ds.setAnswer(answer);
 		Intent i = new Intent(this,MainActivity.class);
 		startActivity(i);
 		ds.close();

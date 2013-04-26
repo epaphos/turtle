@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,12 +23,12 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 	Question q; //The element that should be displayed
 	private ListView lv;
 	private ArrayList<Answer> answerList;
-	
+
 	@SuppressLint("NewApi")  
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.activity_question_display);
 		Intent intent = getIntent();
 		questionId = intent.getIntExtra("questionId", 0);
@@ -37,55 +36,51 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 		as.open();
 		ds = QuestionDataSource.getInstance(this);
 		ds.open();
+		
 		try {
 	        q = ds.getQuestion(questionId);
 		} 
 		catch (Exception e) {
-			Log.v("EXCEPTION", "Post type is not as expected");
 		}
-		Log.v("numberOfAnswers", String.valueOf(ds.getNumberOfAnswers(questionId)));
-		if(ds.getNumberOfAnswers(questionId) > 0) {
-			Log.v("numberOfAnswers", "in if-statement");
+		
+		/*if(ds.getNumberOfAnswers(questionId) > 0) {
 			answerList = as.getAnswers(questionId);
-			Log.v("numberOfAnswers", Integer.toString(answerList.size()));
 			ArrayList<String> listOfTitles = new ArrayList<String>();
 			for (Answer answer : answerList) {
 				listOfTitles.add(answer.getBody());
 			}
-	        
+
 			lv = (ListView) findViewById(android.R.id.list);
-	        ArrayAdapter<String> arrayAdapter = 
-	        		new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
+	        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
 	        lv.setAdapter(arrayAdapter);
 	        lv.setOnItemClickListener(this);
-		}
+		}*/
 
 		ds.close();
 		as.close();
-		 // Make sure we're running on Honeycomb or higher to use ActionBar APIs
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            // Show the Up button in the action bar.
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        
-        displayQ(q);
+		displayQ(q);
 	}
-	
+
 	public void goAnswerView(View v) {
-		Intent intent = new Intent(this,AnswerActivity.class);
-		intent.putExtra("parentId",questionId);
-		startActivity(intent);
-		Log.v("BOTON", "WORKS");
-		}	
-	
+		Intent i = new Intent(this,AnswerActivity.class);
+		try {
+			Question question = (Question) ds.getQuestion(questionId);
+			i.putExtra("parentId",question.getId());		
+		} catch (Exception e) {
+			Log.v("EXCEPTION", "Post type is not as expected");
+		}
+		startActivity(i);
+	}
+
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.question_display, menu);
 		return true;
 	}
-	
-	
+
+
 	/**
 	 * Extracts members of a Question and displays them
 	 * @param q
@@ -99,11 +94,11 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 		lblBody.setText(q.getBody());
 		lblId.setText("ID: " + Integer.toString(q.getId()));//setText must receive a string!
 		lblViews.setText("Views: " + Integer.toString(q.getViewCount()));
-		
+
 		TextView lblAuthor = (TextView) findViewById(R.id.quLblAuthor);
 		lblAuthor.setText("Author: " + Integer.toString(q.getOwnerUserId()));
 	}
-	
+
 	/**
 	 * Views the details of the post author
 	 * @param view
@@ -118,10 +113,10 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
-	
-	
+
+
+
+
 }
