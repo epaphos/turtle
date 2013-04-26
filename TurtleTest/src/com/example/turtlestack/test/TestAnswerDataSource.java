@@ -29,7 +29,7 @@ public class TestAnswerDataSource extends AndroidTestCase {
 	
 	public void testReadAnswer () {
 		try {
-			Answer answer = (Answer) answerSource.getAnswer(386350);
+			Answer answer = (Answer) answerSource.getAnswer(386350); //not sure that this id is in database
 			Assert.assertEquals(answer.getId(),386350);
 		} catch (Exception e) {
 			Assert.assertTrue(true);
