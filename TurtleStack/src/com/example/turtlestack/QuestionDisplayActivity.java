@@ -12,9 +12,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class QuestionDisplayActivity extends Activity {
-	QuestionDataSource ds;
+	QuestionDataSource questionSource;
 	int questionId;
-	Question q; //The element that should be displayed
+	Question question; //The element that should be displayed
+	UserDataSource userSource;
+	String author;
 	
 	@SuppressLint("NewApi")  
 	@Override
@@ -28,12 +30,14 @@ public class QuestionDisplayActivity extends Activity {
 		questionId = intent.getIntExtra("questionId", 0);
         //ds = PostDataSource.getInstance(this);
 		//ds.open();
-		ds = QuestionDataSource.getInstance(this);
-		ds.open();
+		questionSource = QuestionDataSource.getInstance(this);
+		questionSource.open();
+		
 		//q = qs.getQuestionDummy(questionId);
 		try {
-	        q = ds.getQuestion(questionId);
+	        question = questionSource.getQuestion(questionId);
 		} catch (Exception e) {
+			//TODO we should do something here
 		}
 		//Question q = QuestionDataSource.getQuestionDummy(5);
         //q = new Question("Title bla","Body bla ","Tag bla");
@@ -42,14 +46,15 @@ public class QuestionDisplayActivity extends Activity {
 		Button postButton = (Button) findViewById(R.id.quBtnAnswer);		
 		postButton.setOnClickListener(listener);
 		//ds.close();
-		ds.close();
+		questionSource.close();
 		 // Make sure we're running on Honeycomb or higher to use ActionBar APIs
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // Show the Up button in the action bar.
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
         
-        displayQ(q);
+        getUserString();
+        displayQ(question);
 	}
 	
 	
@@ -60,7 +65,7 @@ public class QuestionDisplayActivity extends Activity {
 			//answerAction(v);
 			TextView lblTitle = (TextView) findViewById(R.id.quLblTitle);
 			TextView lblBody = (TextView) findViewById(R.id.quLblBody);
-			lblTitle.setText(q.getTitle());
+			lblTitle.setText(question.getTitle());
 			lblBody.setText("some stupid");
 			
 			}
@@ -69,7 +74,7 @@ public class QuestionDisplayActivity extends Activity {
 	public void answerAction(View v) {
 		Intent i = new Intent(this,AnswerActivity.class);
 		try {
-			Question question = (Question) ds.getQuestion(questionId);
+			Question question = (Question) questionSource.getQuestion(questionId);
 			i.putExtra("parentId",question.getId());		
 		} catch (Exception e) {
 			Log.v("EXCEPTION", "Post type is not as expected");
@@ -85,7 +90,17 @@ public class QuestionDisplayActivity extends Activity {
 		return true;
 	}
 	
-	
+	private void getUserString(){
+		userSource = UserDataSource.getInstance(this);
+        userSource.open();
+        try {
+        	User user = userSource.readUser(question.getOwnerUserId());
+        	author = user.getDisplayName();
+        } catch (Exception e) {
+        	author = " id: " + Integer.toString(question.getOwnerUserId()) + " not found";
+        }
+        userSource.close();
+	}
 	/**
 	 * Extracts members of a Question and displays them
 	 * @param q
@@ -101,7 +116,10 @@ public class QuestionDisplayActivity extends Activity {
 		lblViews.setText("Views: " + Integer.toString(q.getViewCount()));
 		
 		TextView lblAuthor = (TextView) findViewById(R.id.quLblAuthor);
-		lblAuthor.setText("Author: " + Integer.toString(q.getOwnerUserId()));
+		
+			lblAuthor.setText("Author: " + author);
+		
+			
 	}
 	
 	/**
@@ -110,7 +128,7 @@ public class QuestionDisplayActivity extends Activity {
 	 */
 	public void gotoUserView(View view){
 		Intent intent = new Intent(this, UserViewActivity.class);
-		intent.putExtra("userId", q.getOwnerUserId()); //Sample Id which exists in database
+		intent.putExtra("userId", question.getOwnerUserId()); //Sample Id which exists in database
 		startActivity(intent);
 	}
 	
