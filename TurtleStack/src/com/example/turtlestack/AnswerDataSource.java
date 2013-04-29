@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 public class AnswerDataSource extends PostDataSource{
 	protected static AnswerDataSource instance = null;
@@ -18,8 +19,7 @@ public class AnswerDataSource extends PostDataSource{
 	}
 	
 	public Answer getAnswer(int Id) throws wrongTypeException {
-		//Cursor cursor = database.rawQuery("SELECT title, body FROM posts where id=?", new String [] {String.valueOf(Id)});
-		//cursor.moveToFirst();
+
 		Answer answer = (Answer) super.read(Id);
 		if (answer.getPostTypeId() == 2) {
 			return answer;
@@ -37,10 +37,9 @@ public class AnswerDataSource extends PostDataSource{
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		while(!cursor.isAfterLast()) {			
 			try {
-				answers.add((Answer)getAnswer(cursor.getInt(cursor.getColumnIndex("answer_id"))));
-			} catch (wrongTypeException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				answers.add(getAnswer(cursor.getInt(cursor.getColumnIndex("answer_id"))));
+			} 
+			catch (wrongTypeException e) {
 			}
 			cursor.moveToNext();
 		}
@@ -50,18 +49,6 @@ public class AnswerDataSource extends PostDataSource{
 
 	public boolean setAnswer(Answer answer) {
 		return super.write(answer);
-	}
-
-	@Override
-	public void open() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void close() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

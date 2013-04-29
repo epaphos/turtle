@@ -19,35 +19,24 @@ public class QuestionActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_act);
+        setContentView(R.layout.activity_question_act);       
+    }
+	
+	public void postQuestionButton(View v) {
         ds = QuestionDataSource.getInstance(this);
 		ds.open();
-		Button postButton = (Button) findViewById(R.id.button1);
-		postButton.setOnClickListener(postButtonListener);
+		EditText mEdit; 
+    	mEdit = (EditText) findViewById(R.id.title);
+    	String title  = mEdit.getText().toString();
+    	mEdit = (EditText) findViewById(R.id.text);
+    	String body  = mEdit.getText().toString();
+    	mEdit = (EditText) findViewById(R.id.tags);
+    	String tags  = mEdit.getText().toString();
+		Question question = new Question(title, body,tags);
+		ds.write(question);
         ds.close();
-        
-     // Make sure we're running on Honeycomb or higher to use ActionBar APIs
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            // Show the Up button in the action bar.
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-    }
-	View.OnClickListener postButtonListener = new View.OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			EditText mEdit; 
-	    	mEdit = (EditText) findViewById(R.id.title);
-	    	String title  = mEdit.getText().toString();
-	    	mEdit = (EditText) findViewById(R.id.text);
-	    	String body  = mEdit.getText().toString();
-	    	mEdit = (EditText) findViewById(R.id.tags);
-	    	String tags  = mEdit.getText().toString();
-			Question question = new Question(title, body,tags);
-			ds.write(question);
-			back(v);
-		}
-	};
+		back(v);
+	}
 	
 	public void back(View v) {
 		Intent i = new Intent(this,MainActivity.class);

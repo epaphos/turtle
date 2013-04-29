@@ -3,6 +3,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.*;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 
 
@@ -139,9 +140,11 @@ public abstract class PostDataSource implements DataSourceUtils {
 			//accepted_answer_id
 			//answer_count
 			//favorite_count
+			Log.v("ERROR", values.getAsString("body"));
 	        database.insert("posts", "answer_count", values);
 			return true;
 		}
+		
 		else if (post instanceof Question) {
 			Question question = (Question) post;	
 			ContentValues values = new ContentValues();

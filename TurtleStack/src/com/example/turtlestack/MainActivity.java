@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends Activity {	
-    
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +33,6 @@ public class MainActivity extends Activity {
 					launch(v, QuestionActivity.class);
 					break;
 				case R.id.recentquestions : 
-					testUser();
 					launch(v, BrowseActivity.class);
 					break;
 				}				
@@ -52,16 +51,6 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-	
-	/**
-	 * Test method for class UserDataSource
-	 */
-	public void testUser(){
-		UserDataSource ds = new UserDataSource(this);
-		ds.open();
-		User u = ds.readUser(40310);
-		Log.i("User",u.toString());
-	}
 	/**
 	 * Test method for Displaying questions by id
 	 * @param view

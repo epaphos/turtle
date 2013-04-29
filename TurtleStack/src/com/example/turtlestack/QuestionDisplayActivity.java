@@ -43,7 +43,7 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 		catch (Exception e) {
 		}
 		
-		/*if(ds.getNumberOfAnswers(questionId) > 0) {
+		if(ds.getNumberOfAnswers(questionId) > 0) {
 			answerList = as.getAnswers(questionId);
 			ArrayList<String> listOfTitles = new ArrayList<String>();
 			for (Answer answer : answerList) {
@@ -54,7 +54,7 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 	        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
 	        lv.setAdapter(arrayAdapter);
 	        lv.setOnItemClickListener(this);
-		}*/
+		}
 
 		ds.close();
 		as.close();
