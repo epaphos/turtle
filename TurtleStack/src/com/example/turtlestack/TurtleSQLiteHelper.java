@@ -34,13 +34,17 @@ public class TurtleSQLiteHelper extends SQLiteOpenHelper {
 		
 			try {
 				copyDatabase();
+				Log.v("DATABASE", "Database Copied");
+				createAndPopulateQuestionHasAnswer();
 			}
 			catch(IOException exception){
 				throw new Error("ErrorCopyingDatabase");
 			}
-			createAndPopulateQuestionHasAnswer();
 		}
 		
+		else {
+			Log.v("DATABASE", "Database Already Exists");
+		}
 		
 	}
 	@Override
@@ -103,5 +107,6 @@ public class TurtleSQLiteHelper extends SQLiteOpenHelper {
 		// populate the questionHasAnswer relation table with the data existing in the database
 		db.execSQL("INSERT INTO QuestionHasAnswer(question_id, answer_id) SELECT a.id, b.id FROM posts a, posts b WHERE a.id =  b.parent_id;"); 	
 		db.close();
+		Log.v("FAIL", "FLAG");
 	}
 }

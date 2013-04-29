@@ -53,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/tags"
         android:layout_below="@+id/tags"
-        android:text="@string/button_post" />
+        android:text="@string/button_post"
+        android:onClick="postQuestionButton" />
 
 </RelativeLayout>
