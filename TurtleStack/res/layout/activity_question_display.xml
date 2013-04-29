@@ -1,96 +1,100 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" > 
-  
-    <TextView
-        android:id="@+id/quLblTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="16dp"
-        android:text="Question Title"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-     
-    <TextView
-        android:id="@+id/quLblViewCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/quLblId"
-        android:layout_below="@+id/quLblId"
-        android:text="Views: " />
-
-    <TextView
-        android:id="@+id/quLblFavorites"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/quLblTitle"
-        android:layout_below="@+id/quLblViewCount"
-        android:text="Favorites" />
-
-    <TextView
-        android:id="@+id/quLblId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/quLblFavorites"
-        android:layout_below="@+id/quLblTitle"
-        android:text="Id Question" />
-
-    <TextView
-        android:id="@+id/quLblCreationDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/quLblFavorites"
-        android:layout_below="@+id/quLblFavorites"
-        android:text="Created: " />
-
-    <TextView
-        android:id="@+id/quLblBody"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/quLblCreationDate"
-        android:layout_marginTop="30dp"
-        android:text="@string/questionDisplayTitle" />
-
-    <TextView
-        android:id="@+id/quLblAuthor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/quLblCreationDate"
-        android:layout_below="@+id/quLblCreationDate"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" 
-        android:clickable="true"
-        android:onClick="gotoUserView"/>
-   
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1" >
-    </ListView>
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/quLblBody"
-        android:text="Answers"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/quLblId"
-        android:layout_marginRight="36dp"
-        android:text="@string/button_answer"
-        android:onClick= "goAnswerView" />
+    
+    <RelativeLayout
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical" > 
+  	
+	    <TextView
+	        android:id="@+id/quLblTitle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginLeft="20dp"
+	        android:layout_marginTop="16dp"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	     
+	    <TextView
+	        android:id="@+id/quLblViewCount"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/quLblId"
+	        android:layout_below="@+id/quLblId"
+	        android:text="Views: " />
 	
-</RelativeLayout>
+	    <TextView
+	        android:id="@+id/quLblFavorites"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/quLblTitle"
+	        android:layout_below="@+id/quLblViewCount"
+	        android:text="Favorites" />
+	
+	    <TextView
+	        android:id="@+id/quLblId"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/quLblFavorites"
+	        android:layout_below="@+id/quLblTitle"
+	        android:text="@string/question_id" />
+	
+	    <TextView
+	        android:id="@+id/quLblCreationDate"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/quLblFavorites"
+	        android:layout_below="@+id/quLblFavorites"
+	        android:text="Created: " />
+	
+	    <TextView
+	        android:id="@+id/quLblBody"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@+id/quLblCreationDate"
+	        android:layout_marginTop="30dp"
+	        android:text="@string/questionDisplayTitle" />
+	
+	    <TextView
+	        android:id="@+id/quLblAuthor"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/quLblCreationDate"
+	        android:layout_below="@+id/quLblCreationDate"
+	        android:text="Medium Text"
+	        android:textAppearance="?android:attr/textAppearanceMedium" 
+	        android:clickable="true"
+	        android:onClick="gotoUserView"/>
+	   
+	    <ListView
+	        android:id="@android:id/list"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@+id/textView1" >
+	    </ListView>
+	
+	    <TextView
+	        android:id="@+id/textView1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@+id/quLblBody"
+	        android:text="Answers"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+	    <Button
+	        android:id="@+id/button1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:layout_below="@+id/quLblId"
+	        android:layout_marginRight="36dp"
+	        android:text="@string/button_answer"
+	        android:onClick= "goAnswerView" />
+	</RelativeLayout>
+</ScrollView>
