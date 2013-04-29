@@ -17,10 +17,13 @@ public class AnswerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_answer);
         ds = AnswerDataSource.getInstance(this);
+        qs = QuestionDataSource.getInstance(this);
+        qs.open();
 		ds.open();
 		Intent intent = getIntent();
 		parentId = intent.getIntExtra("parentId", 0);
 		ds.close();
+		qs.close();
 	}
 	
 	public void postAnswerButton(View v) {
