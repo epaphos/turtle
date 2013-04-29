@@ -90,13 +90,14 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 		TextView lblBody = (TextView) findViewById(R.id.quLblBody);
 		TextView lblId = (TextView) findViewById(R.id.quLblId);
 		TextView lblViews = (TextView) findViewById(R.id.quLblViewCount);
+		
 		lblTitle.setText(q.getTitle());
 		lblBody.setText(q.getBody());
-		lblId.setText("ID: " + Integer.toString(q.getId()));//setText must receive a string!
-		lblViews.setText("Views: " + Integer.toString(q.getViewCount()));
+		lblId.setText(getString(R.string.post_id) + " " + Integer.toString(q.getId()));
+		lblViews.setText(getString(R.string.post_number_of_views) + " " + Integer.toString(q.getViewCount()));
 
 		TextView lblAuthor = (TextView) findViewById(R.id.quLblAuthor);
-		lblAuthor.setText("Author: " + Integer.toString(q.getOwnerUserId()));
+		lblAuthor.setText(getString(R.string.post_name_of_author) + " " + Integer.toString(q.getOwnerUserId()));
 	}
 
 	/**

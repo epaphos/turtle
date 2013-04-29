@@ -4,7 +4,13 @@
     <string name="app_name">Turtlestack</string>
     
     <!-- QuestionDisplayActivity -->
-    <string name="question_id">ID</string>
+    <string name="post_id">ID:</string>
+    <string name="post_number_of_views">Views: </string>
+    <string name="post_number_of_favorites">Favorites: </string>
+    <string name="post_name_of_author">Author: </string>
+    <string name="post_date_of_creation">Created: </string>
+    <string name="title_activity_question_display">QuestionDisplay</string>
+    <string name="answer_title">Answers</string>
     
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -20,7 +26,6 @@
     <string name="title_activity_answer">Post Answer</string>
     <string name="button_send">Send</string>
     <string name="btnPostQuestion">Post Q</string>
-    <string name="title_activity_question_display">QuestionDisplay</string>
     <string name="questionDisplayTitle">Detailed Question</string>
     <string name="button_answer">Answer</string>
     <string name="title_activity_user_view">UserViewActivity</string>

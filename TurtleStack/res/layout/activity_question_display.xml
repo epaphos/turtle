@@ -24,7 +24,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignLeft="@+id/quLblId"
 	        android:layout_below="@+id/quLblId"
-	        android:text="Views: " />
+	        android:text="@string/post_number_of_views" />
 	
 	    <TextView
 	        android:id="@+id/quLblFavorites"
@@ -32,7 +32,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignLeft="@+id/quLblTitle"
 	        android:layout_below="@+id/quLblViewCount"
-	        android:text="Favorites" />
+	        android:text="@string/post_number_of_favorites" />
 	
 	    <TextView
 	        android:id="@+id/quLblId"
@@ -40,7 +40,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignLeft="@+id/quLblFavorites"
 	        android:layout_below="@+id/quLblTitle"
-	        android:text="@string/question_id" />
+	        android:text="@string/post_id" />
 	
 	    <TextView
 	        android:id="@+id/quLblCreationDate"
@@ -48,7 +48,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignLeft="@+id/quLblFavorites"
 	        android:layout_below="@+id/quLblFavorites"
-	        android:text="Created: " />
+	        android:text="@string/post_date_of_creation" />
 	
 	    <TextView
 	        android:id="@+id/quLblBody"
@@ -57,7 +57,7 @@
 	        android:layout_alignParentLeft="true"
 	        android:layout_below="@+id/quLblCreationDate"
 	        android:layout_marginTop="30dp"
-	        android:text="@string/questionDisplayTitle" />
+	        android:text="@string/title_activity_question_display" />
 	
 	    <TextView
 	        android:id="@+id/quLblAuthor"
@@ -65,7 +65,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignLeft="@+id/quLblCreationDate"
 	        android:layout_below="@+id/quLblCreationDate"
-	        android:text="Medium Text"
+	        android:text="@string/post_name_of_author"
 	        android:textAppearance="?android:attr/textAppearanceMedium" 
 	        android:clickable="true"
 	        android:onClick="gotoUserView"/>
@@ -84,7 +84,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentLeft="true"
 	        android:layout_below="@+id/quLblBody"
-	        android:text="Answers"
+	        android:text="@string/answer_title"
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
 	
 	    <Button
