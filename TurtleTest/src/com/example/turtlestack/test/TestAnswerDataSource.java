@@ -18,18 +18,33 @@ import com.example.turtlestack.wrongTypeException;
 public class TestAnswerDataSource extends AndroidTestCase {
 
 	AnswerDataSource answerSource;
-	QuestionDataSource questionDataSource;
+	QuestionDataSource questionSource;
 
 	protected void setUp() throws Exception {
         super.setUp();
 		answerSource = AnswerDataSource.getInstance(getContext());
-		answerSource.open();	
+		answerSource.open();
+		questionSource = QuestionDataSource.getInstance(getContext());
+		questionSource.open();
     }
 	
 	public void testWritePostIsAddedToDatabase() {
 		Answer answer = new Answer(386341, "Write something");
 		answerSource.write(answer);
 		Assert.assertEquals(answer.getBody(), answerSource.getLast().getBody());
+	}
+	
+	public void testAnswerCountIncremented() {
+		Question question = new Question("DummyTitle", "DummyBody", "DummyTag");
+		questionSource.setQuestion(question);
+		Answer answer = new Answer(question.getId(), "Write something");
+		answerSource.setAnswer(answer);
+		try {
+			Question question2 = questionSource.getQuestion(question.getId());
+			Assert.assertEquals((question.getAnswerCount()+1), question2.getAnswerCount());
+		} catch (Exception e) {
+			Assert.assertTrue(true);
+		}
 	}
 	
 	public void testReadAnswer () {
@@ -43,14 +58,11 @@ public class TestAnswerDataSource extends AndroidTestCase {
 	}
 	
 	public void testGetAnswersToQuestion() throws wrongTypeException {
-		questionDataSource = QuestionDataSource.getInstance(getContext());
-		questionDataSource.open();
 		int id = 8414075;
 		ArrayList<Answer> answer = answerSource.getAnswers(id);
-		int numberOfAnswers = questionDataSource.getNumberOfAnswers(id);
+		int numberOfAnswers = questionSource.getNumberOfAnswers(id);
 		Log.v("numberOfAnswers", Integer.toString(numberOfAnswers)); 
 		Assert.assertEquals(answer.size(), numberOfAnswers); 
-		questionDataSource.close();
 	}
 	
 	public void testAnswerType () {
@@ -63,7 +75,8 @@ public class TestAnswerDataSource extends AndroidTestCase {
 	}
 	
 	protected void tearDown() throws Exception {
-		answerSource.close();		
+		answerSource.close();
+		questionSource.close();
 		super.tearDown();
 	}
 }

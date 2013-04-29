@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 public class AnswerActivity extends Activity {
 	AnswerDataSource ds;
+	QuestionDataSource qs;
 	int parentId;
 	
 	@Override
@@ -27,6 +28,11 @@ public class AnswerActivity extends Activity {
     	String body  = mEdit.getText().toString();
 		Answer answer = new Answer(parentId,body);
 		ds.setAnswer(answer);
+		try {
+			Question question = qs.getQuestion(parentId);
+			question.setAnswerCount(question.getAnswerCount() +1);
+			qs.setQuestion(question);
+		} catch (wrongTypeException e) { }
 		back(v);
 	}
 	
