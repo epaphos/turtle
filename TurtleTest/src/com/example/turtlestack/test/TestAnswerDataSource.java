@@ -46,7 +46,25 @@ public class TestAnswerDataSource extends AndroidTestCase {
 			Assert.assertTrue(true);
 		}
 	}
-	
+	public void testAnswerInRT() {
+		Question question = new Question("DummyTitle", "DummyBody", "DummyTag");
+		int questionId = questionSource.setQuestion(question);
+		Answer answer = new Answer(questionId,"DummyAnswer");
+		int answerId = answerSource.setAnswer(answer);
+		boolean Match = false;
+		answerSource.addAnswerToRT(questionId,answerId);
+		try {
+			ArrayList <Answer> AnswerList = answerSource.getAnswers(questionId);
+			for (Answer answ : AnswerList) {
+				if (answ.getId() == answerId) Match = true;
+			}
+		}
+		catch (Exception e) {
+			Assert.assertTrue(true);
+		}
+		Assert.assertTrue(Match);
+	}
+		
 	public void testReadAnswer () {
 		try {
 			Answer answer = (Answer) answerSource.getAnswer(386350); //not sure that this id is in database

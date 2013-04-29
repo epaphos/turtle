@@ -97,6 +97,7 @@ public class TurtleSQLiteHelper extends SQLiteOpenHelper {
         String myPath = DB_PATH + DB_NAME;
     	return SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
     }
+	
 	/**
 	 * Creates and populate the questionHasAnswer relation table with existing data from the database
 	 */

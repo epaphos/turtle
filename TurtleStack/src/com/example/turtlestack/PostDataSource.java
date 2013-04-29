@@ -10,7 +10,7 @@ import android.util.Log;
 public abstract class PostDataSource implements DataSourceUtils {
 
 	TurtleSQLiteHelper helper;
-	SQLiteDatabase database;
+	protected SQLiteDatabase database;
 	protected static PostDataSource instance = null;
 	
 	public PostDataSource(Context context) {
@@ -113,7 +113,7 @@ public abstract class PostDataSource implements DataSourceUtils {
 		//return new Post getTitle(cursor.getString(cursor.getColumnIndex("title")));
 	}
 
-	public boolean write(Post post) {
+	public int write(Post post) {
 
 		if (post instanceof Answer) {
 			Answer answer = (Answer) post;
@@ -140,11 +140,10 @@ public abstract class PostDataSource implements DataSourceUtils {
 			//accepted_answer_id
 			//answer_count
 			//favorite_count
-			Log.v("ERROR", values.getAsString("body"));
 	        database.insert("posts", "answer_count", values);
-			return true;
-		}
-		
+	        return this.getLast().getId();
+	    }
+
 		else if (post instanceof Question) {
 			Question question = (Question) post;	
 			ContentValues values = new ContentValues();
@@ -170,10 +169,10 @@ public abstract class PostDataSource implements DataSourceUtils {
 			//parent_id
 			
 	        database.insert("posts", "parent_id", values);
-			return true;
+	        return this.getLast().getId();
 		}
 		
-		return false;
+		return -1;
 	}
 	
 	//That should not exists.

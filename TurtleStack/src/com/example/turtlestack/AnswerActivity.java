@@ -30,11 +30,12 @@ public class AnswerActivity extends Activity {
     	EditText mEdit = (EditText) findViewById(R.id.text);
     	String body  = mEdit.getText().toString();
 		Answer answer = new Answer(parentId,body);
-		ds.setAnswer(answer);
+		int answerId = ds.setAnswer(answer); 
 		try {
 			Question question = qs.getQuestion(parentId);
 			question.setAnswerCount(question.getAnswerCount() +1);
 			qs.setQuestion(question);
+			ds.addAnswerToRT(question.getId(),answerId);
 		} catch (wrongTypeException e) { }
 		back(v);
 	}

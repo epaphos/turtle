@@ -73,7 +73,7 @@ public class QuestionDataSource extends PostDataSource {
 	}
 	
 	
-	public boolean setQuestion(Question question) {
+	public int setQuestion(Question question) {
 		return super.write(question);
 	}
 }

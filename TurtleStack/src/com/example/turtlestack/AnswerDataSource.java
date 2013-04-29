@@ -2,6 +2,7 @@ package com.example.turtlestack;
 
 import java.util.ArrayList;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
@@ -47,8 +48,18 @@ public class AnswerDataSource extends PostDataSource{
 	}
 	
 
-	public boolean setAnswer(Answer answer) {
+	public int setAnswer(Answer answer) {
 		return super.write(answer);
+	}
+	
+	//Adds answer to relation table QuestionHasAnswer
+	public void addAnswerToRT(int qId,int aId) {
+		ContentValues values = new ContentValues();
+		Log.v("ID QUESTION", Integer.toString(qId));
+		Log.v("ID ANSWER 1", Integer.toString(aId));
+		values.put("question_id",qId);
+		values.put("answer_id", aId);
+		database.insert("QuestionHasAnswer",null, values);
 	}
 	
 }
