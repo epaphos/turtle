@@ -51,6 +51,11 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
+	public void goTagList(View view){
+		Intent intent = new Intent(this, TagsListActivity.class);
+		startActivity(intent);
+	}
+	
 	/**
 	 * Test method for Displaying questions by id
 	 * @param view
