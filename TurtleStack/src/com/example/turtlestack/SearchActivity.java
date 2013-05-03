@@ -68,7 +68,7 @@ public class SearchActivity extends Activity {
 		String searchQuery = search.getText().toString();
 		
 		qs.open();
-		/*
+		
 		ArrayList<Question> results = qs.getSearchResults(searchQuery);		
 		ArrayList<String> listOfTitles = new ArrayList<String>();
 		
@@ -79,7 +79,7 @@ public class SearchActivity extends Activity {
 		ListView lv = (ListView) findViewById(R.id.searchResults);
         ArrayAdapter<String> arrayAdapter = 
         		new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
-        lv.setAdapter(arrayAdapter);*/
+        lv.setAdapter(arrayAdapter);
         qs.close();
 
 		
