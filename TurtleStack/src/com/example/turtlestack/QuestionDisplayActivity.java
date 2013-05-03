@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -49,7 +50,7 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 			answerList = as.getAnswers(questionId);
 			ArrayList<String> listOfTitles = new ArrayList<String>();
 			for (Answer answer : answerList) {
-				listOfTitles.add(answer.getBody());
+				listOfTitles.add(Html.fromHtml(answer.getBody()).toString());
 			}
 
 			lv = (ListView) findViewById(android.R.id.list);
@@ -94,7 +95,7 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 		TextView lblId = (TextView) findViewById(R.id.quLblId);
 		TextView lblViews = (TextView) findViewById(R.id.quLblViewCount);
 		lblTitle.setText(q.getTitle());
-		lblBody.setText(q.getBody());
+		lblBody.setText(Html.fromHtml(q.getBody()));
 		lblId.setText("ID: " + Integer.toString(q.getId()));//setText must receive a string!
 		lblViews.setText("Views: " + Integer.toString(q.getViewCount()));
 
