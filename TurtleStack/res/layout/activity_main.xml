@@ -53,4 +53,13 @@
         android:onClick="goTagList"
         android:text="@string/title_activity_tag" />
 
+    <Button
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_toRightOf="@+id/button5"
+        android:onClick="startSearchActivity"
+        android:text="Search" />
+
 </RelativeLayout>
