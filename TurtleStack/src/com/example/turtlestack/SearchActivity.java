@@ -1,21 +1,31 @@
 package com.example.turtlestack;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
 
 public class SearchActivity extends Activity {
 
+	QuestionDataSource qs;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		
+		qs = QuestionDataSource.getInstance(this);
+		
 	}
 
 	/**
@@ -52,7 +62,26 @@ public class SearchActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public void searchQuery() {
+	public void searchQuery(View view) {
+		
+		EditText search = (EditText) findViewById(R.id.searchString);
+		String searchQuery = search.getText().toString();
+		
+		qs.open();
+		/*
+		ArrayList<Question> results = qs.getSearchResults(searchQuery);		
+		ArrayList<String> listOfTitles = new ArrayList<String>();
+		
+		for (Question question : results) {
+			listOfTitles.add(question.getTitle());
+		}
+        
+		ListView lv = (ListView) findViewById(R.id.searchResults);
+        ArrayAdapter<String> arrayAdapter = 
+        		new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
+        lv.setAdapter(arrayAdapter);*/
+        qs.close();
+
 		
 	}
 
