@@ -2,21 +2,27 @@ package com.example.turtlestack;
 
 import java.util.ArrayList;
 
-import android.os.Bundle;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.support.v4.app.NavUtils;
-import android.annotation.TargetApi;
-import android.os.Build;
 
-public class SearchActivity extends Activity {
+public class SearchActivity extends Activity implements OnItemClickListener {
 
 	QuestionDataSource qs;
+	ListView lv;
+	ArrayList<Question> results;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,19 +75,30 @@ public class SearchActivity extends Activity {
 		
 		qs.open();
 		
-		ArrayList<Question> results = qs.getSearchResults(searchQuery);		
+		results = qs.getSearchResults(searchQuery);		
 		ArrayList<String> listOfTitles = new ArrayList<String>();
 		
 		for (Question question : results) {
 			listOfTitles.add(question.getTitle());
 		}
         
-		ListView lv = (ListView) findViewById(R.id.searchResults);
+		lv = (ListView) findViewById(R.id.searchResults);
         ArrayAdapter<String> arrayAdapter = 
         		new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
         lv.setAdapter(arrayAdapter);
         qs.close();
+        lv.setOnItemClickListener(this);
+		
+	}
 
+	@Override
+	public void onItemClick(AdapterView<?> l, View v, int position, long id) {
+		Question q = results.get(position);
+		int questionId = q.getId();
+        Log.i("Question", "Question with id " + q.getId() + " will be displayed");
+        Intent intent = new Intent(this, QuestionDisplayActivity.class);
+        intent.putExtra("questionId", questionId);
+        startActivity(intent);
 		
 	}
 
