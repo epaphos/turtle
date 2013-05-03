@@ -23,6 +23,7 @@
         android:layout_alignLeft="@+id/searchString"
         android:layout_below="@+id/searchString"
         android:layout_marginTop="36dp"
+        android:onClick="searchQuery"
         android:text="Search" />
 
     <ListView
