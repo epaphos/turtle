@@ -19,8 +19,10 @@ import android.widget.TextView;
 public class QuestionDisplayActivity extends Activity implements OnItemClickListener {
 	QuestionDataSource ds;
 	AnswerDataSource as;
+
 	int questionId;
 	Question q; //The element that should be displayed
+	String author; 
 	private ListView lv;
 	private ArrayList<Answer> answerList;
 
@@ -58,6 +60,7 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 
 		ds.close();
 		as.close();
+		getUserName();
 		displayQ(q);
 	}
 
@@ -96,7 +99,20 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 		lblViews.setText("Views: " + Integer.toString(q.getViewCount()));
 
 		TextView lblAuthor = (TextView) findViewById(R.id.quLblAuthor);
-		lblAuthor.setText("Author: " + Integer.toString(q.getOwnerUserId()));
+		lblAuthor.setText("Author: " + author);
+	}
+	
+	private void getUserName() {
+		UserDataSource us = UserDataSource.getInstance(this);
+		us.open();
+		try {
+			User user = us.readUser(q.getOwnerUserId());
+			author = user.getDisplayName(); 			
+		}
+		catch (Exception e) {
+			author = " id: " + Integer.toString(q.getOwnerUserId()) + " not found";
+		}
+		us.close();
 	}
 
 	/**
