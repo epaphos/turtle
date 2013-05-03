@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class QuestionDisplayActivity extends Activity implements OnItemClickListener {
@@ -31,6 +32,7 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 
 		setContentView(R.layout.activity_question_display);
 		Intent intent = getIntent();
+		RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.relativeLayout1);
 		questionId = intent.getIntExtra("questionId", 0);
 		as = AnswerDataSource.getInstance(this);			
 		as.open();
@@ -48,9 +50,13 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 			ArrayList<String> listOfTitles = new ArrayList<String>();
 			for (Answer answer : answerList) {
 				listOfTitles.add(answer.getBody());
+				TextView answerField = new TextView(QuestionDisplayActivity.this);
+		        answerField.setBackgroundResource(R.drawable.ic_launcher);
+		        relativeLayout1.addView(answerField);
 			}
 
 			lv = (ListView) findViewById(android.R.id.list);
+			lv.addView(relativeLayout1);
 	        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
 	        lv.setAdapter(arrayAdapter);
 	        lv.setOnItemClickListener(this);
