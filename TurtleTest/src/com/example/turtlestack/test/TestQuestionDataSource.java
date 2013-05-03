@@ -53,6 +53,13 @@ public class TestQuestionDataSource extends AndroidTestCase {
 		ArrayList<Question> list = questionSource.getRecentQuestions(5);
 		Assert.assertEquals(list.size(), 5);
 	}
+	// not the best test, should be made on a clean database to ensure there are no post existing with that title
+	public void testSearchForQuestion() {
+		Question question = new Question("Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet", "tag");
+		questionSource.write(question);
+		ArrayList<Question> list = questionSource.getSearchResults("Lorem ipsum dolor sit amet");
+		Assert.assertEquals(list.size(), 1);
+	}
 
 	protected void tearDown() throws Exception {
 		questionSource.close();		
