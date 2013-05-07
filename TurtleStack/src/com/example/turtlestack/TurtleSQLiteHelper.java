@@ -2,10 +2,11 @@ package com.example.turtlestack;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
-import android.R.integer;
-import android.content.ContentValues;
+import java.util.Map;
+import java.util.StringTokenizer;
+import java.util.TreeMap;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -42,6 +43,7 @@ public class TurtleSQLiteHelper extends SQLiteOpenHelper {
 				copyDatabase();
 				createAndPopulateQuestionHasAnswer();
 				createTagTable();
+				//createTagRelationTable
 				Log.v("DATABASE", "Database Copied");
 			}
 			catch(IOException exception){
@@ -51,8 +53,7 @@ public class TurtleSQLiteHelper extends SQLiteOpenHelper {
 		
 		else {
 			Log.v("DATABASE", "Database Already Exists");
-		}
-		
+		}		
 	}
 	@Override
 	public void onCreate(SQLiteDatabase db) {
@@ -117,28 +118,9 @@ public class TurtleSQLiteHelper extends SQLiteOpenHelper {
 		db.close();
 	}
 	
-	public void TagsRT() {
-		SQLiteDatabase db = this.openDataBase();
-		db.execSQL("CREATE TABLE TagsRelationTable(tag STRING, question_id INTEGER, FOREIGN KEY (question_id) REFERENCES post(id) FOREIGN KEY (tag) REFERENCES tags(tag);");
-		Cursor cursor = db.rawQuery("SELECT QuestionTagRelationTable FROM posts where post_type_id = 1", new String[] {});
-		cursor.moveToFirst();
-		while (!cursor.isAfterLast()) {
-			StringTokenizer st = new StringTokenizer(cursor.getString(cursor.getColumnIndex("tags")), "<>");
-			while (st.hasMoreTokens()) { 
-				String tag = (String) st.nextElement();
-				int questionId = cursor.getInt(cursor.getColumnIndex("question_id"));
-					db.execSQL("INSERT INTO QuestionTagRelationTable VALUES(?,?);",new String[]{tag,Integer.toString(questionId)});
-			}
-		cursor.moveToNext();
-		}
-	db.close();
-	}
-	
-	//NOT WORKING
 	public void createTagTable() {
 		SQLiteDatabase db = this.openDataBase();
 		ArrayList <String> tagsList = new ArrayList<String>();
-		int i=0;
 		db.execSQL("CREATE TABLE tags(tag STRING PRIMARY KEY);");
 		Cursor cursor = db.rawQuery("SELECT tags FROM posts where post_type_id = 1", new String[] {});
 		cursor.moveToFirst();
@@ -156,28 +138,4 @@ public class TurtleSQLiteHelper extends SQLiteOpenHelper {
 		}
 	db.close();
 	}
-	
-	//NOT WORKING
-	public void createAndPopulateTagsRelationTable() {
-		SQLiteDatabase db = this.openDataBase();
-		db.execSQL("CREATE TABLE tagsRelationTable(tag STRING, relationed_tag STRING, FOREIGN KEY (tag) REFERENCES tags(tag) FOREIGN KEY (relationed_tag) REFERENCES tags(tag));");
-		Cursor cursor = db.rawQuery("SELECT tags FROM posts where post_type_id = 1", new String[] {});
-		cursor.moveToFirst();
-		while (!cursor.isAfterLast()) {
-			StringTokenizer st = new StringTokenizer(cursor.getString(cursor.getColumnIndex("tags")), "<>");
-			while (st.hasMoreTokens()) { 
-				StringTokenizer auxT = new StringTokenizer(cursor.getString(cursor.getColumnIndex("tags")), "<>");
-				String tag = (String) st.nextElement();
-				Log.v("TAG",tag);
-				while(auxT.hasMoreTokens()) {
-						String relationedTag = (String) auxT.nextElement();
-						Log.v("TAG RELATION", relationedTag);
-						//if (relationedTag != tag) db.execSQL("INSERT INTO tagsRelationTable (tag,relationed_tag) VALUES(?,?);", new String[]{tag,relationedTag});
-				}		
-			}
-		cursor.moveToNext();
-		}
-		db.close();
-	}
-	
 }

@@ -1,8 +1,9 @@
 package com.example.turtlestack;
 
-public class Tag {
-	private String tag;
+import java.util.HashMap;
 
+public class Tag {
+	String tag;
 	/**
 	 * @param tag
 	 */
@@ -15,6 +16,8 @@ public class Tag {
 	 */
 	@Override
 	public String toString() {
-		return this.tag;
+		return tag;
 	}
+	
+
 }

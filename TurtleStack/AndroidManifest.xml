@@ -46,6 +46,10 @@
             android:name="com.example.turtlestack.TagsListActivity"
             android:label="@string/title_activity_tags_list" >
         </activity>
+        <activity
+            android:name="com.example.turtlestack.TagCloudActivity"
+            android:label="@string/title_activity_tag_cloud" >
+        </activity>
     </application>
 
 </manifest>

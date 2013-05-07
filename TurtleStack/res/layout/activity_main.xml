@@ -53,4 +53,14 @@
         android:onClick="goTagList"
         android:text="@string/title_activity_tag" />
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignLeft="@+id/recentquestions"
+		android:onClick="showTagNavigation"
+        android:text="@string/button_tag_cloud" />
+
 </RelativeLayout>
