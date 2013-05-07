@@ -90,5 +90,10 @@ public class MainActivity extends Activity {
 		intent.putExtra("userId", 40310); //Sample Id which exists in database
 		startActivity(intent);
 	}
+	
+	public void startSearchActivity(View view) {
+		Intent intent = new Intent(this, SearchActivity.class);
+		startActivity(intent);
+	}
 }
 	

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -19,8 +20,10 @@ import android.widget.TextView;
 public class QuestionDisplayActivity extends Activity implements OnItemClickListener {
 	QuestionDataSource ds;
 	AnswerDataSource as;
+
 	int questionId;
 	Question q; //The element that should be displayed
+	String author; 
 	private ListView lv;
 	private ArrayList<Answer> answerList;
 
@@ -47,7 +50,7 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 			answerList = as.getAnswers(questionId);
 			ArrayList<String> listOfTitles = new ArrayList<String>();
 			for (Answer answer : answerList) {
-				listOfTitles.add(answer.getBody());
+				listOfTitles.add(Html.fromHtml(answer.getBody()).toString());
 			}
 
 			lv = (ListView) findViewById(android.R.id.list);
@@ -58,6 +61,7 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 
 		ds.close();
 		as.close();
+		getUserName();
 		displayQ(q);
 	}
 
@@ -91,12 +95,25 @@ public class QuestionDisplayActivity extends Activity implements OnItemClickList
 		TextView lblId = (TextView) findViewById(R.id.quLblId);
 		TextView lblViews = (TextView) findViewById(R.id.quLblViewCount);
 		lblTitle.setText(q.getTitle());
-		lblBody.setText(q.getBody());
+		lblBody.setText(Html.fromHtml(q.getBody()));
 		lblId.setText("ID: " + Integer.toString(q.getId()));//setText must receive a string!
 		lblViews.setText("Views: " + Integer.toString(q.getViewCount()));
 
 		TextView lblAuthor = (TextView) findViewById(R.id.quLblAuthor);
-		lblAuthor.setText("Author: " + Integer.toString(q.getOwnerUserId()));
+		lblAuthor.setText("Author: " + author);
+	}
+	
+	private void getUserName() {
+		UserDataSource us = UserDataSource.getInstance(this);
+		us.open();
+		try {
+			User user = us.readUser(q.getOwnerUserId());
+			author = user.getDisplayName(); 			
+		}
+		catch (Exception e) {
+			author = " id: " + Integer.toString(q.getOwnerUserId()) + " not found";
+		}
+		us.close();
 	}
 
 	/**

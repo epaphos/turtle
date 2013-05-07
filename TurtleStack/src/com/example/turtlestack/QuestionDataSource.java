@@ -78,5 +78,27 @@ public class QuestionDataSource extends PostDataSource {
 		return super.write(question);
 	}
 	
+	public ArrayList<Question> getSearchResults(String searchQuery) {
+		
+		//Create query for search
+		String query = "%"+searchQuery+"%";
+		
+		Cursor cursor = database.rawQuery("SELECT * FROM posts WHERE (post_type_id=1) " +
+				"AND (title LIKE ?)", new String[]{query});
+		
+		ArrayList<Question> list = new ArrayList<Question>();
+		cursor.moveToFirst();
+		
+		while(!cursor.isAfterLast()) {
+			try {
+				list.add((Question) read(cursor.getInt(cursor.getColumnIndex("id"))));
+			} catch (Exception e) {
+				Log.v("Question", "failed to add question");
+			}
+			cursor.moveToNext();			
+		}
+		return list;
+	
+	}
 
 }
