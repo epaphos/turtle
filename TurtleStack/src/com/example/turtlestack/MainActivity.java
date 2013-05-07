@@ -1,6 +1,7 @@
 package com.example.turtlestack;
 
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +16,8 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		ActionBar actionbar = getActionBar();
+		actionbar.hide();
 		//Add listener to Buttons
 		Button postButton = (Button) findViewById(R.id.button1);		
 		Button recentQuestionsButton = (Button) findViewById(R.id.recentquestions);
@@ -78,6 +80,11 @@ public class MainActivity extends Activity {
 	
 	public void startSearchActivity(View view) {
 		Intent intent = new Intent(this, SearchActivity.class);
+		startActivity(intent);
+	}
+	
+	public void newmainact(View view){
+		Intent intent = new Intent(this, StartActivity.class);
 		startActivity(intent);
 	}
 }

@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
     <application
@@ -53,6 +53,23 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.turtlestack.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.turtlestack.StartActivity"
+            android:label="@string/title_activity_start" >
+        </activity>
+        <activity
+            android:name="com.example.turtlestack.SearchNewActivity"
+
+            android:label="@string/title_activity_search_new"
+            android:parentActivityName="com.example.test.StartActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.test.StartActivity"
+                android:resource="@xml/search" />
         </activity>
     </application>
 
