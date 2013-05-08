@@ -1,13 +1,13 @@
 package com.example.turtlestack;
 
 
-<<<<<<< HEAD
+
 import android.app.ActionBar;
-=======
+
 import java.util.Map;
 import java.util.TreeMap;
 
->>>>>>> master
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,12 +22,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-<<<<<<< HEAD
+
 		ActionBar actionbar = getActionBar();
 		actionbar.hide();
-=======
+
 		createInstances();
->>>>>>> master
+
 		//Add listener to Buttons
 		Button postButton = (Button) findViewById(R.id.button1);		
 		Button recentQuestionsButton = (Button) findViewById(R.id.recentquestions);
