@@ -58,7 +58,7 @@ public class Myadapter extends BaseAdapter{
         View vi=convertView;
         Log.v(log,"getView called");
         {
-        	/*
+        	
         if (position==0){
         	if(convertView==null){
                 vi = inflater.inflate(R.layout.question_element, null);
@@ -76,10 +76,10 @@ public class Myadapter extends BaseAdapter{
                 //reputation.setText(String.valueOf(usr.getReputation()));
                 count.setText(String.valueOf(question.getScore()));
                 
-        } else */{
+        } else {
         	
         Log.v(log,"pos="+position);
-        if(convertView==null)
+        //if(convertView==null)
             vi = inflater.inflate(R.layout.answer_element, null);
         Log.v(log,"New thingy inflated");
         
@@ -89,7 +89,9 @@ public class Myadapter extends BaseAdapter{
         TextView count = (TextView) vi.findViewById(R.id.textViewCount1);
         
         Log.v(log,"Got elements");
-        
+        if(body==null)
+        	Log.v(log,"body == null!!");
+        Log.v(log,"body="+body.toString()+" author="+author.toString()+" reputation="+reputation.toString()+" count="+count.toString());
         Answer answer = (Answer) data.get(position);
         User usr = user.get(position);
         
