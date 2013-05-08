@@ -30,6 +30,7 @@ public class QuestionDisplayNew extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
+		
 		//get Intent and fill ArrayLists
 		Intent intent = getIntent();
 		questionId = intent.getIntExtra("questionId", 0);
@@ -39,7 +40,8 @@ public class QuestionDisplayNew extends Activity {
 		fillUserList(answerList);
 		
 		lstview = (ListView) findViewById(R.id.listViewQuestionAnswer);
-		adap = new Myadapter(this, answerList, userList);
+		lstview.setDrawingCacheEnabled(false);
+		adap = new Myadapter(this, question, answerList, userList);
 		lstview.setAdapter(adap);
 		
 	}
