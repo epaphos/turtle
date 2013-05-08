@@ -1,7 +1,13 @@
 package com.example.turtlestack;
 
 
+<<<<<<< HEAD
 import android.app.ActionBar;
+=======
+import java.util.Map;
+import java.util.TreeMap;
+
+>>>>>>> master
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +22,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+<<<<<<< HEAD
 		ActionBar actionbar = getActionBar();
 		actionbar.hide();
+=======
+		createInstances();
+>>>>>>> master
 		//Add listener to Buttons
 		Button postButton = (Button) findViewById(R.id.button1);		
 		Button recentQuestionsButton = (Button) findViewById(R.id.recentquestions);
@@ -45,7 +55,14 @@ public class MainActivity extends Activity {
 		Intent i = new Intent(this, c);
 		startActivity(i);
 	}
-		
+	
+	public void createInstances () {
+		TagCloud tc = TagCloud.getInstance(this);
+		AnswerDataSource as = AnswerDataSource.getInstance(this);
+		QuestionDataSource qs = QuestionDataSource.getInstance(this);
+		TagDataSource ts = TagDataSource.getInstance(this);
+		UserDataSource us = UserDataSource.getInstance(this);
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -68,6 +85,11 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 	
+	public void showTagNavigation (View view) {
+		Intent intent = new Intent(this, TagCloudActivity.class);
+		intent.putExtra("mainTag", ".htaccess");
+		startActivity(intent);
+	}
 	/**
 	 * Test method for showing user details
 	 * @param view

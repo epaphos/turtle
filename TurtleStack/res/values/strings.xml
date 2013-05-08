@@ -23,6 +23,8 @@
     <string name="title_activity_tag">Tags</string>
     <string name="title_activity_tag_list">Tag List</string>
     <string name="title_activity_tags_list">TagsListActivity</string>
+    <string name="title_activity_tag_cloud">TagCloudActivity</string>
+    <string name="button_tag_cloud">Tag Cloud</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_activity_start">StartActivity</string>
     <string name="menu_search">Type to search</string>
