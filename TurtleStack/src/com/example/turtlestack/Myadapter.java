@@ -83,7 +83,7 @@ public class Myadapter extends BaseAdapter{
             vi = inflater.inflate(R.layout.answer_element, null);
         Log.v(log,"New thingy inflated");
         
-        TextView body = (TextView)vi.findViewById(R.id.txtQuestionBody); 
+        TextView body = (TextView)vi.findViewById(R.id.txtAnswer); 
         TextView author = (TextView)vi.findViewById(R.id.txtviewAuthor); 
         TextView reputation = (TextView)vi.findViewById(R.id.txtviewRep); 
         TextView count = (TextView) vi.findViewById(R.id.textViewCount1);
