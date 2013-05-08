@@ -15,14 +15,14 @@ public class Myadapter extends BaseAdapter{
 
 	private Activity activity;
     //private ArrayList&lt;HashMap&lt;String, String&gt;&gt; data;
-    private ArrayList<Post> data;
+    private ArrayList<Answer> data;
     private ArrayList<User> user;
     
     private static LayoutInflater inflater=null;
     //public ImageLoader imageLoader; //not needed
     
     //constructor
-    public Myadapter(Activity a, ArrayList<Post> posts, ArrayList<User> user){
+    public Myadapter(Activity a, ArrayList<Answer> posts, ArrayList<User> user){
     	activity = a;
         data=posts;
         this.user = user;

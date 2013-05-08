@@ -1,21 +1,77 @@
 package com.example.turtlestack;
 
-import android.os.Bundle;
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
+import android.widget.ListView;
 
 public class QuestionDisplayNew extends Activity {
 
+	private Myadapter adap;
+	private ListView lstview;
+	private AnswerDataSource as;
+	private ArrayList<Answer> answerList;
+	private UserDataSource us;
+	private ArrayList<User> userList;
+	private QuestionDataSource qs;
+	private Question question;
+	private int questionId;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_question_display_new);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		
+		//get Intent and fill ArrayLists
+		Intent intent = getIntent();
+		questionId = intent.getIntExtra("questionId", 0);
+		
+		fillQuestion(questionId);
+		fillAnswerList(questionId);
+		fillUserList(answerList);
+		
+		lstview = (ListView) findViewById(R.id.listViewQuestionAnswer);
+		adap = new Myadapter(this, answerList, userList);
+		lstview.setAdapter(adap);
+		
 	}
 
+	private void fillQuestion(int id){
+		qs = QuestionDataSource.getInstance(this);
+		qs.open();
+		try{
+			question = qs.getQuestion(id);
+		} catch (Exception e) {
+			Log.v("Exception","Wasn't able to get Question with id:"+id);
+		}
+	}
+	private void fillAnswerList(int id){
+		
+		if(qs.getNumberOfAnswers(id)>0){
+			as = AnswerDataSource.getInstance(this);
+			as.open();
+			answerList = as.getAnswers(id);
+			as.close();
+		}
+		
+	}
+	private void fillUserList(ArrayList<Answer> lst){
+		us = UserDataSource.getInstance(this);
+		us.open();
+		userList = new ArrayList<User>();
+		for (Answer answer : lst) {
+			userList.add(us.readUser(answer.getOwnerUserId()));
+		}
+		us.close();
+	}
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
