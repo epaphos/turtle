@@ -41,7 +41,7 @@ public class QuestionDisplayNew extends Activity {
 		
 		lstview = (ListView) findViewById(R.id.listViewQuestionAnswer);
 		lstview.setDrawingCacheEnabled(false);
-		adap = new Myadapter(this, question, answerList, userList);
+		adap = new Myadapter(this, answerList, userList);
 		lstview.setAdapter(adap);
 		
 	}

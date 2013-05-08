@@ -25,10 +25,10 @@ public class Myadapter extends BaseAdapter{
     //public ImageLoader imageLoader; //not needed
     
     //constructor
-    public Myadapter(Activity a, Question q, ArrayList<Post> posts, ArrayList<User> user){
+    public Myadapter(Activity a, ArrayList<Post> posts, ArrayList<User> user){
     	activity = a;
         data=posts;
-        question = q;
+        
         this.user = user;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //imageLoader=new ImageLoader(activity.getApplicationContext());
@@ -70,10 +70,12 @@ public class Myadapter extends BaseAdapter{
         		TextView rep = (TextView) vi.findViewById(R.id.textViewQuestionOwnerRep);
         		TextView count = (TextView) vi.findViewById(R.id.textViewQuestionVotes);
         		
+        		Question question = (Question) data.get(position);
+        		User usr = user.get(position);
         		title.setText(question.getTitle());
         		body.setText(Html.fromHtml(question.getBody()).toString());
         		//TODO: Add tags to linear layout
-        		//TODO: Add user to question
+        		
                 //author.setText(usr.getDisplayName());
                 //reputation.setText(String.valueOf(usr.getReputation()));
                 count.setText(String.valueOf(question.getScore()));
