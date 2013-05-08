@@ -76,8 +76,8 @@ public class Myadapter extends BaseAdapter{
         		body.setText(Html.fromHtml(question.getBody()).toString());
         		//TODO: Add tags to linear layout
         		
-                //author.setText(usr.getDisplayName());
-                //reputation.setText(String.valueOf(usr.getReputation()));
+                author.setText(usr.getDisplayName());
+                rep.setText(String.valueOf(usr.getReputation()));
                 count.setText(String.valueOf(question.getScore()));
                 
         } 
