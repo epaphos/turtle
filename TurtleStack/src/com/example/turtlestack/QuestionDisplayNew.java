@@ -16,7 +16,7 @@ public class QuestionDisplayNew extends Activity {
 	private Myadapter adap;
 	private ListView lstview;
 	private AnswerDataSource as;
-	private ArrayList<Answer> answerList;
+	private ArrayList<Post> answerList;
 	private UserDataSource us;
 	private ArrayList<User> userList;
 	private QuestionDataSource qs;
@@ -36,7 +36,7 @@ public class QuestionDisplayNew extends Activity {
 		questionId = intent.getIntExtra("questionId", 0);
 		
 		fillQuestion(questionId);
-		fillAnswerList(questionId);
+		fillAnswerList(question);
 		fillUserList(answerList);
 		
 		lstview = (ListView) findViewById(R.id.listViewQuestionAnswer);
@@ -55,21 +55,27 @@ public class QuestionDisplayNew extends Activity {
 			Log.v("Exception","Wasn't able to get Question with id:"+id);
 		}
 	}
-	private void fillAnswerList(int id){
+	private void fillAnswerList(Question q){
 		
+		int id = q.getId();
+		answerList = new ArrayList<Post>();
+		answerList.add(q);
 		if(qs.getNumberOfAnswers(id)>0){
 			as = AnswerDataSource.getInstance(this);
 			as.open();
-			answerList = as.getAnswers(id);
+			ArrayList<Answer> answers = as.getAnswers(id);
 			as.close();
+			for (Answer answer : answers) {
+				answerList.add(answer);
+			}
 		}
 		
 	}
-	private void fillUserList(ArrayList<Answer> lst){
+	private void fillUserList(ArrayList<Post> lst){
 		us = UserDataSource.getInstance(this);
 		us.open();
 		userList = new ArrayList<User>();
-		for (Answer answer : lst) {
+		for (Post answer : lst) {
 			userList.add(us.readUser(answer.getOwnerUserId()));
 		}
 		us.close();

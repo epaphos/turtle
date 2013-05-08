@@ -16,7 +16,7 @@ public class Myadapter extends BaseAdapter{
 
 	private Activity activity;
     //private ArrayList&lt;HashMap&lt;String, String&gt;&gt; data;
-    private ArrayList<Answer> data;
+    private ArrayList<Post> data;
     private ArrayList<User> user;
     private Question question;
     private static String log = "Adapter";
@@ -25,7 +25,7 @@ public class Myadapter extends BaseAdapter{
     //public ImageLoader imageLoader; //not needed
     
     //constructor
-    public Myadapter(Activity a, Question q, ArrayList<Answer> posts, ArrayList<User> user){
+    public Myadapter(Activity a, Question q, ArrayList<Post> posts, ArrayList<User> user){
     	activity = a;
         data=posts;
         question = q;
@@ -59,7 +59,7 @@ public class Myadapter extends BaseAdapter{
         Log.v(log,"getView called");
         {
         	
-        if (position==0){
+        if (data.get(position).getPostTypeId()==1){
         	if(convertView==null){
                 vi = inflater.inflate(R.layout.question_element, null);
                 Log.v(log,"pos=0 inflated");
@@ -72,11 +72,16 @@ public class Myadapter extends BaseAdapter{
         		
         		title.setText(question.getTitle());
         		body.setText(Html.fromHtml(question.getBody()).toString());
+        		//TODO: Add tags to linear layout
+        		//TODO: Add user to question
                 //author.setText(usr.getDisplayName());
                 //reputation.setText(String.valueOf(usr.getReputation()));
                 count.setText(String.valueOf(question.getScore()));
                 
-        } else {
+        } 
+        
+        if (data.get(position).getPostTypeId()==2) //check that type equals answer
+        {
         	
         Log.v(log,"pos="+position);
         //if(convertView==null)
