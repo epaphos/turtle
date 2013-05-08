@@ -49,8 +49,8 @@
         <activity
             android:name="com.example.turtlestack.TagCloudActivity"
             android:label="@string/title_activity_tag_cloud" >
-		</activity>
-		<activity
+        </activity>
+        <activity
             android:name="com.example.turtlestack.SearchActivity"
             android:label="@string/title_activity_search"
             android:parentActivityName="com.example.turtlestack.MainActivity" >
@@ -64,16 +64,24 @@
         </activity>
         <activity
             android:name="com.example.turtlestack.SearchNewActivity"
-
             android:label="@string/title_activity_search_new"
             android:parentActivityName="com.example.test.StartActivity" >
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.test.StartActivity"
-                android:resource="@xml/search" />
+                android:resource="@xml/search"
+                android:value="com.example.test.StartActivity" />
+        </activity>
+        <activity
+            android:name="com.example.turtlestack.QuestionDisplayNew"
+            android:label="@string/title_activity_question_display_new"
+            android:parentActivityName="com.example.test.StartActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.test.StartActivity" />
         </activity>
     </application>
 

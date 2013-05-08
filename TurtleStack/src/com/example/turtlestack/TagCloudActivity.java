@@ -38,13 +38,13 @@ public class TagCloudActivity extends Activity {
 
 		
 	public void displayTags(){
-		TextView bubble = (TextView) findViewById(R.id.button1);
+		TextView bubble = (TextView) findViewById(R.id.btnVoteup);
 		TextView leftBubble = (TextView) findViewById(R.id.button6);
 		TextView rightBubble = (TextView) findViewById(R.id.button7);
 		TextView pinkBubble = (TextView) findViewById(R.id.button3);
 		TextView greenBubble = (TextView) findViewById(R.id.button5);
 		TextView yellowBubble = (TextView) findViewById(R.id.button4);
-		TextView blueBubble = (TextView) findViewById(R.id.button2);
+		TextView blueBubble = (TextView) findViewById(R.id.btnVoteDown);
 		tc = TagCloud.getInstance(this);
 		Log.v("tag",tc.getPrevious("java"));
 		TreeMap<String, Integer> cloud = tc.getTagCloud().get(mainTag);

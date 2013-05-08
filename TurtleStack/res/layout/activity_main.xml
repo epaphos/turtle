@@ -9,7 +9,7 @@
     tools:context=".MainActivity" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnVoteup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -20,8 +20,8 @@
         android:id="@+id/recentquestions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_alignRight="@+id/button1"
+        android:layout_above="@+id/btnVoteup"
+        android:layout_alignRight="@+id/btnVoteup"
         android:layout_marginBottom="14dp"
         android:text="@string/recent_button" />
 
@@ -43,7 +43,7 @@
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnVoteDown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btnShowQuestionDetails"
@@ -57,7 +57,7 @@
 	    android:id="@+id/search"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/button2"
+	    android:layout_alignLeft="@+id/btnVoteDown"
 	    android:layout_below="@+id/recentquestions"
 	    android:onClick="startSearchActivity"
 	    android:text="Search" />
@@ -66,7 +66,7 @@
 	    android:id="@+id/button3"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/button2"
+	    android:layout_alignLeft="@+id/btnVoteDown"
 	    android:layout_centerVertical="true"
 	    android:onClick="showTagNavigation"
 	    android:text="@string/button_tag_cloud" />
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/recentquestions"
-        android:layout_alignLeft="@+id/button2"
+        android:layout_alignLeft="@+id/btnVoteDown"
         android:layout_marginBottom="30dp"
         android:text="NewMainactivityPreview"
         android:onClick="newmainact" />

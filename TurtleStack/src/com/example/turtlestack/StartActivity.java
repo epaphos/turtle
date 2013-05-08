@@ -55,7 +55,7 @@ public class StartActivity extends Activity {
 	}*/
 
 	public void doMySearch(String query){
-		TextView text = ((TextView) findViewById(R.id.textView1));
+		TextView text = ((TextView) findViewById(R.id.txtAnswer));
 		text.setText(query);
 	}
 }

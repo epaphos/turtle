@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 		createInstances();
 
 		//Add listener to Buttons
-		Button postButton = (Button) findViewById(R.id.button1);		
+		Button postButton = (Button) findViewById(R.id.btnVoteup);		
 		Button recentQuestionsButton = (Button) findViewById(R.id.recentquestions);
 		postButton.setOnClickListener(listener);
 		recentQuestionsButton.setOnClickListener(listener);
@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Button clickedButton = (Button) v;
 				switch(clickedButton.getId()) {
-				case R.id.button1 :
+				case R.id.btnVoteup :
 					launch(v, QuestionActivity.class);
 					break;
 				case R.id.recentquestions : 
