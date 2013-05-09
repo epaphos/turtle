@@ -3,9 +3,11 @@ package com.example.turtlestack;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -45,6 +47,12 @@ public class UserViewActivity extends Activity {
 	 * @param user
 	 */
 	public void displayUser(User user){
+		ImageView image = (ImageView) findViewById(R.id.profilePicture);
+		/*Uri img = Uri.parse("/Turtlestack/res/assets/skalman.gif" );
+		image.setImageURI(img);*/
+		image.setImageResource(R.drawable.skalman);
+		
+		
 		TextView displayName = (TextView) findViewById(R.id.userLblDisplayName_);
 		displayName.setText("Name: " + user.getDisplayName());
 		
