@@ -57,6 +57,8 @@ public class UserViewActivity extends Activity {
 		TextView creationDate = (TextView) findViewById(R.id.userLblCreationDate);
 		creationDate.setText("Creation Date: " + user.getCreationDate());
 		
+		setTitle(user.getDisplayName());
+		
 	}
 
 	@Override

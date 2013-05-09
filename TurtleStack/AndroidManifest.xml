@@ -35,8 +35,7 @@
             android:label="@string/title_activity_question_display" >
         </activity>
         <activity
-            android:name="com.example.turtlestack.UserViewActivity"
-            android:label="@string/title_activity_user_view" >
+            android:name="com.example.turtlestack.UserViewActivity">
         </activity>
         <activity
             android:name="com.example.turtlestack.AnswerActivity"
@@ -58,6 +57,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.turtlestack.MainActivity" />
         </activity>
+ 
     </application>
 
 </manifest>
