@@ -53,7 +53,8 @@
         android:layout_alignLeft="@+id/txtAnswer"
         android:layout_below="@+id/txtAnswer"
         android:layout_marginTop="14dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="4pt" />
 
     <TextView
         android:id="@+id/txtviewRep"
@@ -62,6 +63,7 @@
         android:layout_alignBaseline="@+id/txtviewAuthor"
         android:layout_alignBottom="@+id/txtviewAuthor"
         android:layout_alignRight="@+id/txtAnswer"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="4pt" />
 
 </RelativeLayout>

@@ -64,7 +64,8 @@
         android:layout_alignRight="@+id/linearLayout1"
         android:layout_below="@+id/linearLayoutTags"
         android:layout_marginTop="18dp"
-        android:text="Body of Question" />
+        android:text="Body of Question" 
+        android:textSize="5pt"/>
 
     <TextView
         android:id="@+id/textViewQuestionOwner"

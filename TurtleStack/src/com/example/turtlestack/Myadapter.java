@@ -148,8 +148,8 @@ public class Myadapter extends BaseAdapter{
         
         //Log.v(log,"got answer and user");
         // Setting all values in listview
-        //body.setText(Html.fromHtml(answer.getBody()).toString());
-        body.setText(answer.getBody());
+        body.setText(Html.fromHtml(answer.getBody()).toString());
+        //body.setText(answer.getBody());
         author.setText("By: " + usr.getDisplayName());
         reputation.setText("Reputation: " + String.valueOf(usr.getReputation()));
         count.setText(String.valueOf(answer.getScore()));

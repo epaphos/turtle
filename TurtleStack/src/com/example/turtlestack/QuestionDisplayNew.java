@@ -64,13 +64,31 @@ public class QuestionDisplayNew extends Activity {
 		if(qs.getNumberOfAnswers(id)>0){
 			as = AnswerDataSource.getInstance(this);
 			as.open();
-			ArrayList<Answer> answers = as.getAnswers(id);
+			ArrayList<Answer> answers = as.getSortedAnswers(id);
 			as.close();
 			for (Answer answer : answers) {
 				answerList.add(answer);
 			}
 		}
+		answerList = sort(answerList);
 		
+	}
+	
+	public ArrayList<Post> sort(ArrayList<Post> list){
+		Question q = (Question) list.get(0);
+		int acceptedAnswer;
+		ArrayList<Post> sorting = list;
+		if (q.getAcceptedAnswer()>0) {
+			acceptedAnswer = q.getAcceptedAnswer();
+			for (Post post : sorting) {
+				if(post.getId()==acceptedAnswer) {
+					sorting.remove(post);
+					sorting.add(1, post);
+					break;
+				}
+			}		
+		}
+		return sorting;
 	}
 	private void fillUserList(ArrayList<Post> lst){
 		us = UserDataSource.getInstance(this);
