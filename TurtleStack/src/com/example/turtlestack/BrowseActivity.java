@@ -46,7 +46,7 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener{
 		int questionId = q.getId();
         Log.i("Question", "Question with id " + q.getId() + " will be displayed");
         //Intent intent = new Intent(this, QuestionDisplayActivity.class);
-        Intent intent = new Intent(this, QuestionDisplayNew.class);
+        Intent intent = new Intent(this, QuestionDisplayActivity.class);
         intent.putExtra("questionId", questionId);
         startActivity(intent);
 	}

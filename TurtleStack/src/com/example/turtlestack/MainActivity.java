@@ -75,15 +75,7 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 	
-	/**
-	 * Test method for Displaying questions by id
-	 * @param view
-	 */
-	public void showQuestionDetails(View view){
-		Intent intent = new Intent(this, QuestionDisplayActivity.class);
-		intent.putExtra("questionId", 8414099); //Sample Id which exists in database
-		startActivity(intent);
-	}
+	
 	
 	public void showTagNavigation (View view) {
 		Intent intent = new Intent(this, TagCloudActivity.class);

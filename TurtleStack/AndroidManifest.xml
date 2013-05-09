@@ -76,7 +76,7 @@
                 android:value="com.example.test.StartActivity" />
         </activity>
         <activity
-            android:name="com.example.turtlestack.QuestionDisplayNew"
+            android:name="com.example.turtlestack.QuestionDisplayActivity"
             android:label="@string/title_activity_question_display_new"
             android:parentActivityName="com.example.test.StartActivity" >
             <meta-data
