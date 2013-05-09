@@ -21,7 +21,6 @@ public class Myadapter extends BaseAdapter{
     //private ArrayList&lt;HashMap&lt;String, String&gt;&gt; data;
     private ArrayList<Post> data;
     private ArrayList<User> user;
-    private Question question;
     private static String log = "Adapter";
     
     private static LayoutInflater inflater=null;
@@ -63,42 +62,58 @@ public class Myadapter extends BaseAdapter{
         {
         	
         if (data.get(position).getPostTypeId()==1){
-        	if(convertView==null){
+        	
                 vi = inflater.inflate(R.layout.question_element, null);
                 Log.v(log,"pos=0 inflated");
-        	}
-        		TextView title = (TextView) vi.findViewById(R.id.textViewQuestionTitle);
-        		TextView body = (TextView) vi.findViewById(R.id.textViewQuestionBody);
-        		TextView author = (TextView) vi.findViewById(R.id.textViewQuestionOwner);
-        		TextView rep = (TextView) vi.findViewById(R.id.textViewQuestionOwnerRep);
-        		TextView count = (TextView) vi.findViewById(R.id.textViewQuestionVotes);
+        	
+        		TextView qTitle = (TextView) vi.findViewById(R.id.textViewQuestionTitle);
+        		TextView qBody = (TextView) vi.findViewById(R.id.textViewQuestionBody);
+        		TextView qAuthor = (TextView) vi.findViewById(R.id.textViewQuestionOwner);
+        		TextView qReputation = (TextView) vi.findViewById(R.id.textViewQuestionOwnerRep);
+        		TextView qCount = (TextView) vi.findViewById(R.id.textViewQuestionVotes);
         		
         		Question question = (Question) data.get(position);
-        		User usr = user.get(position);
-        		title.setText(question.getTitle());
-        		body.setText(Html.fromHtml(question.getBody()).toString());
+        		User tempUser = user.get(position);
+        		qTitle.setText(question.getTitle());
+        		qBody.setText(Html.fromHtml(question.getBody()).toString());
         		//TODO: Add tags to linear layout
         		
-                author.setText(usr.getDisplayName());
-                rep.setText(String.valueOf(usr.getReputation()));
-                count.setText(String.valueOf(question.getScore()));
+                qAuthor.setText("By: " + tempUser.getDisplayName());
+                qReputation.setText("Reputation: " + String.valueOf(tempUser.getReputation()));
+                qCount.setText(String.valueOf(question.getScore()));
                 
                 Button btnVoteUp = (Button) vi.findViewById(R.id.btnQuestionVoteUp);
                 
                 
                try{ 
-            	   btnVoteUp.setOnClickListener(onClickVoteUp);
-            	   
-            	   /*btnVoteUp.setOnClickListener(new OnClickListener(){
+            	   //btnVoteUp.setOnClickListener(onClickVoteUp);
+            	   //TODO: find out why this throws null pointer exception but still works
+            	   btnVoteUp.setOnClickListener(new OnClickListener(){
                 	@Override
                 	public void onClick(View view){
                 		Log.v(log,"Clicked on VoteUpQuestion");
                 	}
-                });*/
+                });
                } catch (Exception e) {
-            	   Log.v(log,"not able to attach OnClickListener");
+            	   
+            	   Log.v(log,"not able to attach OnClickListener to VoteUpQuestion" + e.toString());
                }
                 
+               try{
+            	   qAuthor.setClickable(true);
+            	   qAuthor.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						Log.v(log,"Clicked on Author label in question");
+						
+						
+					}
+				});
+               } catch (Exception e) {
+            	   
+            	   Log.v(log,"not able to attach OnClickListener to Author label" + e.toString());
+               }
                 
         } 
         
@@ -108,29 +123,27 @@ public class Myadapter extends BaseAdapter{
         Log.v(log,"pos="+position);
         //if(convertView==null)
             vi = inflater.inflate(R.layout.answer_element, null);
-        Log.v(log,"New thingy inflated");
+        //Log.v(log,"New thingy inflated");
         
         TextView body = (TextView)vi.findViewById(R.id.txtAnswer); 
         TextView author = (TextView)vi.findViewById(R.id.txtviewAuthor); 
         TextView reputation = (TextView)vi.findViewById(R.id.txtviewRep); 
         TextView count = (TextView) vi.findViewById(R.id.textViewCount1);
         
-        Log.v(log,"Got elements");
-        if(body==null)
-        	Log.v(log,"body == null!!");
-        Log.v(log,"body="+body.toString()+" author="+author.toString()+" reputation="+reputation.toString()+" count="+count.toString());
+        //Log.v(log,"Got elements");
+        //Log.v(log,"body="+body.toString()+" author="+author.toString()+" reputation="+reputation.toString()+" count="+count.toString());
         Answer answer = (Answer) data.get(position);
         User usr = user.get(position);
         
-        Log.v(log,"got answer and user");
+        //Log.v(log,"got answer and user");
         // Setting all values in listview
         //body.setText(Html.fromHtml(answer.getBody()).toString());
         body.setText(answer.getBody());
-        author.setText(usr.getDisplayName());
-        reputation.setText(String.valueOf(usr.getReputation()));
+        author.setText("By: " + usr.getDisplayName());
+        reputation.setText("Reputation: " + String.valueOf(usr.getReputation()));
         count.setText(String.valueOf(answer.getScore()));
         //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
-        Log.v(log,"filled values in ");
+        //Log.v(log,"filled values in ");
         }
         Button btnVoteUp = (Button) vi.findViewById(R.id.btnVoteup);
         
@@ -144,7 +157,7 @@ public class Myadapter extends BaseAdapter{
         	}
         });
         } catch (Exception e) {
-        	Log.v(log, "not able to attach listener");
+        	Log.v(log, "not able to attach listener AnswerVoteup" + e.toString());
         }
         }
         
