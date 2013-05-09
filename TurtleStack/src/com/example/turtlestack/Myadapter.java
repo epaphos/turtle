@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class Myadapter extends BaseAdapter{
@@ -60,7 +61,7 @@ public class Myadapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         Log.v(log,"getView called");
-        {
+        
         	
         if (data.get(position).getPostTypeId()==1){
         	
@@ -130,48 +131,54 @@ public class Myadapter extends BaseAdapter{
         if (data.get(position).getPostTypeId()==2) //check that type equals answer
         {
         	
-        Log.v(log,"pos="+position);
-        //if(convertView==null)
-            vi = inflater.inflate(R.layout.answer_element, null);
-        //Log.v(log,"New thingy inflated");
-        
-        TextView body = (TextView)vi.findViewById(R.id.txtAnswer); 
-        TextView author = (TextView)vi.findViewById(R.id.txtviewAuthor); 
-        TextView reputation = (TextView)vi.findViewById(R.id.txtviewRep); 
-        TextView count = (TextView) vi.findViewById(R.id.textViewCount1);
-        
-        vi.setTag(position);
-        //Log.v(log,"Got elements");
-        //Log.v(log,"body="+body.toString()+" author="+author.toString()+" reputation="+reputation.toString()+" count="+count.toString());
-        Answer answer = (Answer) data.get(position);
-        User usr = user.get(position);
-        
-        //Log.v(log,"got answer and user");
-        // Setting all values in listview
-        body.setText(Html.fromHtml(answer.getBody()).toString());
-        //body.setText(answer.getBody());
-        author.setText("By: " + usr.getDisplayName());
-        reputation.setText("Reputation: " + String.valueOf(usr.getReputation()));
-        count.setText(String.valueOf(answer.getScore()));
-        //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
-        //Log.v(log,"filled values in ");
+	        Log.v(log,"pos="+position);
+	        //if(convertView==null)
+	            vi = inflater.inflate(R.layout.answer_element, null);
+	        //Log.v(log,"New thingy inflated");
+	        
+	        TextView body = (TextView)vi.findViewById(R.id.txtAnswer); 
+	        TextView author = (TextView)vi.findViewById(R.id.txtviewAuthor); 
+	        TextView reputation = (TextView)vi.findViewById(R.id.txtviewRep); 
+	        TextView count = (TextView) vi.findViewById(R.id.textViewCount1);
+	        CheckBox accepted = (CheckBox) vi.findViewById(R.id.chkAcceptedAnswer);
+	        
+	        vi.setTag(position);
+	        //Log.v(log,"Got elements");
+	        //Log.v(log,"body="+body.toString()+" author="+author.toString()+" reputation="+reputation.toString()+" count="+count.toString());
+	        Answer answer = (Answer) data.get(position);
+	        User usr = user.get(position);
+	        
+	        //Log.v(log,"got answer and user");
+	        // Setting all values in listview
+	        body.setText(Html.fromHtml(answer.getBody()).toString());
+	        //body.setText(answer.getBody());
+	        author.setText("By: " + usr.getDisplayName());
+	        reputation.setText("Reputation: " + String.valueOf(usr.getReputation()));
+	        count.setText(String.valueOf(answer.getScore()));
+	        //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
+	        //Log.v(log,"filled values in ");
+	        
+	        if(answer.getId()==((Question)data.get(0)).getAcceptedAnswer()){
+	        	accepted.setChecked(true);
+	        }
+	        
+        	Button btnVoteUp = (Button) vi.findViewById(R.id.btnVoteup);
+                
+	        try {
+	        	btnVoteUp.setOnClickListener(new OnClickListener(){
+	        
+	        	@Override
+	        	public void onClick(View view){
+	        		int pos = (Integer) view.getTag();
+	        		Log.v(log,"Clicked on VoteUp for Answer " + pos);
+	        	}
+	        });
+	        } catch (Exception e) {
+	        	Log.v(log, "not able to attach listener AnswerVoteup" + e.toString());
+	        }
         }
-        Button btnVoteUp = (Button) vi.findViewById(R.id.btnVoteup);
         
         
-        try {
-        	btnVoteUp.setOnClickListener(new OnClickListener(){
-        
-        	@Override
-        	public void onClick(View view){
-        		int pos = (Integer) view.getTag();
-        		Log.v(log,"Clicked on VoteUp for Answer " + pos);
-        	}
-        });
-        } catch (Exception e) {
-        	Log.v(log, "not able to attach listener AnswerVoteup" + e.toString());
-        }
-        }
         
         return vi;
     }

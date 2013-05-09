@@ -44,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:text="Down" />
+
     </LinearLayout>
 
     <TextView
@@ -65,5 +66,15 @@
         android:layout_alignRight="@+id/txtAnswer"
         android:text="TextView"
         android:textSize="4pt" />
+
+    <CheckBox
+        android:id="@+id/chkAcceptedAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayoutVotes1"
+        android:layout_alignLeft="@+id/linearLayoutVotes1"
+        android:layout_marginLeft="17dp"
+        android:clickable="false"
+        android:gravity="center_horizontal" />
 
 </RelativeLayout>
