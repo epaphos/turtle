@@ -8,12 +8,15 @@ import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Myadapter extends BaseAdapter{
 
+	
 	private Activity activity;
     //private ArrayList&lt;HashMap&lt;String, String&gt;&gt; data;
     private ArrayList<Post> data;
@@ -44,13 +47,13 @@ public class Myadapter extends BaseAdapter{
 	@Override
 	public Object getItem(int arg0) {
 		// TODO Auto-generated method stub
-		return null;
+		return data.get(arg0);
 	}
 
 	@Override
-	public long getItemId(int arg0) {
+	public long getItemId(int position) {
 		// TODO Auto-generated method stub
-		return 0;
+		return position;
 	}
 
 	@Override
@@ -79,6 +82,23 @@ public class Myadapter extends BaseAdapter{
                 author.setText(usr.getDisplayName());
                 rep.setText(String.valueOf(usr.getReputation()));
                 count.setText(String.valueOf(question.getScore()));
+                
+                Button btnVoteUp = (Button) vi.findViewById(R.id.btnQuestionVoteUp);
+                
+                
+               try{ 
+            	   btnVoteUp.setOnClickListener(onClickVoteUp);
+            	   
+            	   /*btnVoteUp.setOnClickListener(new OnClickListener(){
+                	@Override
+                	public void onClick(View view){
+                		Log.v(log,"Clicked on VoteUpQuestion");
+                	}
+                });*/
+               } catch (Exception e) {
+            	   Log.v(log,"not able to attach OnClickListener");
+               }
+                
                 
         } 
         
@@ -112,8 +132,35 @@ public class Myadapter extends BaseAdapter{
         //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
         Log.v(log,"filled values in ");
         }
+        Button btnVoteUp = (Button) vi.findViewById(R.id.btnVoteup);
+        
+        
+        try {
+        	btnVoteUp.setOnClickListener(new OnClickListener(){
+        
+        	@Override
+        	public void onClick(View view){
+        		Log.v(log,"Clicked on VoteUp for Answer ");
+        	}
+        });
+        } catch (Exception e) {
+        	Log.v(log, "not able to attach listener");
         }
+        }
+        
         return vi;
     }
+
+
+	
+	private OnClickListener onClickVoteUp = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			Log.v(log, "VoteUp Clicked");
+			//final int position = mListView.getPositionForView((View) v.getParent());
+			//(ListView) v.getParent().;
+		}
+	};
 
 }

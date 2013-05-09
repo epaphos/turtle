@@ -9,6 +9,7 @@ import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 public class QuestionDisplayNew extends Activity {
@@ -111,6 +112,15 @@ public class QuestionDisplayNew extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void voteUp(View view){
+		
+		if (view.findViewById(R.id.btnQuestionVoteUp) != null)
+			Log.v("Adapter", "Voteup Question  clicked");
+		if (view.findViewById(R.id.btnVoteDown) != null)
+			Log.v("Adapter", "Voteup for Answer clicked");
+			
 	}
 
 }

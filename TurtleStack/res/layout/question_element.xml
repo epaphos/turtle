@@ -28,7 +28,8 @@
             android:id="@+id/btnQuestionVoteUp"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:text="Up"  />
+            android:text="Up"
+              />
 
         <TextView
             android:id="@+id/textViewQuestionVotes"
