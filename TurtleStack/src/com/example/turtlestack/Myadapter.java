@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -72,6 +73,8 @@ public class Myadapter extends BaseAdapter{
         		TextView qReputation = (TextView) vi.findViewById(R.id.textViewQuestionOwnerRep);
         		TextView qCount = (TextView) vi.findViewById(R.id.textViewQuestionVotes);
         		
+        		vi.setTag(position);
+        		
         		Question question = (Question) data.get(position);
         		User tempUser = user.get(position);
         		qTitle.setText(question.getTitle());
@@ -91,7 +94,9 @@ public class Myadapter extends BaseAdapter{
             	   btnVoteUp.setOnClickListener(new OnClickListener(){
                 	@Override
                 	public void onClick(View view){
-                		Log.v(log,"Clicked on VoteUpQuestion");
+                		int pos =  (Integer) view.getTag();
+                		
+                		Log.v(log,"Clicked on VoteUpQuestion" + pos);
                 	}
                 });
                } catch (Exception e) {
@@ -105,8 +110,13 @@ public class Myadapter extends BaseAdapter{
 					
 					@Override
 					public void onClick(View v) {
-						Log.v(log,"Clicked on Author label in question");
 						
+						int pos = (Integer) v.getTag();
+						Log.v(log,"Clicked on Author label in question");
+						//TODO: fix Intent
+						//Intent intent = new Intent(a, UserViewActivity.class);
+						//intent.putExtra("userId", user.get(pos).getUserId()); //Sample Id which exists in database
+						//startActivity(intent);
 						
 					}
 				});
@@ -130,6 +140,7 @@ public class Myadapter extends BaseAdapter{
         TextView reputation = (TextView)vi.findViewById(R.id.txtviewRep); 
         TextView count = (TextView) vi.findViewById(R.id.textViewCount1);
         
+        vi.setTag(position);
         //Log.v(log,"Got elements");
         //Log.v(log,"body="+body.toString()+" author="+author.toString()+" reputation="+reputation.toString()+" count="+count.toString());
         Answer answer = (Answer) data.get(position);
@@ -153,7 +164,8 @@ public class Myadapter extends BaseAdapter{
         
         	@Override
         	public void onClick(View view){
-        		Log.v(log,"Clicked on VoteUp for Answer ");
+        		int pos = (Integer) view.getTag();
+        		Log.v(log,"Clicked on VoteUp for Answer " + pos);
         	}
         });
         } catch (Exception e) {
