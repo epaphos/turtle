@@ -3,10 +3,12 @@ package com.example.turtlestack;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,7 @@ public class QuestionDisplayActivity extends Activity {
 	private QuestionDataSource qs;
 	private Question question;
 	private int questionId;
+	private Context context = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,11 @@ public class QuestionDisplayActivity extends Activity {
 		lstview = (ListView) findViewById(R.id.listViewQuestionAnswer);
 		lstview.setDrawingCacheEnabled(false);
 		adap = new Myadapter(this, answerList, userList);
-		lstview.setAdapter(adap);
+		
+		View v = getLayoutInflater().inflate(R.layout.footer_layout, null);
+        lstview.addFooterView(v);
+		
+        lstview.setAdapter(adap);
 		
 	}
 
