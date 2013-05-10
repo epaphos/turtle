@@ -18,6 +18,8 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener{
 	
 	private ListView lv;
 	private ArrayList<Question> questionList;
+	MyBrowseAdapter arrayAdapter; 
+	        
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,14 +29,10 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener{
 		ds.open();
 		
 		questionList = ds.getRecentQuestions(10);
-		ArrayList<String> listOfTitles = new ArrayList<String>();
-		for (Question question : questionList) {
-			listOfTitles.add(question.getTitle());
-		}
-        
+		
 		lv = (ListView) findViewById(android.R.id.list);
-        ArrayAdapter<String> arrayAdapter = 
-        		new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
+        arrayAdapter = new MyBrowseAdapter(this, questionList);
+        
         lv.setAdapter(arrayAdapter);
         ds.close();
         lv.setOnItemClickListener(this);
