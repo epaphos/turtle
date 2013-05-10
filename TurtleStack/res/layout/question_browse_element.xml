@@ -8,20 +8,24 @@
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
+        android:layout_weight="4"
+        android:gravity="left"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/questionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title" />
+            android:text="Title"
+            android:textColor="@color/TitleColor"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/questionTags"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tags Tags Tags" />
+            android:text="Tags Tags Tags"
+            android:textColor="@color/TagsColor" />
 
     </LinearLayout>
 
@@ -29,32 +33,36 @@
         android:id="@+id/linearlayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="right"
-        android:orientation="vertical"
-        android:layout_weight="1" >
+        android:layout_weight="1.5"
+        android:gravity="end|right"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/numberOfVotes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="#" />
 
         <TextView
-            android:id="@+id/voteNumberTitle"
+            android:id="@+id/voteNumberTitle"  
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Votes" />
 
         <TextView
             android:id="@+id/numberOfAnswers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="#" />
 
         <TextView
             android:id="@+id/answerNumberTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Answers" />
 
     </LinearLayout>
