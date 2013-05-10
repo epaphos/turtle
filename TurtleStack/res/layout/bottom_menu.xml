@@ -2,28 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:background="@color/black_overlay" >
 
-    <Button
+    <ImageButton
         android:id="@+id/favorite"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:text="Favorites" />
+        android:layout_height="61dp"
+        android:layout_weight="1.00"
+        android:src="@drawable/starimage" />
 
-    <Button
+    <ImageButton
+        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/postQuestion"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:onClick="postQuestion"
-        android:text="New Post" />
+        android:src="@drawable/postimage"
+        android:onClick="postQuestion" />
 
-    <Button
+    <ImageButton
+        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/filter"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="Filters" />
+        android:src="@drawable/filterimage" />
 
 </LinearLayout>
