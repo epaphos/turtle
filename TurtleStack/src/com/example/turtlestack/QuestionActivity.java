@@ -1,19 +1,19 @@
 package com.example.turtlestack;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class QuestionActivity extends Activity {
 	QuestionDataSource ds;
+
 	
 	@SuppressLint("NewApi")   
     @Override
@@ -58,5 +58,7 @@ public class QuestionActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
     
 }

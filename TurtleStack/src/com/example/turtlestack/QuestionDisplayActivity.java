@@ -8,10 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class QuestionDisplayActivity extends Activity {
@@ -25,7 +25,7 @@ public class QuestionDisplayActivity extends Activity {
 	private QuestionDataSource qs;
 	private Question question;
 	private int questionId;
-	private Context context = null;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,24 @@ public class QuestionDisplayActivity extends Activity {
 		
         lstview.setAdapter(adap);
 		
+	}
+	public void postAnswerButton(View v) {
+    	EditText mEdit = (EditText) findViewById(R.id.answerText);
+    	String body  = mEdit.getText().toString();
+		Answer answer = new Answer(questionId, body);
+		int answerId = as.setAnswer(answer); 
+		try {
+			Question question = qs.getQuestion(questionId);
+			question.setAnswerCount(question.getAnswerCount() +1);
+			qs.setQuestion(question);
+			as.addAnswerToRT(question.getId(),answerId);
+		} catch (wrongTypeException e) { }
+		
+	}
+	
+	public void back(View v) {
+		Intent i = new Intent(this,QuestionDisplayActivity.class);
+		startActivity(i);
 	}
 
 	private void fillQuestion(int id){
@@ -147,5 +165,4 @@ public class QuestionDisplayActivity extends Activity {
 			Log.v("Adapter", "Voteup for Answer clicked");
 			
 	}
-
 }
