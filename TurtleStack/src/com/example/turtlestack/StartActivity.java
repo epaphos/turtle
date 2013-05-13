@@ -17,11 +17,7 @@ public class StartActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
 		
-		
-	    
-	    
 		ActionBar actionbar = getActionBar();
-		
 		//actionbar.hide();
 		
 		Intent intent = getIntent();
