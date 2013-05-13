@@ -32,7 +32,6 @@ public abstract class Post {
 		this.creationDate = date.toString();
 		this.score = 0;
 		this.body = body;
-		this.ownerUserId = ownerUserId; //we have to change it to query it from database
 		this.lastEditorUserName = "NULL";
 		this.lastEditDate = "NULL";
 		this.lastActivityDate = date.toString();

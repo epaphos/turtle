@@ -24,6 +24,7 @@ public class Question extends Post{
 		this.viewCount = 0;
 		this.title = title;
 		this.tags = tags;
+		this.answerCount = 0;
 	}
 
 	/**

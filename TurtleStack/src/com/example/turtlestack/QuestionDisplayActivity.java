@@ -39,6 +39,9 @@ public class QuestionDisplayActivity extends Activity {
 		Intent intent = getIntent();
 		questionId = intent.getIntExtra("questionId", 0);
 		
+		us = UserDataSource.getInstance(this);
+		
+		
 		fillQuestion(questionId);
 		fillAnswerList(question);
 		fillUserList(answerList);
@@ -54,17 +57,30 @@ public class QuestionDisplayActivity extends Activity {
 		
 	}
 	public void postAnswerButton(View v) {
-    	EditText mEdit = (EditText) findViewById(R.id.answerText);
+    	Log.v("teststrings", "in method");
+		EditText mEdit = (EditText) findViewById(R.id.answerText);
     	String body  = mEdit.getText().toString();
-		Answer answer = new Answer(questionId, body);
-		int answerId = as.setAnswer(answer); 
+    	us.open();
+    	Log.v("teststrings", "after open");
+    	Log.v("teststrings", questionId + "");
+		
+		Answer answer = new Answer(questionId, body, us.getDummyUser().getUserId());
+		Log.v("teststrings", "created answer");
+		Log.v("teststrings", us.getDummyUser().getUserId() + "user id");
+		int answerId = as.setAnswer(answer);
+		Log.v("teststrings", "after setanswer");
 		try {
+			Log.v("teststrings", "in try");
 			Question question = qs.getQuestion(questionId);
+			Log.v("teststrings", "got question");
 			question.setAnswerCount(question.getAnswerCount() +1);
+			Log.v("teststrings", "answercount set");
 			qs.setQuestion(question);
 			as.addAnswerToRT(question.getId(),answerId);
 		} catch (wrongTypeException e) { }
-		
+		us.close();	
+		finish();
+		startActivity(getIntent());
 	}
 	
 	public void back(View v) {
@@ -82,7 +98,7 @@ public class QuestionDisplayActivity extends Activity {
 		}
 	}
 	private void fillAnswerList(Question q){
-		
+		us.open();
 		int id = q.getId();
 		answerList = new ArrayList<Post>();
 		answerList.add(q);
@@ -96,7 +112,7 @@ public class QuestionDisplayActivity extends Activity {
 			}
 		}
 		answerList = sort(answerList);
-		
+		us.close();
 	}
 	
 	public ArrayList<Post> sort(ArrayList<Post> list){
@@ -116,8 +132,7 @@ public class QuestionDisplayActivity extends Activity {
 		return sorting;
 	}
 	private void fillUserList(ArrayList<Post> lst){
-		us = UserDataSource.getInstance(this);
-		us.open();
+		
 		userList = new ArrayList<User>();
 		for (Post answer : lst) {
 			userList.add(us.readUser(answer.getOwnerUserId()));
