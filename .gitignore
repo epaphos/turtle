@@ -13,3 +13,5 @@ TurtleStack/bin/
 
 #Ignore bin
 */bin/
+
+*.odt#
