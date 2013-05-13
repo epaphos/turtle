@@ -10,7 +10,7 @@ public abstract class Post {
 	private String creationDate;
 	private int score;
 	private String body;
-	private int ownerUserId=0; //we have to implement it
+	protected int ownerUserId=0; //we have to implement it
 	private int lastEditorUserId = 0; //shall be null in creation
 	private String lastEditorUserName;
 	private String lastEditDate;

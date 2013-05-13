@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 public class QuestionActivity extends Activity {
 	QuestionDataSource ds;
-
+	UserDataSource us; 
 	
 	@SuppressLint("NewApi")   
     @Override
@@ -24,7 +24,9 @@ public class QuestionActivity extends Activity {
 	
 	public void postQuestionButton(View v) {
         ds = QuestionDataSource.getInstance(this);
+        us = UserDataSource.getInstance(this);
 		ds.open();
+		us.open();
 		EditText mEdit; 
     	mEdit = (EditText) findViewById(R.id.title);
     	String title  = mEdit.getText().toString();
@@ -32,9 +34,11 @@ public class QuestionActivity extends Activity {
     	String body  = mEdit.getText().toString();
     	mEdit = (EditText) findViewById(R.id.tags);
     	String tags  = mEdit.getText().toString();
-		Question question = new Question(title, body,tags);
+    	User user = us.getDummyUser();
+    	Question question = new Question(title, body,tags, user.getUserId());
 		ds.write(question);
         ds.close();
+        us.close();
 		back(v);
 	}
 	
