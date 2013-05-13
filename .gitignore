@@ -13,3 +13,11 @@ TurtleStack/bin/
 
 #Ignore bin
 */bin/
+
+Report/AverbeckCyrill_Report.log
+
+*.aux
+
+*.gz
+
+*.odt#
