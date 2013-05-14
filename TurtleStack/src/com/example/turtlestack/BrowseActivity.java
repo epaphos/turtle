@@ -15,8 +15,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 
-public class BrowseActivity extends ListActivity implements OnItemClickListener{
+public class BrowseActivity extends ListActivity implements OnItemClickListener, OnQueryTextListener{
 	QuestionDataSource ds;
 	
 	private ListView lv;
@@ -62,6 +63,7 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener{
 	    
 	    // Assumes current activity is the searchable activity
 	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+	    searchView.setOnQueryTextListener(this);
 	    //searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
 	    //searchView.setSubmitButtonEnabled(true);
 	    
@@ -89,6 +91,29 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener{
 		int userId = user.getUserId();
 		intent.putExtra("userId", userId); //Sample Id which exists in database
 		startActivity(intent);
+	}
+
+	@Override
+	public boolean onQueryTextChange(String newText) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean onQueryTextSubmit(String query) {
+		Log.v("Search", query);
+		
+		ds.open();
+		
+		questionList = ds.getSearchResults(query);		
+		
+		arrayAdapter = new MyBrowseAdapter(this, questionList);
+		lv.setAdapter(arrayAdapter);
+		
+		ds.close();
+		lv.setOnItemClickListener(this);
+		
+		return false;
 	}
 
 }
