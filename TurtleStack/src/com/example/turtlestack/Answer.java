@@ -9,8 +9,9 @@ public class Answer extends Post {
 	}
 	
 	//New Answer Constructor
-	public Answer(int parentId,String body) {
+	public Answer(int parentId,String body, int userId) {
 		super(body);
+		this.ownerUserId = userId;
 		this.setPostTypeId(2);
 		this.parentId = parentId; //we have to implement it
 	}

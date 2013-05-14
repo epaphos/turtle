@@ -3,6 +3,7 @@ package com.example.turtlestack;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class QuestionDisplayActivity extends Activity {
@@ -24,6 +26,7 @@ public class QuestionDisplayActivity extends Activity {
 	private Question question;
 	private int questionId;
 	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,6 +39,10 @@ public class QuestionDisplayActivity extends Activity {
 		Intent intent = getIntent();
 		questionId = intent.getIntExtra("questionId", 0);
 		
+		us = UserDataSource.getInstance(this);
+		as = AnswerDataSource.getInstance(this);
+		qs = QuestionDataSource.getInstance(this);
+		
 		fillQuestion(questionId);
 		fillAnswerList(question);
 		fillUserList(answerList);
@@ -43,21 +50,47 @@ public class QuestionDisplayActivity extends Activity {
 		lstview = (ListView) findViewById(R.id.listViewQuestionAnswer);
 		lstview.setDrawingCacheEnabled(false);
 		adap = new Myadapter(this, answerList, userList);
-		lstview.setAdapter(adap);
 		
+		View v = getLayoutInflater().inflate(R.layout.footer_layout, null);
+        lstview.addFooterView(v);		
+        lstview.setAdapter(adap);
+		
+	}
+	public void postAnswerButton(View v) {
+    	EditText mEdit = (EditText) findViewById(R.id.answerText);
+    	String body  = mEdit.getText().toString();
+    	us.open();
+    	as.open();
+		Answer answer = new Answer(questionId, body, us.getDummyUser().getUserId());
+		int answerId = as.setAnswer(answer);
+		try {
+			Question question = qs.getQuestion(questionId);
+			question.setAnswerCount(question.getAnswerCount() +1);
+			qs.setQuestion(question);
+			as.addAnswerToRT(question.getId(),answerId);
+		} catch (wrongTypeException e) { }
+		us.close();	
+		as.close();
+		finish();
+		startActivity(getIntent());
+	}
+	
+	public void back(View v) {
+		Intent i = new Intent(this,QuestionDisplayActivity.class);
+		startActivity(i);
 	}
 
 	private void fillQuestion(int id){
-		qs = QuestionDataSource.getInstance(this);
 		qs.open();
 		try{
 			question = qs.getQuestion(id);
 		} catch (Exception e) {
 			Log.v("Exception","Wasn't able to get Question with id:"+id);
 		}
+		qs.close();
 	}
 	private void fillAnswerList(Question q){
-		
+		us.open();
 		int id = q.getId();
 		answerList = new ArrayList<Post>();
 		answerList.add(q);
@@ -71,7 +104,7 @@ public class QuestionDisplayActivity extends Activity {
 			}
 		}
 		answerList = sort(answerList);
-		
+		us.close();
 	}
 	
 	public ArrayList<Post> sort(ArrayList<Post> list){
@@ -91,7 +124,7 @@ public class QuestionDisplayActivity extends Activity {
 		return sorting;
 	}
 	private void fillUserList(ArrayList<Post> lst){
-		us = UserDataSource.getInstance(this);
+		
 		us.open();
 		userList = new ArrayList<User>();
 		for (Post answer : lst) {
@@ -140,5 +173,4 @@ public class QuestionDisplayActivity extends Activity {
 			Log.v("Adapter", "Voteup for Answer clicked");
 			
 	}
-
 }

@@ -54,5 +54,12 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener{
 		getMenuInflater().inflate(R.menu.browse, menu);
 		return true;
 	}
+	
+	public void postQuestion(View v) {
+		Intent i = new Intent(this, QuestionActivity.class);
+		startActivity(i);
+	}
+	
+	
 
 }
