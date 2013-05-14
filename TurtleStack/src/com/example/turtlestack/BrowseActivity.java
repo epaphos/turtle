@@ -28,7 +28,7 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_browse);
-		
+		createInstances();
 		ds = QuestionDataSource.getInstance(this);
 		ds.open();
 		
@@ -68,6 +68,14 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener,
 	    //searchView.setSubmitButtonEnabled(true);
 	    
 		return true;
+	}
+	
+	public void createInstances () {
+		TagCloud tc = TagCloud.getInstance(this);
+		AnswerDataSource as = AnswerDataSource.getInstance(this);
+		QuestionDataSource qs = QuestionDataSource.getInstance(this);
+		TagDataSource ts = TagDataSource.getInstance(this);
+		UserDataSource us = UserDataSource.getInstance(this);
 	}
 	
 	public void postQuestion(View v) {

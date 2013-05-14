@@ -28,8 +28,8 @@
         </activity>
         <activity
             android:name="com.example.turtlestack.QuestionDisplayActivity"
-            android:label="@string/title_activity_question_display" 
-            android:parentActivityName="com.example.turtlestack.BrowseActivity">
+            android:label="@string/title_activity_question_display"
+            android:parentActivityName="com.example.turtlestack.BrowseActivity" >
         </activity>
         <activity
             android:name="com.example.turtlestack.UserViewActivity"
@@ -48,6 +48,10 @@
             android:name="com.example.turtlestack.TagCloudActivity"
             android:label="@string/title_activity_tag_cloud"
             android:parentActivityName="com.example.turtlestack.BrowseActivity" >
+        </activity>
+        <activity
+            android:name="com.example.turtlestack.TagCloudFragment"
+            android:label="@string/title_activity_tag_cloud_fragment" >
         </activity>
     </application>
 

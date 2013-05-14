@@ -32,5 +32,6 @@
     <string name="search_hint">Search for Questions</string>
     <string name="title_activity_search_new">SearchNewActivity</string>
     <string name="title_activity_question_display_new">QuestionDisplayNew</string>
+    <string name="title_activity_tag_cloud_fragment">TagCloudFragment</string>
 
 </resources>
