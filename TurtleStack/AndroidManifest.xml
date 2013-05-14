@@ -16,11 +16,7 @@
         <activity
             android:name="com.example.turtlestack.MainActivity"
             android:label="@string/title_activity_main" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <activity
             android:name="com.example.turtlestack.QuestionActivity"
@@ -29,6 +25,11 @@
         <activity
             android:name="com.example.turtlestack.BrowseActivity"
             android:label="@string/title_activity_browse" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.example.turtlestack.QuestionDisplayActivity"

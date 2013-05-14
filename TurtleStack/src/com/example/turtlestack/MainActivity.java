@@ -29,9 +29,8 @@ public class MainActivity extends Activity {
 		actionbar.hide();
 
 		//Add listener to Buttons
-		Button postButton = (Button) findViewById(R.id.buttonpost);		
+			
 		Button recentQuestionsButton = (Button) findViewById(R.id.recentquestions);
-		postButton.setOnClickListener(listener);
 		recentQuestionsButton.setOnClickListener(listener);
 		}
 
@@ -41,9 +40,6 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Button clickedButton = (Button) v;
 				switch(clickedButton.getId()) {
-				case R.id.buttonpost :
-					launch(v, QuestionActivity.class);
-					break;
 				case R.id.recentquestions : 
 					launch(v, BrowseActivity.class);
 					break;
