@@ -40,7 +40,8 @@ public class QuestionDisplayActivity extends Activity {
 		questionId = intent.getIntExtra("questionId", 0);
 		
 		us = UserDataSource.getInstance(this);
-		
+		as = AnswerDataSource.getInstance(this);
+		qs = QuestionDataSource.getInstance(this);
 		
 		fillQuestion(questionId);
 		fillAnswerList(question);
@@ -51,34 +52,25 @@ public class QuestionDisplayActivity extends Activity {
 		adap = new Myadapter(this, answerList, userList);
 		
 		View v = getLayoutInflater().inflate(R.layout.footer_layout, null);
-        lstview.addFooterView(v);
-		
+        lstview.addFooterView(v);		
         lstview.setAdapter(adap);
 		
 	}
 	public void postAnswerButton(View v) {
-    	Log.v("teststrings", "in method");
-		EditText mEdit = (EditText) findViewById(R.id.answerText);
+    	EditText mEdit = (EditText) findViewById(R.id.answerText);
     	String body  = mEdit.getText().toString();
     	us.open();
-    	Log.v("teststrings", "after open");
-    	Log.v("teststrings", questionId + "");
-		
+    	as.open();
 		Answer answer = new Answer(questionId, body, us.getDummyUser().getUserId());
-		Log.v("teststrings", "created answer");
-		Log.v("teststrings", us.getDummyUser().getUserId() + "user id");
 		int answerId = as.setAnswer(answer);
-		Log.v("teststrings", "after setanswer");
 		try {
-			Log.v("teststrings", "in try");
 			Question question = qs.getQuestion(questionId);
-			Log.v("teststrings", "got question");
 			question.setAnswerCount(question.getAnswerCount() +1);
-			Log.v("teststrings", "answercount set");
 			qs.setQuestion(question);
 			as.addAnswerToRT(question.getId(),answerId);
 		} catch (wrongTypeException e) { }
 		us.close();	
+		as.close();
 		finish();
 		startActivity(getIntent());
 	}
@@ -89,13 +81,13 @@ public class QuestionDisplayActivity extends Activity {
 	}
 
 	private void fillQuestion(int id){
-		qs = QuestionDataSource.getInstance(this);
 		qs.open();
 		try{
 			question = qs.getQuestion(id);
 		} catch (Exception e) {
 			Log.v("Exception","Wasn't able to get Question with id:"+id);
 		}
+		qs.close();
 	}
 	private void fillAnswerList(Question q){
 		us.open();
@@ -133,6 +125,7 @@ public class QuestionDisplayActivity extends Activity {
 	}
 	private void fillUserList(ArrayList<Post> lst){
 		
+		us.open();
 		userList = new ArrayList<User>();
 		for (Post answer : lst) {
 			userList.add(us.readUser(answer.getOwnerUserId()));
