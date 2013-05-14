@@ -14,11 +14,6 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.turtlestack.MainActivity"
-            android:label="@string/title_activity_main" >
-            
-        </activity>
-        <activity
             android:name="com.example.turtlestack.QuestionActivity"
             android:label="@string/title_activity_question" >
         </activity>
@@ -33,11 +28,13 @@
         </activity>
         <activity
             android:name="com.example.turtlestack.QuestionDisplayActivity"
-            android:label="@string/title_activity_question_display" >
+            android:label="@string/title_activity_question_display" 
+            android:parentActivityName="com.example.turtlestack.BrowseActivity">
         </activity>
         <activity
             android:name="com.example.turtlestack.UserViewActivity"
-            android:label="@string/title_activity_user_view" >
+            android:label="@string/title_activity_user_view"
+            android:parentActivityName="com.example.turtlestack.BrowseActivity" >
         </activity>
         <activity
             android:name="com.example.turtlestack.AnswerActivity"
@@ -50,31 +47,6 @@
         <activity
             android:name="com.example.turtlestack.TagCloudActivity"
             android:label="@string/title_activity_tag_cloud" >
-        </activity>
-        <activity
-            android:name="com.example.turtlestack.SearchActivity"
-            android:label="@string/title_activity_search"
-            android:parentActivityName="com.example.turtlestack.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.turtlestack.MainActivity" />
-        </activity>
-        <activity
-            android:name="com.example.turtlestack.StartActivity"
-            android:label="@string/title_activity_start" >
-        </activity>
-        <activity
-            android:name="com.example.turtlestack.SearchNewActivity"
-            android:label="@string/title_activity_search_new"
-            android:parentActivityName="com.example.test.StartActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:resource="@xml/search"
-                android:value="com.example.test.StartActivity" />
         </activity>
     </application>
 

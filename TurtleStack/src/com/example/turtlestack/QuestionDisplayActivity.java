@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
@@ -30,7 +31,7 @@ public class QuestionDisplayActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_question_display_new);
+		setContentView(R.layout.activity_question_display);
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
@@ -54,6 +55,12 @@ public class QuestionDisplayActivity extends Activity {
 		View v = getLayoutInflater().inflate(R.layout.footer_layout, null);
         lstview.addFooterView(v);		
         lstview.setAdapter(adap);
+        
+        // Make sure we're running on Honeycomb or higher to use ActionBar APIs
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            // Show the Up button in the action bar.
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 		
 	}
 	public void postAnswerButton(View v) {

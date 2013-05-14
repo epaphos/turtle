@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/footer"
         android:divider="@android:color/black"
-        android:dividerHeight="5dp" >
+        android:dividerHeight="5dp"
+        android:listSelector="@drawable/list_selector" >
     </ListView>
 
     <include
