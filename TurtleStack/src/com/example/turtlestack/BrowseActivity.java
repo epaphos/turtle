@@ -60,6 +60,22 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener{
 		startActivity(i);
 	}
 	
+	public void viewTagScreen (View view) {
+		Intent intent = new Intent(this, TagCloudActivity.class);
+		intent.putExtra("mainTag", ".htaccess");
+		startActivity(intent);
+	}
 	
+	public void viewUserProfile(View view){
+		Intent intent = new Intent(this, UserViewActivity.class);
+		UserDataSource us;
+		us = UserDataSource.getInstance(this);
+		us.open();
+		User user = us.getDummyUser();
+		us.close();
+		int userId = user.getUserId();
+		intent.putExtra("userId", userId); //Sample Id which exists in database
+		startActivity(intent);
+	}
 
 }

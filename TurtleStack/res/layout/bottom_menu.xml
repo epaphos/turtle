@@ -6,12 +6,13 @@
     android:background="@color/blackbackground" >
 
     <ImageButton
-        android:id="@+id/favorite"
+        android:id="@+id/userProfile"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="61dp"
         android:layout_weight="1.00"
-        android:src="@drawable/starimage" />
+        android:src="@drawable/starimage"
+        android:onClick="viewUserProfile" />
 
     <ImageButton
         style="?android:attr/borderlessButtonStyle"
@@ -24,10 +25,11 @@
 
     <ImageButton
         style="?android:attr/borderlessButtonStyle"
-        android:id="@+id/filter"
+        android:id="@+id/tagScreen"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:src="@drawable/filterimage" />
+        android:src="@drawable/filterimage"
+        android:onClick="viewTagScreen" />
 
 </LinearLayout>
