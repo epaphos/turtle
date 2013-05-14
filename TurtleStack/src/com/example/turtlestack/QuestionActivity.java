@@ -43,7 +43,7 @@ public class QuestionActivity extends Activity {
 	}
 	
 	public void back(View v) {
-		Intent i = new Intent(this,MainActivity.class);
+		Intent i = new Intent(this,BrowseActivity.class);
 		startActivity(i);
 	}
 	
