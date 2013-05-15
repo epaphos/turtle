@@ -84,8 +84,7 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener,
 	}
 	
 	public void viewTagScreen (View view) {
-		Intent intent = new Intent(this, TagCloudActivity.class);
-		intent.putExtra("mainTag", ".htaccess");
+		Intent intent = new Intent(this, TagsListActivity.class);
 		startActivity(intent);
 	}
 	
