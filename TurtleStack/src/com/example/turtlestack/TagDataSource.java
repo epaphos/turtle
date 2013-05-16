@@ -1,6 +1,7 @@
 package com.example.turtlestack;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
@@ -63,6 +64,21 @@ public class TagDataSource implements DataSourceUtils {
 		return !(cursor.isAfterLast());
 	}
 	
+	public ArrayList<Integer> searchQuestionByTags(ArrayList<String> tags) {
+		ArrayList<Integer> ids = new ArrayList();
+		String t ="%";
+		Iterator it = tags.iterator();
+		while (it.hasNext()) {
+			t += it.next().toString();
+		}
+		t+="%";
+		Cursor cursor = database.rawQuery("SELECT id FROM posts where tags =?", new String[] {t});
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			ids.add(cursor.getInt(cursor.getColumnIndex("id")));
+		}
+		return ids;
+	}
 	
 	public ArrayList<String> getAllTheTags() {
 		Cursor cursor = database.rawQuery("SELECT tag FROM tags Order by tag ", new String [] {});

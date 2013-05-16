@@ -1,6 +1,7 @@
 package com.example.turtlestack;
 
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 
 public class TagCloudOnPageListener implements OnPageChangeListener {
 

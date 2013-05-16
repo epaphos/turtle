@@ -8,10 +8,13 @@
         android:id="@+id/buttonMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:background="@null"
-        android:drawableTop="@drawable/bubble"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:background="@drawable/bubble"
+        android:maxHeight="@dimen/height"
+        android:maxLines="@integer/maxLinesBubbles"
+        android:maxWidth="@dimen/width"
+        android:scrollHorizontally="true"
+        android:text="Button" />
 
     <Button
         android:id="@+id/buttonBefore"
@@ -20,8 +23,11 @@
         android:layout_alignBaseline="@+id/buttonMain"
         android:layout_alignBottom="@+id/buttonMain"
         android:layout_alignParentLeft="true"
-        android:background="@null"
-        android:drawableTop="@drawable/bubble"
+        android:background="@drawable/bubble"
+        android:maxHeight="@dimen/height"
+        android:maxLines="@integer/maxLinesBubbles"
+        android:maxWidth="@dimen/width"
+        android:scrollHorizontally="true"
         android:text="Button" />
 
     <Button
@@ -31,8 +37,12 @@
         android:layout_alignBaseline="@+id/buttonMain"
         android:layout_alignBottom="@+id/buttonMain"
         android:layout_alignParentRight="true"
-        android:background="@null"
-        android:drawableTop="@drawable/bubble"
+        android:background="@drawable/bubble"
+        android:gravity="center_vertical|center_horizontal"
+        android:maxHeight="@dimen/height"
+        android:maxLines="@integer/maxLinesBubbles"
+        android:maxWidth="@dimen/width"
+        android:scrollHorizontally="true"
         android:text="Button" />
 
     <Button
@@ -41,8 +51,11 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/buttonMain"
         android:layout_toLeftOf="@+id/buttonMain"
-        android:background="@null"
-        android:drawableTop="@drawable/bubble"
+        android:background="@drawable/bubble"
+        android:maxHeight="@dimen/height"
+        android:maxLines="@integer/maxLinesBubbles"
+        android:maxWidth="@dimen/width"
+        android:scrollHorizontally="true"
         android:text="Button" />
 
     <Button
@@ -51,18 +64,24 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/buttonMain"
         android:layout_toRightOf="@+id/buttonMain"
-        android:background="@null"
-        android:drawableTop="@drawable/bubble"
+        android:background="@drawable/bubble"
+        android:maxHeight="@dimen/height"
+        android:maxLines="@integer/maxLinesBubbles"
+        android:maxWidth="@dimen/width"
+        android:scrollHorizontally="true"
         android:text="Button" />
-    
+
     <Button
         android:id="@+id/buttonRelationed3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonMain"
         android:layout_toLeftOf="@+id/buttonMain"
-        android:background="@null"
-        android:drawableTop="@drawable/bubble"
+        android:background="@drawable/bubble"
+        android:maxHeight="@dimen/height"
+        android:maxLines="@integer/maxLinesBubbles"
+        android:maxWidth="@dimen/width"
+        android:scrollHorizontally="true"
         android:text="Button" />
 
     <Button
@@ -71,10 +90,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonMain"
         android:layout_toRightOf="@+id/buttonMain"
-        android:background="@null"
-        android:drawableTop="@drawable/bubble"
+        android:background="@drawable/bubble"
+        android:maxHeight="@dimen/height"
+        android:maxLines="@integer/maxLinesBubbles"
+        android:maxWidth="@dimen/width"
+        android:scrollHorizontally="true"
         android:text="Button" />
-
-
 
 </RelativeLayout>

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/tag_list_background"
     android:orientation="vertical" >
      
     <!-- Editext for Search -->
@@ -9,13 +10,21 @@
     <EditText
         android:id="@+id/inputSearch"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="34dp"
+        android:background="@drawable/tag_list_background"
         android:hint="Search Tags.."
         android:inputType="textVisiblePassword" />
   
     <!-- List View -->
+
     <ListView
         android:id="@+id/list_view"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/tag_list_background"
+        android:divider="@android:color/black"
+        android:dividerHeight="0dp"
+        android:listSelector="@color/White"
+        android:textSize="10px" />
+
   </LinearLayout>

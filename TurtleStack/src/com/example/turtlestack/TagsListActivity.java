@@ -29,7 +29,7 @@ public class TagsListActivity extends Activity {
      
     // Search EditText
     EditText inputSearch;
-     
+    String tagId;
      
     // ArrayList for Listview
     ArrayList<String> arrayOfTags;
@@ -62,20 +62,17 @@ public class TagsListActivity extends Activity {
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                 // When user changed the Text
-                TagsListActivity.this.adapter.getFilter().filter(cs);   
+                TagsListActivity.this.adapter.getFilter().filter(cs);                
             }
              
             @Override
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
                     int arg3) {
-                // TODO Auto-generated method stub
                  
             }
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
-				
 			}
              
 
@@ -84,7 +81,7 @@ public class TagsListActivity extends Activity {
         OnItemClickListener itemClickListener = new OnItemClickListener() {
         	@Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
-        		startCloud(position);
+        		startCloud(arrayOfTags.indexOf(adapter.getItem(position)));
              }
         };
        
