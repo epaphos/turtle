@@ -89,9 +89,7 @@ public class Myadapter extends BaseAdapter{
                 qAuthor.setTag(position);
                 qReputation.setText("Reputation: " + String.valueOf(tempUser.getReputation()));
                 qCount.setText(String.valueOf(question.getScore()));
-                
-            //    Button btnVoteUp = (Button) vi.findViewById(R.id.btnQuestionVoteUp);
-                            
+                                  
         
                try{
             	   qAuthor.setClickable(true);
@@ -140,6 +138,7 @@ public class Myadapter extends BaseAdapter{
 	        body.setText(Html.fromHtml(answer.getBody()).toString());
 	        //body.setText(answer.getBody());
 	        author.setText("By: " + usr.getDisplayName());
+	        author.setTag(position); 
 	        reputation.setText("Reputation: " + String.valueOf(usr.getReputation()));
 	        count.setText(String.valueOf(answer.getScore()));
 	        //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
@@ -148,21 +147,26 @@ public class Myadapter extends BaseAdapter{
 	        if(answer.getId()==((Question)data.get(0)).getAcceptedAnswer()){
 	        	accepted.setChecked(true);
 	        }
-	        
-        	Button btnVoteUp = (Button) vi.findViewById(R.id.btnVoteup);
-                
-	        try {
-	        	btnVoteUp.setOnClickListener(new OnClickListener(){
-	        
-	        	@Override
-	        	public void onClick(View view){
-	        		int pos = (Integer) view.getTag();
-	        		Log.v(log,"Clicked on VoteUp for Answer " + pos);
-	        	}
-	        });
-	        } catch (Exception e) {
-	        	Log.v(log, "not able to attach listener AnswerVoteup" + e.toString());
-	        }
+	        try{
+         	   author.setClickable(true);
+         	   author.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						Log.v("teststrings", "Clicked on Author label in question");
+						int pos = (Integer) v.getTag();
+						
+						Intent intent = new Intent(context, UserViewActivity.class);
+						intent.putExtra("userId", user.get(pos).getUserId()); //Sample Id which exists in database
+						context.startActivity(intent);
+						
+					}
+				});
+            } catch (Exception e) {
+         	   
+         	   Log.v(log,"not able to attach OnClickListener to Author label" + e.toString());
+            }    
+	       
         }
         
         
