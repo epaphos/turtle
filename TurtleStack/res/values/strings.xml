@@ -25,5 +25,5 @@
     <string name="title_activity_tag_cloud">TagCloudActivity</string>
     <string name="button_tag_cloud">Tag Cloud</string>
     <string name="title_activity_search">SearchActivity</string>
-
+	<string name="UserAboutMe">About Me</string>
 </resources>
