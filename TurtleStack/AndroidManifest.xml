@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="14"
         android:targetSdkVersion="17" />
 
     <application
@@ -14,8 +14,12 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.turtlestack.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:name="com.example.turtlestack.QuestionActivity"
+            android:label="@string/title_activity_question" >
+        </activity>
+        <activity
+            android:name="com.example.turtlestack.BrowseActivity"
+            android:label="@string/title_activity_browse" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,19 +27,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.turtlestack.QuestionActivity"
-            android:label="@string/title_activity_question" >
-        </activity>
-        <activity
-            android:name="com.example.turtlestack.BrowseActivity"
-            android:label="@string/title_activity_browse" >
-        </activity>
-        <activity
             android:name="com.example.turtlestack.QuestionDisplayActivity"
-            android:label="@string/title_activity_question_display" >
+            android:label="@string/title_activity_question_display"
+            android:parentActivityName="com.example.turtlestack.BrowseActivity" >
         </activity>
         <activity
-            android:name="com.example.turtlestack.UserViewActivity">
+            android:name="com.example.turtlestack.UserViewActivity"  
+            android:parentActivityName="com.example.turtlestack.BrowseActivity" >
         </activity>
         <activity
             android:name="com.example.turtlestack.AnswerActivity"
@@ -47,15 +45,12 @@
         </activity>
         <activity
             android:name="com.example.turtlestack.TagCloudActivity"
-            android:label="@string/title_activity_tag_cloud" >
-		</activity>
-		<activity
-            android:name="com.example.turtlestack.SearchActivity"
-            android:label="@string/title_activity_search"
-            android:parentActivityName="com.example.turtlestack.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.turtlestack.MainActivity" />
+            android:label="@string/title_activity_tag_cloud"
+            android:parentActivityName="com.example.turtlestack.BrowseActivity" >
+        </activity>
+        <activity
+            android:name="com.example.turtlestack.TagCloudFragment"
+            android:label="@string/title_activity_tag_cloud_fragment" >
         </activity>
  
     </application>

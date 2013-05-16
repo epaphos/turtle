@@ -2,138 +2,182 @@ package com.example.turtlestack;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
-import android.text.Html;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
-public class QuestionDisplayActivity extends Activity implements OnItemClickListener {
-	QuestionDataSource ds;
-	AnswerDataSource as;
+public class QuestionDisplayActivity extends Activity {
 
-	int questionId;
-	Question q; //The element that should be displayed
-	String author; 
-	private ListView lv;
-	private ArrayList<Answer> answerList;
-
-	@SuppressLint("NewApi")  
+	private Myadapter adap;
+	private ListView lstview;
+	private AnswerDataSource as;
+	private ArrayList<Post> answerList;
+	private UserDataSource us;
+	private ArrayList<User> userList;
+	private QuestionDataSource qs;
+	private Question question;
+	private int questionId;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_question_display);
+		// Show the Up button in the action bar.
+		setupActionBar();
+		
+		
+		//get Intent and fill ArrayLists
 		Intent intent = getIntent();
 		questionId = intent.getIntExtra("questionId", 0);
-		as = AnswerDataSource.getInstance(this);			
-		as.open();
-		ds = QuestionDataSource.getInstance(this);
-		ds.open();
 		
-		try {
-	        q = ds.getQuestion(questionId);
-		} 
-		catch (Exception e) {
-		}
+		us = UserDataSource.getInstance(this);
+		as = AnswerDataSource.getInstance(this);
+		qs = QuestionDataSource.getInstance(this);
 		
-		if(ds.getNumberOfAnswers(questionId) > 0) {
-			answerList = as.getAnswers(questionId);
-			ArrayList<String> listOfTitles = new ArrayList<String>();
-			for (Answer answer : answerList) {
-				listOfTitles.add(Html.fromHtml(answer.getBody()).toString());
-			}
-
-			lv = (ListView) findViewById(android.R.id.list);
-	        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_row, listOfTitles);
-	        lv.setAdapter(arrayAdapter);
-	        lv.setOnItemClickListener(this);
-		}
-
-		ds.close();
-		as.close();
-		getUserName();
-		displayQ(q);
+		fillQuestion(questionId);
+		fillAnswerList(question);
+		fillUserList(answerList);
+		
+		lstview = (ListView) findViewById(R.id.listViewQuestionAnswer);
+		lstview.setDrawingCacheEnabled(false);
+		adap = new Myadapter(this, answerList, userList);
+		
+		View v = getLayoutInflater().inflate(R.layout.footer_layout, null);
+        lstview.addFooterView(v);		
+        lstview.setAdapter(adap);
+        
+        // Make sure we're running on Honeycomb or higher to use ActionBar APIs
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            // Show the Up button in the action bar.
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+		
 	}
-
-	public void goAnswerView(View v) {
-		Intent i = new Intent(this,AnswerActivity.class);
+	public void postAnswerButton(View v) {
+    	EditText mEdit = (EditText) findViewById(R.id.answerText);
+    	String body  = mEdit.getText().toString();
+    	us.open();
+    	as.open();
+		Answer answer = new Answer(questionId, body, us.getDummyUser().getUserId());
+		int answerId = as.setAnswer(answer);
 		try {
-			Question question = (Question) ds.getQuestion(questionId);
-			i.putExtra("parentId",question.getId());		
-		} catch (Exception e) {
-			Log.v("EXCEPTION", "Post type is not as expected");
-		}
+			Question question = qs.getQuestion(questionId);
+			question.setAnswerCount(question.getAnswerCount() +1);
+			qs.setQuestion(question);
+			as.addAnswerToRT(question.getId(),answerId);
+		} catch (wrongTypeException e) { }
+		us.close();	
+		as.close();
+		finish();
+		startActivity(getIntent());
+	}
+	
+	public void back(View v) {
+		Intent i = new Intent(this,QuestionDisplayActivity.class);
 		startActivity(i);
 	}
 
+	private void fillQuestion(int id){
+		qs.open();
+		try{
+			question = qs.getQuestion(id);
+		} catch (Exception e) {
+			Log.v("Exception","Wasn't able to get Question with id:"+id);
+		}
+		qs.close();
+	}
+	private void fillAnswerList(Question q){
+		us.open();
+		int id = q.getId();
+		answerList = new ArrayList<Post>();
+		answerList.add(q);
+		if(qs.getNumberOfAnswers(id)>0){
+			as = AnswerDataSource.getInstance(this);
+			as.open();
+			ArrayList<Answer> answers = as.getSortedAnswers(id);
+			as.close();
+			for (Answer answer : answers) {
+				answerList.add(answer);
+			}
+		}
+		answerList = sort(answerList);
+		us.close();
+	}
+	
+	public ArrayList<Post> sort(ArrayList<Post> list){
+		Question q = (Question) list.get(0);
+		int acceptedAnswer;
+		ArrayList<Post> sorting = list;
+		if (q.getAcceptedAnswer()>0) {
+			acceptedAnswer = q.getAcceptedAnswer();
+			for (Post post : sorting) {
+				if(post.getId()==acceptedAnswer) {
+					sorting.remove(post);
+					sorting.add(1, post);
+					break;
+				}
+			}		
+		}
+		return sorting;
+	}
+	private void fillUserList(ArrayList<Post> lst){
+		
+		us.open();
+		userList = new ArrayList<User>();
+		for (Post answer : lst) {
+			userList.add(us.readUser(answer.getOwnerUserId()));
+		}
+		us.close();
+	}
+	/**
+	 * Set up the {@link android.app.ActionBar}.
+	 */
+	private void setupActionBar() {
+
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.question_display, menu);
+		getMenuInflater().inflate(R.menu.question_display_new, menu);
 		return true;
 	}
 
-
-	/**
-	 * Extracts members of a Question and displays them
-	 * @param q
-	 */	
-	public void displayQ(Question q){
-		TextView lblTitle = (TextView) findViewById(R.id.quLblTitle);
-		TextView lblBody = (TextView) findViewById(R.id.quLblBody);
-		TextView lblId = (TextView) findViewById(R.id.quLblId);
-		TextView lblViews = (TextView) findViewById(R.id.quLblViewCount);
-		lblTitle.setText(q.getTitle());
-		lblBody.setText(Html.fromHtml(q.getBody()));
-		lblId.setText("ID: " + Integer.toString(q.getId()));//setText must receive a string!
-		lblViews.setText("Views: " + Integer.toString(q.getViewCount()));
-
-		TextView lblAuthor = (TextView) findViewById(R.id.quLblAuthor);
-		lblAuthor.setText("Author: " + author);
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// This ID represents the Home or Up button. In the case of this
+			// activity, the Up button is shown. Use NavUtils to allow users
+			// to navigate up one level in the application structure. For
+			// more details, see the Navigation pattern on Android Design:
+			//
+			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+			//
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 	
-	private void getUserName() {
-		UserDataSource us = UserDataSource.getInstance(this);
-		us.open();
-		try {
-			User user = us.readUser(q.getOwnerUserId());
-			author = user.getDisplayName(); 			
-		}
-		catch (Exception e) {
-			author = " id: " + Integer.toString(q.getOwnerUserId()) + " not found";
-		}
-		us.close();
+	public void voteUp(View view){
+		
+		if (view.findViewById(R.id.btnQuestionVoteUp) != null)
+			Log.v("Adapter", "Voteup Question  clicked");
+		if (view.findViewById(R.id.btnVoteDown) != null)
+			Log.v("Adapter", "Voteup for Answer clicked");
+			
 	}
-
-	/**
-	 * Views the details of the post author
-	 * @param view
-	 */
-	public void gotoUserView(View view){
-		Intent intent = new Intent(this, UserViewActivity.class);
-		intent.putExtra("userId", q.getOwnerUserId()); //Sample Id which exists in database
-		startActivity(intent);
-	}
-
-
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-
-
 }

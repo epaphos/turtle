@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/list_selector" >
+
+    <TextView
+        android:id="@+id/textViewQuestionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@+id/linearLayout1"
+        android:text="Title of Question" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textViewQuestionTitle"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btnQuestionVoteUp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="Up"
+              />
+
+        <TextView
+            android:id="@+id/textViewQuestionVotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/btnQuestionVoteDown"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="Down"  />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutTags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/linearLayout1"
+        android:layout_alignLeft="@+id/textViewQuestionTitle"
+        android:layout_below="@id/textViewQuestionTitle"
+        android:layout_marginBottom="38dp" >
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewQuestionBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayoutTags"
+        android:layout_alignRight="@+id/linearLayout1"
+        android:layout_below="@+id/linearLayoutTags"
+        android:layout_marginTop="18dp"
+        android:text="Body of Question" 
+        android:textSize="5pt"/>
+
+    <TextView
+        android:id="@+id/textViewQuestionOwner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewQuestionBody"
+        android:layout_below="@+id/textViewQuestionBody"
+        android:layout_marginTop="17dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textViewQuestionOwnerRep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewQuestionOwner"
+        android:layout_alignBottom="@+id/textViewQuestionOwner"
+        android:layout_alignRight="@+id/textViewQuestionBody"
+        android:text="TextView" />
+
+</RelativeLayout>

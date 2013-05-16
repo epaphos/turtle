@@ -23,6 +23,7 @@
         android:layout_alignLeft="@+id/userLblDisplayName_"
         android:layout_below="@+id/userLblDisplayName_"
         android:ems="10"
+        android:hint="Enter the title of the question"
         android:inputType="textMultiLine" />
 
     <EditText
@@ -33,7 +34,8 @@
         android:layout_below="@+id/title"
         android:layout_marginTop="18dp"
         android:ems="10"
-        android:inputType="textMultiLine" >
+        android:inputType="textMultiLine"
+        android:hint="Enter you question" >
 
         <requestFocus />
     </EditText>
@@ -42,18 +44,21 @@
         android:id="@+id/tags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btnVoteup"
         android:layout_alignLeft="@+id/text"
-        android:layout_below="@+id/text"
         android:ems="10"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:hint="Enter tags associated with the question" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnVoteup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/tags"
-        android:layout_below="@+id/tags"
-        android:text="@string/button_post"
-        android:onClick="postQuestionButton" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="37dp"
+        android:onClick="postQuestionButton"
+        android:text="@string/button_post" />
 
 </RelativeLayout>

@@ -65,7 +65,7 @@ public class TagDataSource implements DataSourceUtils {
 	
 	
 	public ArrayList<String> getAllTheTags() {
-		Cursor cursor = database.rawQuery("SELECT tag FROM tags", new String [] {});
+		Cursor cursor = database.rawQuery("SELECT tag FROM tags Order by tag ", new String [] {});
 		ArrayList<String> list = new ArrayList<String>();
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {

@@ -32,7 +32,7 @@ public class AnswerDataSource extends PostDataSource{
 	}
 	
 	public ArrayList<Answer> getAnswers(int id) {
-		Cursor cursor = database.rawQuery("SELECT answer_id FROM QuestionHasAnswer WHERE question_id = ?", 
+		Cursor cursor = database.rawQuery("SELECT answer_id FROM QuestionHasAnswer WHERE question_id = ? ORDER BY score", 
 				new String[] {String.valueOf(id)});
 		cursor.moveToFirst();
 		ArrayList<Answer> answers = new ArrayList<Answer>();
@@ -46,6 +46,26 @@ public class AnswerDataSource extends PostDataSource{
 		}
 		return answers;
 	}
+	
+	public ArrayList<Answer> getSortedAnswers(int id) {
+		Cursor cursor = database.rawQuery("SELECT id,parent_id, score FROM posts WHERE parent_id = ? ORDER BY score DESC", 
+				new String[] {String.valueOf(id)});
+		cursor.moveToFirst();
+		ArrayList<Answer> answers = new ArrayList<Answer>();
+		
+		while(!cursor.isAfterLast()) {			
+			try {
+				
+				answers.add(getAnswer(cursor.getInt(cursor.getColumnIndex("id"))));
+			} 
+			catch (wrongTypeException e) {
+			}
+			cursor.moveToNext();
+		}
+		return answers;
+	}
+	
+	
 	
 
 	public int setAnswer(Answer answer) {

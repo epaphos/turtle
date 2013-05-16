@@ -1,19 +1,19 @@
 package com.example.turtlestack;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class QuestionActivity extends Activity {
 	QuestionDataSource ds;
+	UserDataSource us; 
 	
 	@SuppressLint("NewApi")   
     @Override
@@ -24,7 +24,9 @@ public class QuestionActivity extends Activity {
 	
 	public void postQuestionButton(View v) {
         ds = QuestionDataSource.getInstance(this);
+        us = UserDataSource.getInstance(this);
 		ds.open();
+		us.open();
 		EditText mEdit; 
     	mEdit = (EditText) findViewById(R.id.title);
     	String title  = mEdit.getText().toString();
@@ -32,14 +34,16 @@ public class QuestionActivity extends Activity {
     	String body  = mEdit.getText().toString();
     	mEdit = (EditText) findViewById(R.id.tags);
     	String tags  = mEdit.getText().toString();
-		Question question = new Question(title, body,tags);
+    	User user = us.getDummyUser();
+    	Question question = new Question(title, body,tags, user.getUserId());
 		ds.write(question);
         ds.close();
+        us.close();
 		back(v);
 	}
 	
 	public void back(View v) {
-		Intent i = new Intent(this,MainActivity.class);
+		Intent i = new Intent(this,BrowseActivity.class);
 		startActivity(i);
 	}
 	
@@ -58,5 +62,7 @@ public class QuestionActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
     
 }

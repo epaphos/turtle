@@ -17,12 +17,14 @@ public class Question extends Post{
 	}
 
 	//New Question Constructor
-	public Question(String title, String body, String tags) {
+	public Question(String title, String body, String tags, int userId) {
 		super(body);
+		this.ownerUserId = userId;
 		this.setPostTypeId(1);
 		this.viewCount = 0;
 		this.title = title;
 		this.tags = tags;
+		this.answerCount = 0;
 	}
 
 	/**
