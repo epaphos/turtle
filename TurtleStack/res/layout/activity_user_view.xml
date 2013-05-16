@@ -31,7 +31,7 @@
             android:layout_alignTop="@+id/profilePicture"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/profilePicture"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/userLblCreationDate"

@@ -77,8 +77,6 @@ public class UserViewActivity extends Activity {
 
 		TextView reputation = (TextView) findViewById(R.id.userLblReputation);
 		reputation.setText(Integer.toString(user.getReputation()));
-		reputation.setGravity(Gravity.CENTER_HORIZONTAL);
-
 		setTitle(user.getDisplayName());
 
 	}
