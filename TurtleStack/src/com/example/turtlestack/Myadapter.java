@@ -28,11 +28,14 @@ public class Myadapter extends BaseAdapter{
     private static LayoutInflater inflater=null;
     //public ImageLoader imageLoader; //not needed
     
+    private Context context;
+
+   
     //constructor
-    public Myadapter(Activity a, ArrayList<Post> posts, ArrayList<User> user){
-    	activity = a;
+    public Myadapter(Context context, ArrayList<Post> posts, ArrayList<User> user){
+    	activity = (Activity) context;
         data=posts;
-        
+        this.context = context;
         this.user = user;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //imageLoader=new ImageLoader(activity.getApplicationContext());
@@ -83,41 +86,25 @@ public class Myadapter extends BaseAdapter{
         		//TODO: Add tags to linear layout
         		
                 qAuthor.setText("By: " + tempUser.getDisplayName());
+                qAuthor.setTag(position);
                 qReputation.setText("Reputation: " + String.valueOf(tempUser.getReputation()));
                 qCount.setText(String.valueOf(question.getScore()));
                 
-                Button btnVoteUp = (Button) vi.findViewById(R.id.btnQuestionVoteUp);
-                
-                
-               try{ 
-            	   //btnVoteUp.setOnClickListener(onClickVoteUp);
-            	   //TODO: find out why this throws null pointer exception but still works
-            	   btnVoteUp.setOnClickListener(new OnClickListener(){
-                	@Override
-                	public void onClick(View view){
-                		int pos =  (Integer) view.getTag();
-                		
-                		Log.v(log,"Clicked on VoteUpQuestion" + pos);
-                	}
-                });
-               } catch (Exception e) {
-            	   
-            	   Log.v(log,"not able to attach OnClickListener to VoteUpQuestion" + e.toString());
-               }
-                
+            //    Button btnVoteUp = (Button) vi.findViewById(R.id.btnQuestionVoteUp);
+                            
+        
                try{
             	   qAuthor.setClickable(true);
             	   qAuthor.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
-						
+						Log.v("teststrings", "Clicked on Author label in question");
 						int pos = (Integer) v.getTag();
-						Log.v(log,"Clicked on Author label in question");
-						//TODO: fix Intent
-						//Intent intent = new Intent(a, UserViewActivity.class);
-						//intent.putExtra("userId", user.get(pos).getUserId()); //Sample Id which exists in database
-						//startActivity(intent);
+						
+						Intent intent = new Intent(context, UserViewActivity.class);
+						intent.putExtra("userId", user.get(pos).getUserId()); //Sample Id which exists in database
+						context.startActivity(intent);
 						
 					}
 				});
