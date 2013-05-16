@@ -32,8 +32,7 @@
             android:parentActivityName="com.example.turtlestack.BrowseActivity" >
         </activity>
         <activity
-            android:name="com.example.turtlestack.UserViewActivity"
-            android:label="@string/title_activity_user_view"
+            android:name="com.example.turtlestack.UserViewActivity"  
             android:parentActivityName="com.example.turtlestack.BrowseActivity" >
         </activity>
         <activity
@@ -53,6 +52,7 @@
             android:name="com.example.turtlestack.TagCloudFragment"
             android:label="@string/title_activity_tag_cloud_fragment" >
         </activity>
+ 
     </application>
 
 </manifest>
