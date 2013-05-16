@@ -80,7 +80,7 @@ public class TagCloudFragment extends Fragment {
 			});
 		buttonMain.setOnClickListener(new OnClickListener() {
 			  public void onClick(View view) {
-				  
+				  goQuestionsView(mainTag);
 			  }
 			});
 		buttonAfter.setOnClickListener(new OnClickListener() {
@@ -306,9 +306,17 @@ public class TagCloudFragment extends Fragment {
 
  
 	}
+	
 	public static void newDeadSet(){
 		deadSet = new ArrayList();
 	}
+	
+    public void goQuestionsView (String s) {
+		Intent intent = new Intent(getActivity(), BrowseActivity.class);
+		intent.putExtra("tagList", s);
+		startActivity(intent);
+    }
+    
 	public static void addToDeadList(String tag) {
 		if (deadSet.size() <5) {
 	    	deadSet.add("<"+tag+">");

@@ -51,42 +51,6 @@ public class TagCloud {
 		return cloudMap;
 	}
 	
-	public static ArrayList<Question> searchQuestionByTags(ArrayList<String> tags, Context context) {
-		ArrayList<Question> questions = new ArrayList();
-		TagDataSource ts = TagDataSource.getInstance(context);
-		ts.open();
-        QuestionDataSource ds = QuestionDataSource.getInstance(context);
-        ds.open();;
-		ArrayList<Integer> ids = ts.searchQuestionByTags(tags);
-		Iterator it = ids.iterator();
-		while (it.hasNext()) {
-			int id = (Integer) it.next();
-			try {
-				questions.add(ds.getQuestion(id));
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-		}
-		ds.close();
-		ts.close();
-		return questions;
-	}
-//	public TreeMap<String, Integer> Navigate (ArrayList<String> deadSet, String mainTag) {
-//		int i = 0;
-//		TreeMap<String, Integer> NavigateMap = new TreeMap<String,Integer>();
-//		Map<String,Integer> relationMap = this.tagCloud.get(mainTag);
-//		Iterator itKeys = Helpers.entriesSortedByValues(relationMap).iterator();
-//		while (itKeys.hasNext() && i < 5) {
-//			String key = (String) itKeys.next().toString().split("=")[0];
-//			if (!deadSet.contains(key)) {
-//				deadSet.add(key);
-//				NavigateMap.put(key, relationMap.get(key));
-//				i++;
-//			}
-//			Log.v("NAVIGATE", NavigateMap.toString());
-//		}
-//		return NavigateMap;
-//	}
 	/**
 	 * @return the tagCloud
 	 */

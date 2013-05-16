@@ -62,6 +62,7 @@ public class TagCloudActivity extends FragmentActivity {
             @Override 
             public boolean onQueryTextSubmit(String query) {
             	if (tc.isTagInTable(query)) {
+                    TagCloudFragment.addToDeadList(mainTag);
             		pager.setCurrentItem(allTags.indexOf(query));
             		hideKeyboard();
             	}
@@ -76,11 +77,7 @@ public class TagCloudActivity extends FragmentActivity {
     	InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
     	imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
 	}
-	public void setFragment(String newText) {
-        TagCloudFragment.addToDeadList(newText);
-		pager.setCurrentItem(allTags.indexOf(newText));
-		
-	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
