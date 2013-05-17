@@ -31,8 +31,11 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener,
 		createInstances();
 		ds = QuestionDataSource.getInstance(this);
 		ds.open();
-		
-		questionList = ds.getRecentQuestions(10);
+//		Log.v("QUESTIONS", ds.searchQuestionByTags("<.net>").toString());
+		Intent intent = getIntent();
+		String tags = intent.getStringExtra("tagList");
+		if (tags != null) questionList = ds.searchQuestionByTags(tags);
+		else questionList = ds.getRecentQuestions(10);
 		
 		lv = (ListView) findViewById(android.R.id.list);
         arrayAdapter = new MyBrowseAdapter(this, questionList);

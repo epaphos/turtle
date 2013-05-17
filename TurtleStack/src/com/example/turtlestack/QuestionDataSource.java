@@ -1,6 +1,7 @@
 package com.example.turtlestack;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.StringTokenizer;
 
 import android.content.Context;
@@ -76,6 +77,26 @@ public class QuestionDataSource extends PostDataSource {
 	
 	public int setQuestion(Question question) {
 		return super.write(question);
+	}
+	
+	public ArrayList<Question> searchQuestionByTags(String query) {
+		String t ="%"+query+"%";
+		Log.v("TAGS", t);
+		Cursor cursor = database.rawQuery("SELECT * FROM posts WHERE (post_type_id=1) " +
+				"AND (tags LIKE ?)", new String[] {t});
+		
+		ArrayList<Question> ids = new ArrayList();
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			try {
+				ids.add((Question) read(cursor.getInt(cursor.getColumnIndex("id"))));
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			cursor.moveToNext();
+		}
+		return ids;
 	}
 	
 	public ArrayList<Question> getSearchResults(String searchQuery) {

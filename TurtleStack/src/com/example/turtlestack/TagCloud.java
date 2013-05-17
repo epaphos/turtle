@@ -51,21 +51,6 @@ public class TagCloud {
 		return cloudMap;
 	}
 	
-	public TreeMap<String, Integer> Navigate (ArrayList<String> deadSet, String mainTag) {
-		int i = 0;
-		TreeMap<String, Integer> NavigateMap = new TreeMap<String,Integer>();
-		Map<String,Integer> relationMap = this.tagCloud.get(mainTag);
-		Iterator itKeys = Helpers.entriesSortedByValues(relationMap).iterator();
-		while (itKeys.hasNext() && i < 5) {
-			String key = (String) itKeys.next().toString().split("=")[0];
-			if (!deadSet.contains(key)) {
-				deadSet.add(key);
-				NavigateMap.put(key, relationMap.get(key));
-				i++;
-			}
-		}
-		return NavigateMap;
-	}
 	/**
 	 * @return the tagCloud
 	 */
