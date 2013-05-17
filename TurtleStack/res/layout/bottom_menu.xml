@@ -9,10 +9,10 @@
         android:id="@+id/userProfile"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
-        android:layout_height="61dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1.00"
-        android:src="@drawable/starimage"
-        android:onClick="viewUserProfile" />
+        android:onClick="viewUserProfile"
+        android:src="@drawable/lightholouser" />
 
     <ImageButton
         style="?android:attr/borderlessButtonStyle"
@@ -20,7 +20,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:src="@drawable/postimage"
+        android:src="@drawable/lightholopost"
         android:onClick="postQuestion" />
 
     <ImageButton
@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:src="@drawable/filterimage"
+        android:src="@drawable/lightholotag"
         android:onClick="viewTagScreen" />
 
 </LinearLayout>

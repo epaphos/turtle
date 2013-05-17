@@ -3,8 +3,7 @@
     xmlns:android1="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:baselineAligned="false" 
-    android:background="@android:color/black">
+    android:baselineAligned="false">
 
     <ListView
         android:id="@android:id/list"
@@ -13,14 +12,13 @@
         android:layout_above="@+id/footer"
         android:divider="@android:color/black"
         android:dividerHeight="0dp"
-        android:listSelector="@drawable/list_selector"
-        android:background="@android:color/black" >
+        android:listSelector="@drawable/list_selector" >
     </ListView>
 
     <include
         android:id="@+id/footer"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         layout="@layout/bottom_menu" >

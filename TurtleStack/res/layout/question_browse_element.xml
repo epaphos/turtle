@@ -15,7 +15,6 @@
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/linearlayout2"
         android:text="Title"
-        android:textColor="@color/TitleColor"
         android:textSize="18sp"
         android:layout_marginLeft="5dp" />
 
