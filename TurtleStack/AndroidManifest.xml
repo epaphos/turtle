@@ -45,6 +45,7 @@
         </activity>
         <activity
             android:name="com.example.turtlestack.TagCloudActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_tag_cloud"
             android:parentActivityName="com.example.turtlestack.BrowseActivity" >
         </activity>

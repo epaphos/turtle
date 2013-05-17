@@ -148,7 +148,9 @@ public class TagCloudFragment extends Fragment {
 		String aux;
 		int max = 0, nRelations = 0,r1v=0,r2v=0,r3v=0,r4v=0;
 		boolean assigned = false;
-		Iterator it = Helpers.entriesSortedByValues(cloud).iterator();
+		Iterator it = null;
+		if (Helpers.entriesSortedByValues(cloud).size() != 0) 
+			it = Helpers.entriesSortedByValues(cloud).iterator();
 		Button buttonBefore = (Button) view.findViewById(R.id.buttonBefore);
 		Button buttonMain = (Button) view.findViewById(R.id.buttonMain);
 		Button buttonAfter = (Button) view.findViewById(R.id.buttonAfter);
