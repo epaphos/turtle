@@ -62,12 +62,9 @@
         android:id="@+id/questionTags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@+id/questionTitle"
         android:layout_below="@+id/questionTitle"
-        android:layout_marginLeft="19dp"
-        android:layout_toLeftOf="@+id/linearlayout2"
         android:text="Tags Tags Tags"
         android:textColor="@color/TagsColor" />
-    
 
 </RelativeLayout>
