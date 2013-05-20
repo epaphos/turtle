@@ -1,10 +1,25 @@
 package com.example.turtlestack;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.StrictMode;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Myadapter extends BaseAdapter{
@@ -24,7 +40,7 @@ public class Myadapter extends BaseAdapter{
     private ArrayList<Post> data;
     private ArrayList<User> user;
     private static String log = "Adapter";
-    
+    private String imageUrl = "http://www.gravatar.com/avatar/";
     private static LayoutInflater inflater=null;
     //public ImageLoader imageLoader; //not needed
     
@@ -65,6 +81,7 @@ public class Myadapter extends BaseAdapter{
         View vi=convertView;
         Log.v(log,"getView called");
         
+               
         	
         if (data.get(position).getPostTypeId()==1){
         	
@@ -76,7 +93,8 @@ public class Myadapter extends BaseAdapter{
         		TextView qAuthor = (TextView) vi.findViewById(R.id.textViewQuestionOwner);
         		TextView qReputation = (TextView) vi.findViewById(R.id.textViewQuestionOwnerRep);
         		TextView qCount = (TextView) vi.findViewById(R.id.textViewQuestionVotes);
-        		
+        		ImageView profilePicture = (ImageView) vi.findViewById(R.id.userProfilePicture);                  
+                
         		vi.setTag(position);
         		
         		Question question = (Question) data.get(position);
@@ -89,8 +107,10 @@ public class Myadapter extends BaseAdapter{
                 qAuthor.setTag(position);
                 qReputation.setText("Reputation: " + String.valueOf(tempUser.getReputation()));
                 qCount.setText(String.valueOf(question.getScore()));
-                                  
-        
+                String emailHash = tempUser.getEmailHash();
+                Bitmap bimage=  getBitmapFromURL(imageUrl + emailHash);
+                profilePicture.setImageBitmap(bimage);
+                
                try{
             	   qAuthor.setClickable(true);
             	   qAuthor.setOnClickListener(new OnClickListener() {
@@ -117,32 +137,27 @@ public class Myadapter extends BaseAdapter{
         {
         	
 	        Log.v(log,"pos="+position);
-	        //if(convertView==null)
 	            vi = inflater.inflate(R.layout.answer_element, null);
-	        //Log.v(log,"New thingy inflated");
 	        
 	        TextView body = (TextView)vi.findViewById(R.id.txtAnswer); 
 	        TextView author = (TextView)vi.findViewById(R.id.txtviewAuthor); 
 	        TextView reputation = (TextView)vi.findViewById(R.id.txtviewRep); 
 	        TextView count = (TextView) vi.findViewById(R.id.textViewCount1);
 	        CheckBox accepted = (CheckBox) vi.findViewById(R.id.chkAcceptedAnswer);
+	        ImageView profilePicture = (ImageView) vi.findViewById(R.id.answerProfilePicture);
 	        
 	        vi.setTag(position);
-	        //Log.v(log,"Got elements");
-	        //Log.v(log,"body="+body.toString()+" author="+author.toString()+" reputation="+reputation.toString()+" count="+count.toString());
 	        Answer answer = (Answer) data.get(position);
 	        User usr = user.get(position);
 	        
-	        //Log.v(log,"got answer and user");
-	        // Setting all values in listview
 	        body.setText(Html.fromHtml(answer.getBody()).toString());
-	        //body.setText(answer.getBody());
 	        author.setText("By: " + usr.getDisplayName());
 	        author.setTag(position); 
 	        reputation.setText("Reputation: " + String.valueOf(usr.getReputation()));
 	        count.setText(String.valueOf(answer.getScore()));
-	        //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
-	        //Log.v(log,"filled values in ");
+	        String emailHash = usr.getEmailHash();
+            Bitmap bimage=  getBitmapFromURL(imageUrl + emailHash);
+            profilePicture.setImageBitmap(bimage);
 	        
 	        if(answer.getId()==((Question)data.get(0)).getAcceptedAnswer()){
 	        	accepted.setChecked(true);
@@ -168,22 +183,30 @@ public class Myadapter extends BaseAdapter{
             }    
 	       
         }
-        
-        
-        
+               
         return vi;
     }
 
-
+	public static Bitmap getBitmapFromURL(String src) {
+        try {
+        	// Should not be done like this, should avoid network IO on main thread. Make a seperate class instead
+        	//http://stackoverflow.com/questions/6343166/android-os-networkonmainthreadexception
+        	StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy); 
+            Log.e("src",src);
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            Log.e("Bitmap","returned");
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("Exception",e.getMessage());
+            return null;
+        }
+    }
 	
-	private OnClickListener onClickVoteUp = new OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			Log.v(log, "VoteUp Clicked");
-			//final int position = mListView.getPositionForView((View) v.getParent());
-			//(ListView) v.getParent().;
-		}
-	};
-
 }

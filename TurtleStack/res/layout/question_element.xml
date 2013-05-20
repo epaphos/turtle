@@ -68,22 +68,30 @@
         android:text="Body of Question" 
         android:textSize="5pt"/>
 
-    <TextView
-        android:id="@+id/textViewQuestionOwner"
+    <ImageView
+        android:id="@+id/userProfilePicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewQuestionBody"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/textViewQuestionBody"
         android:layout_marginTop="17dp"
-        android:text="TextView" />
+        android:src="@drawable/darkholouser" />
 
     <TextView
         android:id="@+id/textViewQuestionOwnerRep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewQuestionOwner"
-        android:layout_alignBottom="@+id/textViewQuestionOwner"
-        android:layout_alignRight="@+id/textViewQuestionBody"
+        android:layout_alignLeft="@+id/textViewQuestionOwner"
+        android:layout_below="@+id/textViewQuestionOwner"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textViewQuestionOwner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/userProfilePicture"
+        android:layout_marginTop="18dp"
+        android:layout_toRightOf="@+id/userProfilePicture"
         android:text="TextView" />
 
 </RelativeLayout>
