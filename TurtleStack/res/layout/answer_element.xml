@@ -14,7 +14,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
         android:layout_toLeftOf="@+id/linearLayoutVotes1"
-        android:textSize="5pt"
+        android:textSize="6pt"
         android:text="Some random fill text. Some random fill text. Some random fill text. Some random fill text. Some random fill text. Some random fill text. Some random fill text. Some random fill text. Some random fill text." />
 
     <LinearLayout
@@ -74,7 +74,8 @@
  		android:textColor="@color/Blue"
         android:layout_alignTop="@+id/answerProfilePicture"
         android:layout_toRightOf="@+id/answerProfilePicture"
-        android:text="Author" />
+        android:text="Author"
+        android:textSize="5pt" />
 
     <TextView
         android:id="@+id/txtviewRep"
@@ -82,6 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/answerProfilePicture"
         android:layout_below="@+id/txtviewAuthor"
-        android:text="Rep" />
+        android:text="Rep" 
+        android:textSize="5pt"/>
 
 </RelativeLayout>

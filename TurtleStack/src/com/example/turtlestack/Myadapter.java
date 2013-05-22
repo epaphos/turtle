@@ -94,21 +94,24 @@ public class Myadapter extends BaseAdapter{
         		TextView qReputation = (TextView) vi.findViewById(R.id.textViewQuestionOwnerRep);
         		TextView qCount = (TextView) vi.findViewById(R.id.textViewQuestionVotes);
         		ImageView profilePicture = (ImageView) vi.findViewById(R.id.userProfilePicture);                  
-                
-        		vi.setTag(position);
+                TextView qTag = (TextView) vi.findViewById(R.id.questionTags);
+        		
+                vi.setTag(position);
         		
         		Question question = (Question) data.get(position);
         		User tempUser = user.get(position);
         		qTitle.setText(question.getTitle());
-        		qBody.setText(Html.fromHtml(question.getBody()).toString());
-        		//TODO: Add tags to linear layout
-        		
+        		String bodyText = question.getBody().replace("\\n", " ");
+        		qBody.setText(Html.fromHtml(bodyText));
+        		String tmptag = question.getTags().replaceAll("<", "").replaceAll(">", ", ");
+        	    qTag.setText(tmptag);
+
                 qAuthor.setText("By: " + tempUser.getDisplayName());
                 qAuthor.setTag(position);
                 qReputation.setText("Reputation: " + String.valueOf(tempUser.getReputation()));
                 qCount.setText(String.valueOf(question.getScore()));
                 String emailHash = tempUser.getEmailHash();
-                Bitmap bimage=  getBitmapFromURL(imageUrl + emailHash);
+                Bitmap bimage=  BitmapReciver.getBitmapFromURL(imageUrl + emailHash);
                 profilePicture.setImageBitmap(bimage);
                 
                try{
@@ -150,13 +153,15 @@ public class Myadapter extends BaseAdapter{
 	        Answer answer = (Answer) data.get(position);
 	        User usr = user.get(position);
 	        
-	        body.setText(Html.fromHtml(answer.getBody()).toString());
+	        String bodyText = answer.getBody().replace("\\n", " ");
+    		body.setText(Html.fromHtml(bodyText));
+	        
 	        author.setText("By: " + usr.getDisplayName());
 	        author.setTag(position); 
 	        reputation.setText("Reputation: " + String.valueOf(usr.getReputation()));
 	        count.setText(String.valueOf(answer.getScore()));
 	        String emailHash = usr.getEmailHash();
-            Bitmap bimage=  getBitmapFromURL(imageUrl + emailHash);
+            Bitmap bimage=  BitmapReciver.getBitmapFromURL(imageUrl + emailHash);
             profilePicture.setImageBitmap(bimage);
 	         
             if(answer.getId()==((Question)data.get(0)).getAcceptedAnswer()){
@@ -187,7 +192,7 @@ public class Myadapter extends BaseAdapter{
         return vi;
     }
 
-	public static Bitmap getBitmapFromURL(String src) {
+	/*public static Bitmap getBitmapFromURL(String src) {
         try {
         	// Should not be done like this, should avoid network IO on main thread. Make a seperate class instead
         	//http://stackoverflow.com/questions/6343166/android-os-networkonmainthreadexception
@@ -207,6 +212,6 @@ public class Myadapter extends BaseAdapter{
             Log.e("Exception",e.getMessage());
             return null;
         }
-    }
+    }*/
 	
 }

@@ -172,12 +172,5 @@ public class QuestionDisplayActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public void voteUp(View view){
-		
-		if (view.findViewById(R.id.btnQuestionVoteUp) != null)
-			Log.v("Adapter", "Voteup Question  clicked");
-		if (view.findViewById(R.id.btnVoteDown) != null)
-			Log.v("Adapter", "Voteup for Answer clicked");
-			
-	}
+	
 }
