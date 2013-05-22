@@ -90,8 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/userProfilePicture"
-        android:layout_marginTop="18dp"
         android:layout_toRightOf="@+id/userProfilePicture"
-        android:text="TextView" />
+        android:text="TextView" 
+        android:textColor="@color/Blue"/>
 
 </RelativeLayout>

@@ -62,26 +62,26 @@
         android:id="@+id/answerProfilePicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/txtAnswer"
+        android:layout_alignParentBottom="true"
         android:src="@drawable/darkholouser" />
-
-    <TextView
-        android:id="@+id/txtviewRep"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/answerProfilePicture"
-        android:layout_below="@+id/txtviewAuthor"
-        android:layout_marginLeft="61dp"
-        android:text="TextView"
-        android:textSize="7pt" />
 
     <TextView
         android:id="@+id/txtviewAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtviewRep"
+ 		android:textColor="@color/Blue"
         android:layout_alignTop="@+id/answerProfilePicture"
-        android:text="TextView"
-        android:textSize="7pt" />
+        android:layout_toRightOf="@+id/answerProfilePicture"
+        android:text="Author" />
+
+    <TextView
+        android:id="@+id/txtviewRep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/answerProfilePicture"
+        android:layout_below="@+id/txtviewAuthor"
+        android:text="Rep" />
 
 </RelativeLayout>

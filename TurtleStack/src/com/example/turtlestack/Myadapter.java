@@ -158,8 +158,8 @@ public class Myadapter extends BaseAdapter{
 	        String emailHash = usr.getEmailHash();
             Bitmap bimage=  getBitmapFromURL(imageUrl + emailHash);
             profilePicture.setImageBitmap(bimage);
-	        
-	        if(answer.getId()==((Question)data.get(0)).getAcceptedAnswer()){
+	         
+            if(answer.getId()==((Question)data.get(0)).getAcceptedAnswer()){
 	        	accepted.setChecked(true);
 	        }
 	        try{
