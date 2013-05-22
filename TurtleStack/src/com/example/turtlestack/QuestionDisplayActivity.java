@@ -71,11 +71,12 @@ public class QuestionDisplayActivity extends Activity {
 		Answer answer = new Answer(questionId, body, us.getDummyUser().getUserId());
 		int answerId = as.setAnswer(answer);
 		try {
+			Log.v("HERE","HERE");
 			Question question = qs.getQuestion(questionId);
 			question.setAnswerCount(question.getAnswerCount() +1);
 			qs.setQuestion(question);
-			as.addAnswerToRT(question.getId(),answerId);
 		} catch (wrongTypeException e) { }
+		if (question.getAnswerCount() == 0) as.addAnswerToRT(questionId, answerId);
 		us.close();	
 		as.close();
 		finish();

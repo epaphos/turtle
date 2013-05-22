@@ -1,5 +1,8 @@
 package com.example.turtlestack;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Question extends Post{
 	private int acceptedAnswer;
 	private int viewCount;
@@ -59,6 +62,15 @@ public class Question extends Post{
 		this.answerCount = answerCount;
 		this.favoriteCount = favoriteCount;
 		// TODO Auto-generated constructor stub
+	}
+	public static ArrayList<Question> intersection(ArrayList<Question> q1,ArrayList<Question> q2) {
+		ArrayList<Question> returnValue = new ArrayList();
+		Iterator i = q2.iterator();
+		while(i.hasNext()) {
+			Question target = (Question) i.next();
+			if (q1.contains(target)) returnValue.add(target);
+		}
+		return returnValue;
 	}
 	
 	/* (non-Javadoc)

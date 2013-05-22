@@ -79,7 +79,12 @@ public class AnswerDataSource extends PostDataSource{
 		Log.v("ID ANSWER 1", Integer.toString(aId));
 		values.put("question_id",qId);
 		values.put("answer_id", aId);
-		database.insert("QuestionHasAnswer",null, values);
+		Log.v("QUID",String.valueOf(qId)+" "+ String.valueOf(aId) );
+		values.put("question_id", qId);
+		values.put("answer_id", aId);
+		database.insert("QuestionHasAnswer", null, values);
+//		database.rawQuery("INSERT INTO QuestionHasAnswer(question_id, answer_id) VALUES (?,?)",new String []{String.valueOf(qId), String.valueOf(aId)});
+		//database.insert("QuestionHasAnswer",null, values);
 	}
 	
 }

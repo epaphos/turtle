@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
@@ -22,7 +23,8 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener,
 	
 	private ListView lv;
 	private ArrayList<Question> questionList;
-	MyBrowseAdapter arrayAdapter; 
+	MyBrowseAdapter arrayAdapter;
+	boolean filterActualQuestions = false;
 	        
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,10 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener,
 //		Log.v("QUESTIONS", ds.searchQuestionByTags("<.net>").toString());
 		Intent intent = getIntent();
 		String tags = intent.getStringExtra("tagList");
-		if (tags != null) questionList = ds.searchQuestionByTags(tags);
+		if (tags != null) {
+			questionList = ds.searchQuestionByTags(tags);
+			filterActualQuestions = true;
+		}
 		else questionList = ds.getRecentQuestions(10);
 		
 		lv = (ListView) findViewById(android.R.id.list);
@@ -114,9 +119,11 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener,
 		Log.v("Search", query);
 		
 		ds.open();
-		
-		questionList = ds.getSearchResults(query);		
-		
+		if(filterActualQuestions) {
+			ArrayList<Question> ReceivedQuestionList = questionList;
+			questionList = Question.intersection(ReceivedQuestionList,ds.getSearchResults(query));
+		}
+		else questionList = ds.getSearchResults(query);
 		arrayAdapter = new MyBrowseAdapter(this, questionList);
 		lv.setAdapter(arrayAdapter);
 		

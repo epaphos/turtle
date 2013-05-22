@@ -13,7 +13,7 @@ public class Answer extends Post {
 		super(body);
 		this.ownerUserId = userId;
 		this.setPostTypeId(2);
-		this.parentId = parentId; //we have to implement it
+		this.parentId = parentId; 
 	}
 	
 	/**

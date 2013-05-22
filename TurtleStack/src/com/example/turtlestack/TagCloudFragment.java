@@ -293,17 +293,17 @@ public class TagCloudFragment extends Fragment {
 			i3 = (nRelations-2)*max/nRelations;
 			i4 = (nRelations-3)*max/nRelations;
 	    	if(( i1 >= value ) && (value > i2)) {
-	    		button.setBackgroundResource(R.drawable.redbubble);
+	    		button.setBackgroundResource(R.drawable.greenbubble);
 	    	}
     		if((i2 >= value ) && (value > i3 )) {
-    			button.setBackgroundResource(R.drawable.yellowbubble);
+    			button.setBackgroundResource(R.drawable.orange);
     		}
 
     		if((i3 >= value ) && (value > i4 )) {
-    			button.setBackgroundResource(R.drawable.greenbubble);
+    			button.setBackgroundResource(R.drawable.yellowbubble);
     		}
     		if(( i4 >= value ) && (value > 0 )){
-    			button.setBackgroundResource(R.drawable.bluebubble);
+    			button.setBackgroundResource(R.drawable.redbubble);
     		}
 
  

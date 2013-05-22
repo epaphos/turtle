@@ -39,8 +39,6 @@ public class Myadapter extends BaseAdapter{
         this.user = user;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //imageLoader=new ImageLoader(activity.getApplicationContext());
-        Log.v(log,"Adapter created");
-        Log.v(log,"Answers expected = " + data.size());
     }
     
 	@Override
@@ -63,13 +61,11 @@ public class Myadapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
-        Log.v(log,"getView called");
         
         	
         if (data.get(position).getPostTypeId()==1){
         	
                 vi = inflater.inflate(R.layout.question_element, null);
-                Log.v(log,"pos=0 inflated");
         	
         		TextView qTitle = (TextView) vi.findViewById(R.id.textViewQuestionTitle);
         		TextView qBody = (TextView) vi.findViewById(R.id.textViewQuestionBody);
@@ -97,7 +93,6 @@ public class Myadapter extends BaseAdapter{
 					
 					@Override
 					public void onClick(View v) {
-						Log.v("teststrings", "Clicked on Author label in question");
 						int pos = (Integer) v.getTag();
 						
 						Intent intent = new Intent(context, UserViewActivity.class);
@@ -108,7 +103,6 @@ public class Myadapter extends BaseAdapter{
 				});
                } catch (Exception e) {
             	   
-            	   Log.v(log,"not able to attach OnClickListener to Author label" + e.toString());
                }
                 
         } 
@@ -116,10 +110,8 @@ public class Myadapter extends BaseAdapter{
         if (data.get(position).getPostTypeId()==2) //check that type equals answer
         {
         	
-	        Log.v(log,"pos="+position);
 	        //if(convertView==null)
 	            vi = inflater.inflate(R.layout.answer_element, null);
-	        //Log.v(log,"New thingy inflated");
 	        
 	        TextView body = (TextView)vi.findViewById(R.id.txtAnswer); 
 	        TextView author = (TextView)vi.findViewById(R.id.txtviewAuthor); 
@@ -128,12 +120,9 @@ public class Myadapter extends BaseAdapter{
 	        CheckBox accepted = (CheckBox) vi.findViewById(R.id.chkAcceptedAnswer);
 	        
 	        vi.setTag(position);
-	        //Log.v(log,"Got elements");
-	        //Log.v(log,"body="+body.toString()+" author="+author.toString()+" reputation="+reputation.toString()+" count="+count.toString());
 	        Answer answer = (Answer) data.get(position);
 	        User usr = user.get(position);
 	        
-	        //Log.v(log,"got answer and user");
 	        // Setting all values in listview
 	        body.setText(Html.fromHtml(answer.getBody()).toString());
 	        //body.setText(answer.getBody());
@@ -142,7 +131,6 @@ public class Myadapter extends BaseAdapter{
 	        reputation.setText("Reputation: " + String.valueOf(usr.getReputation()));
 	        count.setText(String.valueOf(answer.getScore()));
 	        //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
-	        //Log.v(log,"filled values in ");
 	        
 	        if(answer.getId()==((Question)data.get(0)).getAcceptedAnswer()){
 	        	accepted.setChecked(true);
@@ -153,7 +141,6 @@ public class Myadapter extends BaseAdapter{
 					
 					@Override
 					public void onClick(View v) {
-						Log.v("teststrings", "Clicked on Author label in question");
 						int pos = (Integer) v.getTag();
 						
 						Intent intent = new Intent(context, UserViewActivity.class);
@@ -164,7 +151,6 @@ public class Myadapter extends BaseAdapter{
 				});
             } catch (Exception e) {
          	   
-         	   Log.v(log,"not able to attach OnClickListener to Author label" + e.toString());
             }    
 	       
         }
@@ -180,7 +166,6 @@ public class Myadapter extends BaseAdapter{
 		
 		@Override
 		public void onClick(View v) {
-			Log.v(log, "VoteUp Clicked");
 			//final int position = mListView.getPositionForView((View) v.getParent());
 			//(ListView) v.getParent().;
 		}
