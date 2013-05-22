@@ -338,9 +338,6 @@ public class TagCloudFragment extends Fragment {
 	    buttonRelationed3.setBackgroundResource(R.drawable.db5);
 	    buttonBefore.setBackgroundResource(R.drawable.db6);
 	    buttonMain.setBackgroundResource(R.drawable.db7);
-	    buttonMain.setText("");
-	    buttonBefore.setText("");
-	    buttonAfter.setText("");
 	    if (pager.getCurrentItem() == dragonTag) allTheDragonBalls =false;
 	}
 	public static void newDeadSet(){
