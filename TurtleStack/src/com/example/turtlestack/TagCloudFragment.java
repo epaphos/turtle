@@ -149,6 +149,7 @@ public class TagCloudFragment extends Fragment {
 		int max = 0, nRelations = 0,r1v=0,r2v=0,r3v=0,r4v=0;
 		boolean assigned = false;
 		Iterator it = null;
+		if (cloud != null)
 		if (Helpers.entriesSortedByValues(cloud).size() != 0) 
 			it = Helpers.entriesSortedByValues(cloud).iterator();
 		Button buttonBefore = (Button) view.findViewById(R.id.buttonBefore);
@@ -163,7 +164,7 @@ public class TagCloudFragment extends Fragment {
 		buttonBefore.setText(before);
 		after = tc.getNext(mainTag);
 		buttonAfter.setText(after);
-		if (it.hasNext()) {
+		if (cloud != null && it.hasNext()) {
 			assigned = false;
 			aux =  it.next().toString();
 			while (!assigned) {
@@ -192,7 +193,7 @@ public class TagCloudFragment extends Fragment {
 			buttonRelationed1.setEnabled(false);
 			buttonRelationed1.setVisibility(View.INVISIBLE);
 		}
-		if (it.hasNext()) {
+		if (cloud != null && it.hasNext()) {
 			assigned = false;
 			aux =  it.next().toString();
 			while (!assigned) {
@@ -219,7 +220,7 @@ public class TagCloudFragment extends Fragment {
 			buttonRelationed2.setEnabled(false);
 			buttonRelationed2.setVisibility(View.INVISIBLE);
 		}
-		if (it.hasNext()) {
+		if (cloud != null && it.hasNext()) {
 			assigned = false;
 			aux =  it.next().toString();
 			while (!assigned) {
@@ -246,7 +247,7 @@ public class TagCloudFragment extends Fragment {
 			buttonRelationed3.setEnabled(false);
 			buttonRelationed3.setVisibility(View.INVISIBLE);
 		}
-		if (it.hasNext()) {
+		if (cloud != null && it.hasNext()) {
 			assigned = false;
 			aux =  it.next().toString();
 			while (!assigned) {
@@ -281,8 +282,8 @@ public class TagCloudFragment extends Fragment {
 			if (nRelations >= 3) heatIt(max,nRelations,r3v,buttonRelationed3);//70
 			if (nRelations >= 4) heatIt(max,nRelations,r4v,buttonRelationed4);//30
 		}
-
 	}
+	
 	private void heatIt(int a,int b,int value,Button button) {
 		double max = a;
 		double nRelations =b;

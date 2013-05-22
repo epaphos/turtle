@@ -27,7 +27,6 @@ public abstract class PostDataSource implements DataSourceUtils {
 	}
 	
 	public Post read(int id) {
-		
 		Cursor cursor = database.rawQuery("select * from posts where id = ?", new String[] { String.valueOf(id) });
 		cursor.moveToFirst();
 		/*Extracting values
@@ -114,7 +113,6 @@ public abstract class PostDataSource implements DataSourceUtils {
 	}
 
 	public int write(Post post) {
-
 		if (post instanceof Answer) {
 			Answer answer = (Answer) post;
 			ContentValues values = new ContentValues();
@@ -171,13 +169,11 @@ public abstract class PostDataSource implements DataSourceUtils {
 	        database.insert("posts", "parent_id", values);
 	        return this.getLast().getId();
 		}
-		
 		return -1;
 	}
 	
 	//That should not exists.
 	public Post getLast() {
-		
 		Cursor cursor = database.rawQuery("select * from posts where id = (select max(id) from posts)",  new String[] { });
 		cursor.moveToFirst();
 		/*Extracting values

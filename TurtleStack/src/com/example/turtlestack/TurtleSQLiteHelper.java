@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -115,6 +116,34 @@ public class TurtleSQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE QuestionHasAnswer(question_id INTEGER, answer_id INTEGER, FOREIGN KEY (question_id) REFERENCES posts(id) FOREIGN KEY (answer_id) REFERENCES posts(id));");
 		// populate the questionHasAnswer relation table with the data existing in the database
 		db.execSQL("INSERT INTO QuestionHasAnswer(question_id, answer_id) SELECT a.id, b.id FROM posts a, posts b WHERE a.id =  b.parent_id;"); 	
+		db.close();
+	}
+	
+	public void incrementAnswerCounter (int qId) {
+		SQLiteDatabase db = this.openDataBase();
+		Cursor cursor = db.rawQuery("select answer_count from posts where id = ?", new String [] {String.valueOf(qId)});
+		cursor.moveToFirst();
+		int newValue = cursor.getInt(cursor.getColumnIndex("answer_count")) +1;
+		ContentValues values = new ContentValues();
+		values.put("answer_count", newValue);
+		Log.v("HERE", Integer.toString(qId)+ " " + Integer.toString(newValue));
+		db.update("posts", values, "id = ?", new String[]{String.valueOf(qId)});
+		db.close();
+	}
+	
+	public void addAnswerToRT(int qId,int aId) {
+		SQLiteDatabase db = this.openDataBase();
+		ContentValues values = new ContentValues();
+		Log.v("ID QUESTION", Integer.toString(qId));
+		Log.v("ID ANSWER 1", Integer.toString(aId));
+		values.put("question_id",qId);
+		values.put("answer_id", aId);
+		Log.v("QUID",String.valueOf(qId)+" "+ String.valueOf(aId) );
+		values.put("question_id", qId);
+		values.put("answer_id", aId);
+//		database.insert("QuestionHasAnswer", null, values);
+		db.rawQuery("INSERT INTO QuestionHasAnswer(question_id, answer_id) VALUES (?,?)",new String []{String.valueOf(qId), String.valueOf(aId)});
+		//database.insert("QuestionHasAnswer",null, values);
 		db.close();
 	}
 	

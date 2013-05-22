@@ -36,6 +36,9 @@ public class QuestionDataSource extends PostDataSource {
 	
 	}
 
+	public void incrementQuestionCounter(int qId) {
+		helper.incrementAnswerCounter(qId);
+	} 
 	
 	public Question getQuestion(int Id) throws wrongTypeException {
 		//Cursor cursor = database.rawQuery("SELECT title, body FROM posts where id=?", new String [] {String.valueOf(Id)});
@@ -81,7 +84,6 @@ public class QuestionDataSource extends PostDataSource {
 	
 	public ArrayList<Question> searchQuestionByTags(String query) {
 		String t ="%"+query+"%";
-		Log.v("TAGS", t);
 		Cursor cursor = database.rawQuery("SELECT * FROM posts WHERE (post_type_id=1) " +
 				"AND (tags LIKE ?)", new String[] {t});
 		
@@ -100,7 +102,6 @@ public class QuestionDataSource extends PostDataSource {
 	}
 	
 	public ArrayList<Question> getSearchResults(String searchQuery) {
-		
 		//Create query for search
 		String query = "%"+searchQuery+"%";
 		
@@ -114,12 +115,11 @@ public class QuestionDataSource extends PostDataSource {
 			try {
 				list.add((Question) read(cursor.getInt(cursor.getColumnIndex("id"))));
 			} catch (Exception e) {
-				Log.v("Question", "failed to add question");
 			}
 			cursor.moveToNext();			
 		}
 		return list;
-	
+		
 	}
 
 }

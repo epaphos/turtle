@@ -55,11 +55,11 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener,
 		Question q = questionList.get(position);
 		int questionId = q.getId();
         Log.i("Question", "Question with id " + q.getId() + " will be displayed");
-        //Intent intent = new Intent(this, QuestionDisplayActivity.class);
         Intent intent = new Intent(this, QuestionDisplayActivity.class);
         intent.putExtra("questionId", questionId);
         startActivity(intent);
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -121,7 +121,8 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener,
 		ds.open();
 		if(filterActualQuestions) {
 			ArrayList<Question> ReceivedQuestionList = questionList;
-			questionList = Question.intersection(ReceivedQuestionList,ds.getSearchResults(query));
+			ArrayList<Question> searchResults = ds.getSearchResults(query);
+			questionList = Question.intersection(ReceivedQuestionList,searchResults);
 		}
 		else questionList = ds.getSearchResults(query);
 		arrayAdapter = new MyBrowseAdapter(this, questionList);

@@ -3,7 +3,9 @@ package com.example.turtlestack;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Question extends Post{
+import android.util.Log;
+
+public class Question extends Post {
 	private int acceptedAnswer;
 	private int viewCount;
 	private String title; //Set in creation
@@ -63,13 +65,15 @@ public class Question extends Post{
 		this.favoriteCount = favoriteCount;
 		// TODO Auto-generated constructor stub
 	}
+	
 	public static ArrayList<Question> intersection(ArrayList<Question> q1,ArrayList<Question> q2) {
 		ArrayList<Question> returnValue = new ArrayList();
-		Iterator i = q2.iterator();
+		Iterator i = q1.iterator();
 		while(i.hasNext()) {
 			Question target = (Question) i.next();
-			if (q1.contains(target)) returnValue.add(target);
-		}
+			if(q2.contains(target)) returnValue.add(target);
+			}
+		
 		return returnValue;
 	}
 	
@@ -155,6 +159,12 @@ public class Question extends Post{
 	 */
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	@Override
+	public boolean equals(Object another) {
+		Question question = (Question) another;
+		if(this.getId() == question.getId()) return true;
+		return false;
 	}
 
 }

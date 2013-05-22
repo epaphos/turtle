@@ -43,15 +43,14 @@ public class QuestionDisplayActivity extends Activity {
 		us = UserDataSource.getInstance(this);
 		as = AnswerDataSource.getInstance(this);
 		qs = QuestionDataSource.getInstance(this);
-		
+
 		fillQuestion(questionId);
 		fillAnswerList(question);
 		fillUserList(answerList);
-		
+
 		lstview = (ListView) findViewById(R.id.listViewQuestionAnswer);
 		lstview.setDrawingCacheEnabled(false);
 		adap = new Myadapter(this, answerList, userList);
-		
 		View v = getLayoutInflater().inflate(R.layout.footer_layout, null);
         lstview.addFooterView(v);		
         lstview.setAdapter(adap);
@@ -70,13 +69,13 @@ public class QuestionDisplayActivity extends Activity {
     	as.open();
 		Answer answer = new Answer(questionId, body, us.getDummyUser().getUserId());
 		int answerId = as.setAnswer(answer);
+		System.out.print(answer.toString());
 		try {
-			Log.v("HERE","HERE");
 			Question question = qs.getQuestion(questionId);
-			question.setAnswerCount(question.getAnswerCount() +1);
-			qs.setQuestion(question);
-		} catch (wrongTypeException e) { }
-		if (question.getAnswerCount() == 0) as.addAnswerToRT(questionId, answerId);
+			qs.incrementQuestionCounter(questionId);
+		} catch (wrongTypeException e) { 
+		}
+		as.addAnswerToRT(questionId, answerId);
 		us.close();	
 		as.close();
 		finish();
@@ -88,6 +87,11 @@ public class QuestionDisplayActivity extends Activity {
 		startActivity(i);
 	}
 
+	public void onBackPressed() {
+		Intent intent = new Intent(this, BrowseActivity.class);
+		startActivity(intent);
+	}
+	
 	private void fillQuestion(int id){
 		qs.open();
 		try{
@@ -132,7 +136,6 @@ public class QuestionDisplayActivity extends Activity {
 		return sorting;
 	}
 	private void fillUserList(ArrayList<Post> lst){
-		
 		us.open();
 		userList = new ArrayList<User>();
 		for (Post answer : lst) {

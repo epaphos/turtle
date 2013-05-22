@@ -34,9 +34,10 @@ public class UserDataSource implements DataSourceUtils {
 	}
 
 	public User readUser(int id){
+		open();
+		if(id == 0) return getDummyUser();
 		Cursor cursor = database.rawQuery("select * from users where id = ?", new String[] { String.valueOf(id) });
 		cursor.moveToFirst();
-		
 		  //int userId = 
 		  int reputation = cursor.getInt(cursor.getColumnIndex("reputation"));
 		  String creationDate = cursor.getString(cursor.getColumnIndex("creation_date"));
@@ -50,7 +51,7 @@ public class UserDataSource implements DataSourceUtils {
 		  int views = cursor.getInt(cursor.getColumnIndex("views"));
 		  int upVotes = cursor.getInt(cursor.getColumnIndex("up_votes"));
 		  int downVotes = cursor.getInt(cursor.getColumnIndex("down_votes"));
-		  
+		  close();
 		  return(new User(
 				  id, 
 				  reputation, 
@@ -68,6 +69,7 @@ public class UserDataSource implements DataSourceUtils {
 	}
 	
 	public User getDummyUser(){
+		open();
 		Log.v("question", "in method");
 		
 		Cursor cursor = database.rawQuery("SELECT * FROM users LIMIT 1", new String[] {});
@@ -88,7 +90,7 @@ public class UserDataSource implements DataSourceUtils {
 		  int views = cursor.getInt(cursor.getColumnIndex("views"));
 		  int upVotes = cursor.getInt(cursor.getColumnIndex("up_votes"));
 		  int downVotes = cursor.getInt(cursor.getColumnIndex("down_votes"));
-		  
+		  close();
 		  return(new User(
 				  userId, 
 				  reputation, 
