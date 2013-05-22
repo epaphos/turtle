@@ -41,8 +41,7 @@ public class TagCloudFragment extends Fragment {
 	Intent intent;
 	Bundle bundle;
 	boolean heat = true;
-	public static boolean allTheDragonBalls = false;
-	public static int dragonTag = 0;
+	public static boolean callTheDragon = false;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -289,9 +288,9 @@ public class TagCloudFragment extends Fragment {
 			if (nRelations >= 3) heatIt(max,nRelations,r3v,buttonRelationed3);//70
 			if (nRelations >= 4) heatIt(max,nRelations,r4v,buttonRelationed4);//30
 		}
-		if(nRelations == 4 && allTheDragonBalls) {
+		if(nRelations == 4 && callTheDragon) {
 			callTheDragon(view,pager);
-			allTheDragonBalls = false;
+			callTheDragon = false;
 		}
 ;
 	}
@@ -338,8 +337,8 @@ public class TagCloudFragment extends Fragment {
 	    buttonRelationed3.setBackgroundResource(R.drawable.db5);
 	    buttonBefore.setBackgroundResource(R.drawable.db6);
 	    buttonMain.setBackgroundResource(R.drawable.db7);
-	    if (pager.getCurrentItem() == dragonTag) allTheDragonBalls =false;
 	}
+	
 	public static void newDeadSet(){
 		deadSet = new ArrayList();
 	}

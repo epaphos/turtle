@@ -71,8 +71,7 @@ public class TagCloudActivity extends FragmentActivity {
             		}
             	}
             	else {
-            		TagCloudFragment.allTheDragonBalls = true;
-            		TagCloudFragment.dragonTag = pager.getCurrentItem();
+            		TagCloudFragment.callTheDragon = true;
             		pager.setCurrentItem(allTags.indexOf("java"));
             		hideKeyboard();
             	}
