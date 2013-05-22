@@ -10,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/staticAnswerTitle"
         android:layout_toLeftOf="@+id/linearLayoutVotes1"
         android:textSize="6pt"
         android:text="Some random fill text. Some random fill text. Some random fill text. Some random fill text. Some random fill text. Some random fill text. Some random fill text. Some random fill text. Some random fill text." />
@@ -65,6 +65,10 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/txtAnswer"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="5dp"
         android:src="@drawable/darkholouser" />
 
     <TextView
@@ -75,7 +79,7 @@
         android:layout_alignTop="@+id/answerProfilePicture"
         android:layout_toRightOf="@+id/answerProfilePicture"
         android:text="Author"
-        android:textSize="5pt" />
+        android:textSize="6pt" />
 
     <TextView
         android:id="@+id/txtviewRep"
@@ -85,5 +89,18 @@
         android:layout_below="@+id/txtviewAuthor"
         android:text="Rep" 
         android:textSize="5pt"/>
+
+    <TextView
+        android:id="@+id/staticAnswerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:text="Answer" 
+        android:textSize="8pt"
+        android:textStyle="bold"/>
 
 </RelativeLayout>

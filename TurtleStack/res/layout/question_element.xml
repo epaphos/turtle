@@ -75,6 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
         android:layout_below="@+id/textViewQuestionBody"
         android:layout_marginTop="17dp"
         android:src="@drawable/darkholouser" />
@@ -96,7 +97,7 @@
         android:layout_toRightOf="@+id/userProfilePicture"
         android:text="TextView" 
         android:textColor="@color/Blue"
-        android:textSize="5pt"/>
+        android:textSize="6pt"/>
 
     <TextView
         android:id="@+id/questionTags"
