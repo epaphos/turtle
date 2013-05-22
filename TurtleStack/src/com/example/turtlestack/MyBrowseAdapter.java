@@ -55,7 +55,11 @@ public class MyBrowseAdapter extends BaseAdapter {
 	    
 	    Question question = questions.get(position);
 	    qTitle.setText(question.getTitle());
-	    qTag.setText(question.getTags());
+	    
+	    String tmptag = question.getTags().replaceAll("<", "").replaceAll(">", ", ");
+	    qTag.setText(tmptag);
+	    
+	    
 	    qNumberOfAnswers.setText(String.valueOf(question.getAnswerCount())); 
 	    qNumberOfVotes.setText(String.valueOf(question.getScore())); 
 	         

@@ -14,7 +14,9 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
         android:layout_toLeftOf="@+id/linearLayout1"
-        android:text="Title of Question" />
+        android:text="Title of Question"
+        android:textSize="8pt"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -66,24 +68,44 @@
         android:layout_below="@+id/linearLayoutTags"
         android:layout_marginTop="18dp"
         android:text="Body of Question" 
+        android:textSize="6pt"/>
+
+    <ImageView
+        android:id="@+id/userProfilePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textViewQuestionBody"
+        android:layout_marginTop="17dp"
+        android:src="@drawable/darkholouser" />
+
+    <TextView
+        android:id="@+id/textViewQuestionOwnerRep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewQuestionOwner"
+        android:layout_below="@+id/textViewQuestionOwner"
+        android:text="TextView" 
         android:textSize="5pt"/>
 
     <TextView
         android:id="@+id/textViewQuestionOwner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewQuestionBody"
-        android:layout_below="@+id/textViewQuestionBody"
-        android:layout_marginTop="17dp"
-        android:text="TextView" />
+        android:layout_alignTop="@+id/userProfilePicture"
+        android:layout_toRightOf="@+id/userProfilePicture"
+        android:text="TextView" 
+        android:textColor="@color/Blue"
+        android:textSize="5pt"/>
 
     <TextView
-        android:id="@+id/textViewQuestionOwnerRep"
+        android:id="@+id/questionTags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewQuestionOwner"
-        android:layout_alignBottom="@+id/textViewQuestionOwner"
-        android:layout_alignRight="@+id/textViewQuestionBody"
-        android:text="TextView" />
+        android:layout_alignLeft="@+id/linearLayoutTags"
+        android:layout_alignTop="@+id/linearLayoutTags"
+        android:text="Tags"
+        android:textColor="@color/Blue" 
+        android:textSize="7pt"/>
 
 </RelativeLayout>

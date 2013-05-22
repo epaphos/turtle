@@ -1,10 +1,25 @@
 package com.example.turtlestack;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.StrictMode;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Myadapter extends BaseAdapter{
@@ -24,7 +40,7 @@ public class Myadapter extends BaseAdapter{
     private ArrayList<Post> data;
     private ArrayList<User> user;
     private static String log = "Adapter";
-    
+    private String imageUrl = "http://www.gravatar.com/avatar/";
     private static LayoutInflater inflater=null;
     //public ImageLoader imageLoader; //not needed
     
@@ -62,6 +78,7 @@ public class Myadapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         
+               
         	
         if (data.get(position).getPostTypeId()==1){
         	
@@ -72,21 +89,27 @@ public class Myadapter extends BaseAdapter{
         		TextView qAuthor = (TextView) vi.findViewById(R.id.textViewQuestionOwner);
         		TextView qReputation = (TextView) vi.findViewById(R.id.textViewQuestionOwnerRep);
         		TextView qCount = (TextView) vi.findViewById(R.id.textViewQuestionVotes);
+        		ImageView profilePicture = (ImageView) vi.findViewById(R.id.userProfilePicture);                  
+                TextView qTag = (TextView) vi.findViewById(R.id.questionTags);
         		
-        		vi.setTag(position);
+                vi.setTag(position);
         		
         		Question question = (Question) data.get(position);
         		User tempUser = user.get(position);
         		qTitle.setText(question.getTitle());
-        		qBody.setText(Html.fromHtml(question.getBody()).toString());
-        		//TODO: Add tags to linear layout
-        		
+        		String bodyText = question.getBody().replace("\\n", " ");
+        		qBody.setText(Html.fromHtml(bodyText));
+        		String tmptag = question.getTags().replaceAll("<", "").replaceAll(">", ", ");
+        	    qTag.setText(tmptag);
+
                 qAuthor.setText("By: " + tempUser.getDisplayName());
                 qAuthor.setTag(position);
                 qReputation.setText("Reputation: " + String.valueOf(tempUser.getReputation()));
                 qCount.setText(String.valueOf(question.getScore()));
-                                  
-        
+                String emailHash = tempUser.getEmailHash();
+                Bitmap bimage=  BitmapReciver.getBitmapFromURL(imageUrl + emailHash);
+                profilePicture.setImageBitmap(bimage);
+                
                try{
             	   qAuthor.setClickable(true);
             	   qAuthor.setOnClickListener(new OnClickListener() {
@@ -107,32 +130,31 @@ public class Myadapter extends BaseAdapter{
                 
         } 
         
-        if (data.get(position).getPostTypeId()==2) //check that type equals answer
-        {
-        	
-	        //if(convertView==null)
-	            vi = inflater.inflate(R.layout.answer_element, null);
-	        
+        if (data.get(position).getPostTypeId()==2) {//check that type equals answer
+	        vi = inflater.inflate(R.layout.answer_element, null);
 	        TextView body = (TextView)vi.findViewById(R.id.txtAnswer); 
 	        TextView author = (TextView)vi.findViewById(R.id.txtviewAuthor); 
 	        TextView reputation = (TextView)vi.findViewById(R.id.txtviewRep); 
 	        TextView count = (TextView) vi.findViewById(R.id.textViewCount1);
 	        CheckBox accepted = (CheckBox) vi.findViewById(R.id.chkAcceptedAnswer);
+	        ImageView profilePicture = (ImageView) vi.findViewById(R.id.answerProfilePicture);
 	        
 	        vi.setTag(position);
 	        Answer answer = (Answer) data.get(position);
 	        User usr = user.get(position);
 	        
-	        // Setting all values in listview
-	        body.setText(Html.fromHtml(answer.getBody()).toString());
-	        //body.setText(answer.getBody());
+	        String bodyText = answer.getBody().replace("\\n", " ");
+    		body.setText(Html.fromHtml(bodyText));
+	        
 	        author.setText("By: " + usr.getDisplayName());
 	        author.setTag(position); 
 	        reputation.setText("Reputation: " + String.valueOf(usr.getReputation()));
 	        count.setText(String.valueOf(answer.getScore()));
-	        //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
-	        
-	        if(answer.getId()==((Question)data.get(0)).getAcceptedAnswer()){
+	        String emailHash = usr.getEmailHash();
+            Bitmap bimage=  BitmapReciver.getBitmapFromURL(imageUrl + emailHash);
+            profilePicture.setImageBitmap(bimage);
+	         
+            if(answer.getId()==((Question)data.get(0)).getAcceptedAnswer()){
 	        	accepted.setChecked(true);
 	        }
 	        try{
@@ -149,26 +171,8 @@ public class Myadapter extends BaseAdapter{
 						
 					}
 				});
-            } catch (Exception e) {
-         	   
-            }    
-	       
+            } catch (Exception e) {} 
         }
-        
-        
-        
         return vi;
     }
-
-
-	
-	private OnClickListener onClickVoteUp = new OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			//final int position = mListView.getPositionForView((View) v.getParent());
-			//(ListView) v.getParent().;
-		}
-	};
-
 }

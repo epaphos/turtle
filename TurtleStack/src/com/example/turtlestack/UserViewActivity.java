@@ -3,11 +3,15 @@ package com.example.turtlestack;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.widget.ImageView;
@@ -23,6 +27,7 @@ public class UserViewActivity extends Activity {
 	private UserDataSource ds;
 	private User user;
 	private int userId;
+	private String imageUrl = "http://www.gravatar.com/avatar/";
 
 	@SuppressLint("NewApi")
 	@Override
@@ -53,30 +58,47 @@ public class UserViewActivity extends Activity {
 	 */
 	public void displayUser(User user) {
 		ImageView image = (ImageView) findViewById(R.id.profilePicture);
-		image.setImageResource(R.drawable.skalman);
+		String emailHash = user.getEmailHash();
+        Bitmap bimage=  BitmapReciver.getBitmapFromURL(imageUrl + emailHash);
+        image.setImageBitmap(bimage);
 
 		TextView displayName = (TextView) findViewById(R.id.userLblDisplayName_);
 		displayName.setText(user.getDisplayName());
-
+		
 		TextView aboutMe = (TextView) findViewById(R.id.AboutMeText);
-		aboutMe.setText(user.getAboutMe());
-
+		String aboutMeText = user.getAboutMe().replace("\\n", " ");
+		if(aboutMeText.equals("NULL"))
+			aboutMe.setText("No information to display");
+		else
+			aboutMe.setText(Html.fromHtml(aboutMeText));
+		
 		TextView userLocation = (TextView) findViewById(R.id.userLocation);
-		userLocation.setText(user.getLocation());
-
+		if(user.getLocation().equals("NULL"))
+			userLocation.setText("Unknown location");
+		else
+			userLocation.setText(user.getLocation());
+		
 		TextView creationDate = (TextView) findViewById(R.id.userLblCreationDate);
 		creationDate.setText("Joined " + user.getCreationDate());
 
 		TextView age = (TextView) findViewById(R.id.userAge);
-		age.setText(user.getAge() + " years old");
+		if(user.getAge() == 0)
+			age.setText("Unknown age");
+		else
+			age.setText(user.getAge() + " years old");
 		
 		TextView userWebsite = (TextView) findViewById(R.id.userWebsite);
 		SpannableString url = new SpannableString(user.getWebsiteURL());
-		url.setSpan(new UnderlineSpan(), 0, url.length(), 0);
-		userWebsite.setText(url);
-
+		url.setSpan(new UnderlineSpan(), 0, url.length(), 0);		
+		
+		if(user.getWebsiteURL().equals("NULL")) 
+			userWebsite.setText("No homepage");
+		else
+			userWebsite.setText(url);
+		
 		TextView reputation = (TextView) findViewById(R.id.userLblReputation);
-		reputation.setText(Integer.toString(user.getReputation()));
+		reputation.setText(Integer.toString(user.getReputation()) + " reputation");
+		
 		setTitle(user.getDisplayName());
 
 	}

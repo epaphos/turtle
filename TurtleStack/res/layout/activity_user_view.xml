@@ -7,7 +7,6 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -31,7 +30,8 @@
             android:layout_alignTop="@+id/profilePicture"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/profilePicture"
-            android:textSize="25sp" />
+            android:text="username"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/userLblCreationDate"
@@ -40,6 +40,7 @@
             android:layout_alignLeft="@+id/userLblDisplayName_"
             android:layout_below="@+id/userLblDisplayName_"
             android:layout_marginTop="4dp"
+            android:text="Creation Date"
             android:textColor="#464645"
             android:textSize="15sp" />
 
@@ -50,6 +51,7 @@
             android:layout_alignLeft="@+id/userLblDisplayName_"
             android:layout_below="@+id/userLblCreationDate"
             android:layout_marginTop="4dp"
+            android:text="Age"
             android:textColor="#464645"
             android:textSize="15sp" />
 
@@ -60,21 +62,22 @@
             android:layout_alignLeft="@+id/userLblDisplayName_"
             android:layout_below="@+id/userAge"
             android:layout_marginTop="4dp"
+            android:text="Location"
             android:textColor="#464645"
             android:textSize="15sp" />
-        
-         <TextView
+
+        <TextView
             android:id="@+id/userWebsite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/userLblDisplayName_"
             android:layout_below="@+id/userLocation"
             android:layout_marginTop="4dp"
-            android:textColor="#0099FF"
-            android:textSize="15sp" 
             android:autoLink="web"
-            android:linksClickable="true"/>
-        
+            android:linksClickable="true"
+            android:text="Website"
+            android:textColor="#0099FF"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/userLblReputation"
@@ -82,20 +85,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/profilePicture"
             android:layout_marginTop="5dp"
+            android:text="Reputation"
             android:textColor="#464645"
             android:textSize="22sp" />
 
-        <TextView
-            android:id="@+id/UserAboutMeHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/userLblReputation"
-            android:layout_below="@+id/userLblReputation"
-            android:layout_marginTop="10dp"
-            android:text="@string/UserAboutMe"
-            android:textSize="25sp" />
-
         <View
+            android:id="@+id/view1"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
             android:layout_below="@+id/UserAboutMeHeader"
@@ -111,6 +106,16 @@
             android:layout_marginTop="8dp"
             android:textColor="#464645"
             android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/UserAboutMeHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/view1"
+            android:layout_below="@+id/userLblReputation"
+            android:layout_marginTop="22dp"
+            android:text="@string/UserAboutMe"
+            android:textSize="25sp" />
     </RelativeLayout>
 
 </ScrollView>
