@@ -106,7 +106,7 @@ public class QuestionDataSource extends PostDataSource {
 		String query = "%"+searchQuery+"%";
 		
 		Cursor cursor = database.rawQuery("SELECT * FROM posts WHERE (post_type_id=1) " +
-				"AND (title LIKE ?)", new String[]{query});
+				"AND ((title LIKE ?) OR (body LIKE ?))", new String[]{query,query});
 		
 		ArrayList<Question> list = new ArrayList<Question>();
 		cursor.moveToFirst();

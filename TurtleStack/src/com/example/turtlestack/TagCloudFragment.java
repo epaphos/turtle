@@ -7,10 +7,12 @@ import java.util.TreeMap;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff.Mode;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +20,10 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -29,11 +34,15 @@ public class TagCloudFragment extends Fragment {
 	ArrayList allTags;
 	static ArrayList<String> deadSet;
 	ViewPager pager;
+	ListView lv;
+	private ArrayAdapter<String> listAdapter;
 	String before,after,relationed1,relationed2,relationed3,relationed4;
 	static Context context;
 	Intent intent;
 	Bundle bundle;
 	boolean heat = true;
+	public static boolean allTheDragonBalls = false;
+	public static int dragonTag = 0;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,9 +50,7 @@ public class TagCloudFragment extends Fragment {
 		this.mainTag = this.getArguments().getString("mainTag");
 		this.allTags = this.getArguments().getParcelableArrayList("allTags");
 		pager = (ViewPager) this.getActivity().findViewById(R.id.pager);
-		
-		
-	}
+		}
 	
 	public static TagCloudFragment newInstance(String s, ArrayList a) {
 	    TagCloudFragment tagCloudFragment = new TagCloudFragment();
@@ -282,6 +289,11 @@ public class TagCloudFragment extends Fragment {
 			if (nRelations >= 3) heatIt(max,nRelations,r3v,buttonRelationed3);//70
 			if (nRelations >= 4) heatIt(max,nRelations,r4v,buttonRelationed4);//30
 		}
+		if(nRelations == 4 && allTheDragonBalls) {
+			callTheDragon(view,pager);
+			allTheDragonBalls = false;
+		}
+;
 	}
 	
 	private void heatIt(int a,int b,int value,Button button) {
@@ -310,6 +322,27 @@ public class TagCloudFragment extends Fragment {
  
 	}
 	
+	public static void callTheDragon(View v,ViewPager pager) {
+		Button buttonBefore = (Button) v.findViewById(R.id.buttonBefore);
+		Button buttonMain = (Button) v.findViewById(R.id.buttonMain);
+		Button buttonAfter = (Button) v.findViewById(R.id.buttonAfter);
+		Button buttonRelationed1 = (Button) v.findViewById(R.id.buttonRelationed1);
+		Button buttonRelationed2 = (Button) v.findViewById(R.id.buttonRelationed2);
+		Button buttonRelationed3 = (Button) v.findViewById(R.id.buttonRelationed3);
+		Button buttonRelationed4 = (Button) v.findViewById(R.id.buttonRelationed4); 
+	    v.setBackgroundResource(R.drawable.shenron);
+	    buttonRelationed1.setBackgroundResource(R.drawable.db1);
+	    buttonRelationed2.setBackgroundResource(R.drawable.db2);
+	    buttonAfter.setBackgroundResource(R.drawable.db3);
+	    buttonRelationed4.setBackgroundResource(R.drawable.db4);
+	    buttonRelationed3.setBackgroundResource(R.drawable.db5);
+	    buttonBefore.setBackgroundResource(R.drawable.db6);
+	    buttonMain.setBackgroundResource(R.drawable.db7);
+	    buttonMain.setText("");
+	    buttonBefore.setText("");
+	    buttonAfter.setText("");
+	    if (pager.getCurrentItem() == dragonTag) allTheDragonBalls =false;
+	}
 	public static void newDeadSet(){
 		deadSet = new ArrayList();
 	}

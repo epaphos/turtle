@@ -7,6 +7,7 @@ import java.util.TreeMap;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -26,6 +27,7 @@ public class TagCloudActivity extends FragmentActivity {
 	SearchView searchView = null;
 	boolean occurence = true;
 	TagCloudOnPageListener pageChangeListener = null;
+	TagCloudPageAdapter adapter;
 	ArrayList allTags = null;
 	
 	@Override
@@ -38,7 +40,7 @@ public class TagCloudActivity extends FragmentActivity {
 //		search = (ViewPager findViewById())
 		searchView = (SearchView) findViewById(R.id.searchView1);
 		pager =  (ViewPager) findViewById(R.id.pager);
-        TagCloudPageAdapter adapter = new TagCloudPageAdapter(getSupportFragmentManager());
+        adapter = new TagCloudPageAdapter(getSupportFragmentManager());
         allTags = tc.getAllTheTags();
         Iterator it = allTags.iterator();        
         while (it.hasNext()) {
@@ -61,13 +63,21 @@ public class TagCloudActivity extends FragmentActivity {
 
             @Override 
             public boolean onQueryTextSubmit(String query) {
-            	if (tc.isTagInTable(query)) {
-                    TagCloudFragment.addToDeadList(mainTag);
-            		pager.setCurrentItem(allTags.indexOf(query));
+            	if(!query.equals("Call the Dragon")) {
+            		if (tc.isTagInTable(query)) {
+            			TagCloudFragment.addToDeadList(mainTag);
+            			pager.setCurrentItem(allTags.indexOf(query));
+            			hideKeyboard();
+            		}
+            	}
+            	else {
+            		TagCloudFragment.allTheDragonBalls = true;
+            		TagCloudFragment.dragonTag = pager.getCurrentItem();
+            		pager.setCurrentItem(allTags.indexOf("java"));
             		hideKeyboard();
             	}
             	return true; 
-            } 
+            }
         }; 
 
         searchView.setOnQueryTextListener(queryTextListener);

@@ -46,19 +46,6 @@
         android:text="Button" />
 
     <Button
-        android:id="@+id/buttonRelationed1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonMain"
-        android:layout_toLeftOf="@+id/buttonMain"
-        android:background="@drawable/bubble"
-        android:maxHeight="@dimen/height"
-        android:maxLines="@integer/maxLinesBubbles"
-        android:maxWidth="@dimen/width"
-        android:scrollHorizontally="true"
-        android:text="Button" />
-
-    <Button
         android:id="@+id/buttonRelationed2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,6 +77,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonMain"
         android:layout_toRightOf="@+id/buttonMain"
+        android:background="@drawable/bubble"
+        android:maxHeight="@dimen/height"
+        android:maxLines="@integer/maxLinesBubbles"
+        android:maxWidth="@dimen/width"
+        android:scrollHorizontally="true"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/buttonRelationed1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonMain"
+        android:layout_toLeftOf="@+id/buttonMain"
         android:background="@drawable/bubble"
         android:maxHeight="@dimen/height"
         android:maxLines="@integer/maxLinesBubbles"
