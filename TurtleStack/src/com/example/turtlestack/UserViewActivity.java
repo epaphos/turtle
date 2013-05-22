@@ -67,7 +67,10 @@ public class UserViewActivity extends Activity {
 		
 		TextView aboutMe = (TextView) findViewById(R.id.AboutMeText);
 		String aboutMeText = user.getAboutMe().replace("\\n", " ");
-		aboutMe.setText(Html.fromHtml(aboutMeText));
+		if(aboutMeText.equals("NULL"))
+			aboutMe.setText("No information to display");
+		else
+			aboutMe.setText(Html.fromHtml(aboutMeText));
 		
 		TextView userLocation = (TextView) findViewById(R.id.userLocation);
 		if(user.getLocation().equals("NULL"))
