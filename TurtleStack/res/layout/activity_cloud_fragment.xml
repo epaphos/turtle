@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@drawable/bubble"
+        android:longClickable="true"
         android:maxHeight="@dimen/height"
         android:maxLines="@integer/maxLinesBubbles"
         android:maxWidth="@dimen/width"
@@ -24,6 +25,7 @@
         android:layout_alignBottom="@+id/buttonMain"
         android:layout_alignParentLeft="true"
         android:background="@drawable/bubble"
+        android:longClickable="true"
         android:maxHeight="@dimen/height"
         android:maxLines="@integer/maxLinesBubbles"
         android:maxWidth="@dimen/width"
@@ -39,6 +41,7 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/bubble"
         android:gravity="center_vertical|center_horizontal"
+        android:longClickable="true"
         android:maxHeight="@dimen/height"
         android:maxLines="@integer/maxLinesBubbles"
         android:maxWidth="@dimen/width"
@@ -52,6 +55,7 @@
         android:layout_above="@+id/buttonMain"
         android:layout_toRightOf="@+id/buttonMain"
         android:background="@drawable/bubble"
+        android:longClickable="true"
         android:maxHeight="@dimen/height"
         android:maxLines="@integer/maxLinesBubbles"
         android:maxWidth="@dimen/width"
@@ -65,6 +69,7 @@
         android:layout_below="@+id/buttonMain"
         android:layout_toLeftOf="@+id/buttonMain"
         android:background="@drawable/bubble"
+        android:longClickable="true"
         android:maxHeight="@dimen/height"
         android:maxLines="@integer/maxLinesBubbles"
         android:maxWidth="@dimen/width"
@@ -78,6 +83,7 @@
         android:layout_below="@+id/buttonMain"
         android:layout_toRightOf="@+id/buttonMain"
         android:background="@drawable/bubble"
+        android:longClickable="true"
         android:maxHeight="@dimen/height"
         android:maxLines="@integer/maxLinesBubbles"
         android:maxWidth="@dimen/width"
@@ -91,10 +97,85 @@
         android:layout_above="@+id/buttonMain"
         android:layout_toLeftOf="@+id/buttonMain"
         android:background="@drawable/bubble"
+        android:longClickable="true"
         android:maxHeight="@dimen/height"
         android:maxLines="@integer/maxLinesBubbles"
         android:maxWidth="@dimen/width"
         android:scrollHorizontally="true"
         android:text="Button" />
+
+    <Button
+        android:id="@+id/buttonHistorical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/gradient_bg_hover"
+        android:text="Search by Recorded Tags" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Recorded Tags:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/tv2"
+        android:background="@drawable/gradient_bg_hover"
+        android:minHeight="20dip"
+        android:minWidth="120dip"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv1"
+		android:background="@drawable/gradient_bg_hover"
+		android:minHeight="20dip"
+        android:minWidth="120dip"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/gradient_bg_hover"
+        android:minHeight="20dip"
+        android:minWidth="120dip"
+        android:layout_below="@+id/textView1"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/tv5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv3"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/gradient_bg_hover"
+        android:minHeight="20dip"
+        android:minWidth="120dip"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv5"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/gradient_bg_hover"
+        android:minHeight="20dip"
+        android:minWidth="120dip"
+        android:text="TextView" />
 
 </RelativeLayout>

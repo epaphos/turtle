@@ -82,11 +82,20 @@ public class QuestionDataSource extends PostDataSource {
 		return super.write(question);
 	}
 	
-	public ArrayList<Question> searchQuestionByTags(String query) {
-		String t ="%"+query+"%";
-		Cursor cursor = database.rawQuery("SELECT * FROM posts WHERE (post_type_id=1) " +
-				"AND (tags LIKE ?)", new String[] {t});
-		
+	public ArrayList<Question> searchQuestionByTags(ArrayList<String> query) {
+		String t = "SELECT * FROM posts WHERE (post_type_id=1) " +
+				"AND ((tags LIKE ";
+		for (int i = 0; i < query.size(); i++) {
+			t += "'%"+ query.get(i) +"%";
+			for (int j = 0; j < query.size(); j++) {
+				if(!query.get(i).equals(query.get(j)))
+				t +=query.get(j) + "%";
+			}
+			if (query.size() != i+1) t +="') OR (tags LIKE ";
+			else t+= "%'))";
+		}
+		Log.v("tags", t.toString());
+		Cursor cursor = database.rawQuery(t, new String[] {});
 		ArrayList<Question> ids = new ArrayList();
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {

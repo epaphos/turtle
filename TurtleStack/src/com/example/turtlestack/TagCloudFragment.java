@@ -3,6 +3,7 @@ package com.example.turtlestack;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,9 +32,9 @@ import android.widget.TextView;
 public class TagCloudFragment extends Fragment {
 	TagCloud tc;
 	String mainTag;
-	View view;
 	ArrayList allTags;
 	static ArrayList<String> deadSet;
+	static ArrayList<String> historical = new ArrayList<String>();
 	ViewPager pager;
 	ListView lv;
 	private ArrayAdapter<String> listAdapter;
@@ -72,6 +74,12 @@ public class TagCloudFragment extends Fragment {
 		Button buttonRelationed2 = (Button) view.findViewById(R.id.buttonRelationed2);
 		Button buttonRelationed3 = (Button) view.findViewById(R.id.buttonRelationed3);
 		Button buttonRelationed4 = (Button) view.findViewById(R.id.buttonRelationed4);
+		Button buttonHistorical = (Button) view.findViewById(R.id.buttonHistorical);
+		Button tv1 = (Button) view.findViewById(R.id.tv1);
+		Button tv2 = (Button) view.findViewById(R.id.tv2);
+		Button tv3 = (Button) view.findViewById(R.id.tv3);
+		Button tv4 = (Button) view.findViewById(R.id.tv4);
+		Button tv5 = (Button) view.findViewById(R.id.tv5);
 		displayTags(view);
 		buttonBefore.setOnClickListener(new OnClickListener() {
 			  public void onClick(View view) {
@@ -86,7 +94,9 @@ public class TagCloudFragment extends Fragment {
 			});
 		buttonMain.setOnClickListener(new OnClickListener() {
 			  public void onClick(View view) {
-				  goQuestionsView(mainTag);
+				  ArrayList<String> aux = new ArrayList<String>();
+				  aux.add("<"+mainTag+">");
+				  goQuestionsView(aux);
 			  }
 			});
 		buttonAfter.setOnClickListener(new OnClickListener() {
@@ -144,8 +154,163 @@ public class TagCloudFragment extends Fragment {
 					pager.setCurrentItem(allTags.indexOf(relationed4));
 			  }
 			});
-
-	    return view;
+		//LONG CLICK LISTENERS
+		buttonBefore.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {
+				    if (historical.size() <5)
+				    	historical.add("<"+before+">");
+				    else {
+				    	historical.remove(0);
+			    		historical.add("<"+before+">");
+				    }
+					return true;
+			  }
+			});
+		buttonMain.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {
+				    if (historical.size() <5)
+				    	historical.add("<"+mainTag+">");
+				    else {
+				    	historical.remove(0);
+			    		historical.add("<"+mainTag+">");
+				    }
+				  return true;
+			  }
+			});
+		buttonAfter.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {				    
+				  if (historical.size() <5) 
+			    	historical.add("<"+after+">");
+			    else {
+			    	historical.remove(0);
+		    		historical.add("<"+after+">");
+			    }
+				return true;
+			  }
+			});
+		buttonRelationed1.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {
+				    if (historical.size() <5)
+				    	historical.add("<"+relationed1+">");
+				    else {
+				    	historical.remove(0);
+			    		historical.add("<"+relationed1+">");
+				    }
+ 				    return true;
+			  }
+			});
+		buttonRelationed2.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {
+				  	Log.v("TAG", relationed2);
+				    if (historical.size() <5)
+				    	historical.add("<"+relationed2+">");
+				    else {
+				    	historical.remove(0);
+			    		historical.add("<"+relationed2+">");
+				    }
+				    return true;
+			  }
+			});
+		buttonRelationed3.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {
+				    if (historical.size() <5)
+				    	historical.add("<"+relationed3+">");
+				    else {
+				    	historical.remove(0);
+			    		historical.add("<"+relationed3+">");
+				    }
+				    return true;
+			  }
+			});
+		buttonRelationed4.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {
+				    if (historical.size() <5)
+				    	historical.add("<"+relationed4+">");
+				    else {
+				    	historical.remove(0);
+			    		historical.add("<"+relationed4+">");
+				    }
+				    return true;
+			  }
+			});
+		buttonHistorical.setOnClickListener(new OnClickListener() {
+			  public void onClick(View view) {
+				    if (historical.size() >0) {
+			    		goQuestionsView(historical);
+				    }
+			  }
+			});
+		tv1.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				StringTokenizer tk = new StringTokenizer(historical.get(0),"><");
+				String clickedTag = (String) tk.nextElement();
+				Log.v("ct",clickedTag);
+				pager.setCurrentItem(allTags.indexOf(clickedTag));
+			  }
+			});
+		tv2.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				StringTokenizer tk = new StringTokenizer(historical.get(1),"><");
+				String clickedTag = (String) tk.nextElement();
+				Log.v("ct",clickedTag);
+				pager.setCurrentItem(allTags.indexOf(clickedTag));
+			  }
+			});
+		tv3.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				StringTokenizer tk = new StringTokenizer(historical.get(2),"><");
+				String clickedTag = (String) tk.nextElement();
+				Log.v("ct",clickedTag);
+				pager.setCurrentItem(allTags.indexOf(clickedTag));
+			  }
+			});
+		tv4.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				StringTokenizer tk = new StringTokenizer(historical.get(3),"><");
+				String clickedTag = (String) tk.nextElement();
+				Log.v("ct",clickedTag);
+				pager.setCurrentItem(allTags.indexOf(clickedTag));
+			  }
+			});
+		tv5.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				StringTokenizer tk = new StringTokenizer(historical.get(4),"><");
+				String clickedTag = (String) tk.nextElement();
+				Log.v("ct",clickedTag);
+				pager.setCurrentItem(allTags.indexOf(clickedTag));
+			  }
+			});
+		tv1.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {
+				    historical.remove(0);
+				    return true;
+			  }
+			});
+		tv2.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {
+				    historical.remove(0);
+				    return true;
+			  }
+			});
+		tv3.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {
+				    historical.remove(0);
+				    return true;
+			  }
+			});
+		tv4.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {
+				    historical.remove(0);
+				    return true;
+			  }
+			});
+		tv5.setOnLongClickListener(new OnLongClickListener() {
+			  public boolean onLongClick(View view) {
+				    historical.remove(0);
+				    return true;
+			  }
+			});
+		return view;
 	}
 		
 	public void displayTags(View view){
@@ -164,7 +329,9 @@ public class TagCloudFragment extends Fragment {
 		Button buttonRelationed1 = (Button) view.findViewById(R.id.buttonRelationed1);
 		Button buttonRelationed2 = (Button) view.findViewById(R.id.buttonRelationed2);
 		Button buttonRelationed3 = (Button) view.findViewById(R.id.buttonRelationed3);
-		Button buttonRelationed4 = (Button) view.findViewById(R.id.buttonRelationed4); 
+		Button buttonRelationed4 = (Button) view.findViewById(R.id.buttonRelationed4);
+		
+		setHistorical(view);
 		buttonMain.setText(mainTag);
 		before = tc.getPrevious(mainTag);
 		buttonBefore.setText(before);
@@ -295,6 +462,71 @@ public class TagCloudFragment extends Fragment {
 ;
 	}
 	
+	private static void setHistorical(View view) {
+		Button tv1 = (Button) view.findViewById(R.id.tv1);
+		Button tv2 = (Button) view.findViewById(R.id.tv2);
+		Button tv3 = (Button) view.findViewById(R.id.tv3);
+		Button tv4 = (Button) view.findViewById(R.id.tv4);
+		Button tv5 = (Button) view.findViewById(R.id.tv5);
+		
+		//SETTING RECORD OF TAGS
+		Iterator it = null;
+		if (historical != null) {
+			it = historical.iterator();
+			Log.v("historical",historical.toString());
+		}
+			if(historical != null && it.hasNext()) {
+				tv1.setEnabled(true);
+				tv1.setVisibility(View.VISIBLE);
+				tv1.setText((String) it.next());
+			}
+			else {
+				tv1.setEnabled(false);
+				tv1.setVisibility(View.INVISIBLE);
+			}
+			if(historical != null && it.hasNext()) {
+				tv2.setEnabled(true);
+				tv2.setVisibility(View.VISIBLE);
+				tv2.setText((String) it.next());
+	
+			}
+			else {
+				tv2.setEnabled(false);
+				tv2.setVisibility(View.INVISIBLE);
+			}
+			if(historical != null && it.hasNext()) {
+				tv3.setEnabled(true);
+				tv3.setVisibility(View.VISIBLE);
+				tv3.setText((String) it.next());
+	
+			}
+			else {
+				tv3.setEnabled(false);
+				tv3.setVisibility(View.INVISIBLE);
+			}
+			if(historical != null && it.hasNext()) {
+				tv4.setEnabled(true);
+				tv4.setVisibility(View.VISIBLE);
+				tv4.setText((String) it.next());
+	
+			}
+			else {
+				tv4.setEnabled(false);
+				tv4.setVisibility(View.INVISIBLE);
+			}
+			if(historical != null && it.hasNext()) {	
+				tv5.setEnabled(true);
+				tv5.setVisibility(View.VISIBLE);
+				tv5.setText((String) it.next());
+	
+			}
+			else {
+				tv5.setEnabled(false);
+				tv5.setVisibility(View.INVISIBLE);
+			}
+			
+	}
+
 	private void heatIt(int a,int b,int value,Button button) {
 		double max = a;
 		double nRelations =b;
@@ -343,8 +575,9 @@ public class TagCloudFragment extends Fragment {
 		deadSet = new ArrayList();
 	}
 	
-    public void goQuestionsView (String s) {
+    public void goQuestionsView (ArrayList<String> s) {
 		Intent intent = new Intent(getActivity(), BrowseActivity.class);
+		Log.v("tagList",s.toString());
 		intent.putExtra("tagList", s);
 		startActivity(intent);
     }
@@ -359,4 +592,5 @@ public class TagCloudFragment extends Fragment {
 
 	    }
 	}
+	
 }

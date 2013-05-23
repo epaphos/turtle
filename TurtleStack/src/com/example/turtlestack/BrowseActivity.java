@@ -35,7 +35,7 @@ public class BrowseActivity extends ListActivity implements OnItemClickListener,
 		ds.open();
 //		Log.v("QUESTIONS", ds.searchQuestionByTags("<.net>").toString());
 		Intent intent = getIntent();
-		String tags = intent.getStringExtra("tagList");
+		ArrayList<String> tags = intent.getStringArrayListExtra("tagList");
 		if (tags != null) {
 			questionList = ds.searchQuestionByTags(tags);
 			filterActualQuestions = true;

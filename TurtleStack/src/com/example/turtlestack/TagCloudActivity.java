@@ -27,7 +27,7 @@ public class TagCloudActivity extends FragmentActivity {
 	SearchView searchView = null;
 	boolean occurence = true;
 	TagCloudOnPageListener pageChangeListener = null;
-	TagCloudPageAdapter adapter;
+	static TagCloudPageAdapter adapter;
 	ArrayList allTags = null;
 	
 	@Override
